@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Linear Algebra}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Matrix Operations}
+
+\textbf{Matrix Addition:} $(A + B)_{ij} = A_{ij} + B_{ij}$
+
+\textbf{Scalar Multiplication:} $(cA)_{ij} = cA_{ij}$
+
+\textbf{Matrix Multiplication:} $(AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}$
+
+Note: $AB \neq BA$ in general (not commutative)
+
+\textbf{Transpose:} $(A^T)_{ij} = A_{ji}$
+
+Properties:
+\begin{itemize}
+\item $(A^T)^T = A$
+\item $(A + B)^T = A^T + B^T$
+\item $(AB)^T = B^T A^T$
+\item $(cA)^T = cA^T$
+\end{itemize}
+
+\textbf{Trace:} $\text{tr}(A) = \sum_{i=1}^{n} A_{ii}$ (sum of diagonal elements)
+
+Properties:
+\begin{itemize}
+\item $\text{tr}(A + B) = \text{tr}(A) + \text{tr}(B)$
+\item $\text{tr}(cA) = c\,\text{tr}(A)$
+\item $\text{tr}(AB) = \text{tr}(BA)$
+\item $\text{tr}(A) = \sum_{i=1}^{n} \lambda_i$ (sum of eigenvalues)
+\end{itemize}
+
+\section*{Determinants}
+
+\textbf{2×2 Matrix:}
+$$\det\begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc$$
+
+\textbf{3×3 Matrix:}
+$$\det\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} = a(ei - fh) - b(di - fg) + c(dh - eg)$$
+
+\textbf{Properties:}
+\begin{itemize}
+\item $\det(AB) = \det(A)\det(B)$
+\item $\det(A^T) = \det(A)$
+\item $\det(A^{-1}) = \frac{1}{\det(A)}$
+\item $\det(cA) = c^n\det(A)$ for $n \times n$ matrix
+\item If $A$ has a row/column of zeros, then $\det(A) = 0$
+\item Swapping two rows/columns changes sign of determinant
+\item $\det(A) = \prod_{i=1}^{n} \lambda_i$ (product of eigenvalues)
+\end{itemize}
+
+\section*{Matrix Inverse}
+
+A matrix $A$ is invertible if $\det(A) \neq 0$
+
+\textbf{Definition:} $AA^{-1} = A^{-1}A = I$
+
+\textbf{2×2 Matrix Inverse:}
+$$A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \quad \Rightarrow \quad A^{-1} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$$
+
+\textbf{Properties:}
+\begin{itemize}
+\item $(A^{-1})^{-1} = A$
+\item $(AB)^{-1} = B^{-1}A^{-1}$
+\item $(A^T)^{-1} = (A^{-1})^T$
+\item $(cA)^{-1} = \frac{1}{c}A^{-1}$
+\end{itemize}
+
+\section*{Eigenvalues and Eigenvectors}
+
+\textbf{Definition:} For a square matrix $A$:
+$$A\mathbf{v} = \lambda\mathbf{v}$$
+
+where $\lambda$ is an eigenvalue and $\mathbf{v}$ is the corresponding eigenvector
+
+\textbf{Characteristic Equation:}
+$$\det(A - \lambda I) = 0$$
+
+For a 2×2 matrix $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$:
+$$\lambda^2 - (a+d)\lambda + (ad-bc) = 0$$
+$$\lambda^2 - \text{tr}(A)\lambda + \det(A) = 0$$
+
+For a 3×3 matrix:
+$$-\lambda^3 + \text{tr}(A)\lambda^2 - (\text{sum of principal minors})\lambda + \det(A) = 0$$
+
+\textbf{Finding Eigenvectors:}
+
+Once $\lambda$ is found, solve $(A - \lambda I)\mathbf{v} = \mathbf{0}$ for $\mathbf{v}$
+
+\textbf{Properties:}
+\begin{itemize}
+\item Sum of eigenvalues = $\text{tr}(A)$
+\item Product of eigenvalues = $\det(A)$
+\item Eigenvalues of $A^T$ = eigenvalues of $A$
+\item Eigenvalues of $A^{-1}$ = $1/\lambda_i$ (if $A$ is invertible)
+\item Eigenvalues of $A^k$ = $\lambda_i^k$
+\item If $A$ is real and symmetric, all eigenvalues are real
+\item Eigenvectors corresponding to distinct eigenvalues are linearly independent
+\end{itemize}
+
+\section*{Diagonalization}
+
+A matrix $A$ is diagonalizable if there exists an invertible matrix $P$ such that:
+$$P^{-1}AP = D$$
+
+where $D$ is a diagonal matrix with eigenvalues on the diagonal.
+
+\textbf{Construction:}
+\begin{itemize}
+\item $P$ = matrix whose columns are eigenvectors of $A$
+\item $D$ = diagonal matrix with corresponding eigenvalues
+\end{itemize}
+
+$$P = \begin{bmatrix} | & | & & | \\ \mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n \\ | & | & & | \end{bmatrix}, \quad D = \begin{bmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{bmatrix}$$
+
+\textbf{Matrix Powers:} If $A = PDP^{-1}$, then
+$$A^k = PD^kP^{-1} = P\begin{bmatrix} \lambda_1^k & & \\ & \ddots & \\ & & \lambda_n^k \end{bmatrix}P^{-1}$$
+
+\textbf{Conditions for Diagonalizability:}
+\begin{itemize}
+\item $A$ is diagonalizable if it has $n$ linearly independent eigenvectors
+\item If $A$ has $n$ distinct eigenvalues, then $A$ is diagonalizable
+\item Symmetric matrices are always diagonalizable
+\end{itemize}
+
+\section*{Similar Matrices}
+
+Matrices $A$ and $B$ are similar if there exists an invertible matrix $P$ such that:
+$$B = P^{-1}AP$$
+
+\textbf{Properties of Similar Matrices:}
+\begin{itemize}
+\item Same eigenvalues
+\item Same determinant
+\item Same trace
+\item Same characteristic polynomial
+\item Same rank
+\end{itemize}
+
+Note: Eigenvectors transform as $\mathbf{w} = P^{-1}\mathbf{v}$
+
+\section*{Orthogonal Matrices}
+
+A matrix $Q$ is orthogonal if:
+$$Q^TQ = QQ^T = I \quad \Rightarrow \quad Q^{-1} = Q^T$$
+
+\textbf{Properties:}
+\begin{itemize}
+\item Columns (and rows) form an orthonormal set
+\item $\det(Q) = \pm 1$
+\item Preserves lengths: $\|Q\mathbf{x}\| = \|\mathbf{x}\|$
+\item Preserves inner products: $(Q\mathbf{x}) \cdot (Q\mathbf{y}) = \mathbf{x} \cdot \mathbf{y}$
+\end{itemize}
+
+\section*{Symmetric Matrices}
+
+A matrix $A$ is symmetric if $A^T = A$
+
+\textbf{Spectral Theorem:}
+
+Every real symmetric matrix can be orthogonally diagonalized:
+$$A = QDQ^T$$
+
+where $Q$ is orthogonal and $D$ is diagonal
+
+\textbf{Properties:}
+\begin{itemize}
+\item All eigenvalues are real
+\item Eigenvectors corresponding to distinct eigenvalues are orthogonal
+\item Can always find an orthonormal basis of eigenvectors
+\end{itemize}
+
+\section*{Matrix Exponential}
+
+$$e^{At} = \sum_{k=0}^{\infty} \frac{(At)^k}{k!} = I + At + \frac{(At)^2}{2!} + \frac{(At)^3}{3!} + \cdots$$
+
+\textbf{If $A$ is diagonalizable:} $A = PDP^{-1}$
+$$e^{At} = Pe^{Dt}P^{-1} = P\begin{bmatrix} e^{\lambda_1 t} & & \\ & \ddots & \\ & & e^{\lambda_n t} \end{bmatrix}P^{-1}$$
+
+\textbf{Properties:}
+\begin{itemize}
+\item $e^{A \cdot 0} = I$
+\item $\frac{d}{dt}e^{At} = Ae^{At}$
+\item $e^{A(t+s)} = e^{At}e^{As}$ (if $A$ commutes with itself)
+\item $(e^{At})^{-1} = e^{-At}$
+\item $\det(e^{At}) = e^{\text{tr}(A)t}$
+\end{itemize}
+
+\textbf{For 2×2 Matrices:}
+
+\textit{Case 1: Distinct Real Eigenvalues} $\lambda_1, \lambda_2$
+$$e^{At} = \frac{1}{\lambda_2 - \lambda_1}\left[(e^{\lambda_2 t})(A - \lambda_1 I) - (e^{\lambda_1 t})(A - \lambda_2 I)\right]$$
+
+\textit{Case 2: Repeated Eigenvalue} $\lambda$
+$$e^{At} = e^{\lambda t}[I + (A - \lambda I)t]$$
+
+\textit{Case 3: Complex Eigenvalues} $\lambda = \alpha \pm i\beta$
+$$e^{At} = e^{\alpha t}\left[\cos(\beta t)I + \frac{\sin(\beta t)}{\beta}(A - \alpha I)\right]$$
+
+\section*{Jordan Canonical Form}
+
+Every square matrix is similar to a Jordan canonical form $J$:
+$$A = PJP^{-1}$$
+
+where $J$ is block diagonal with Jordan blocks:
+
+\textbf{Jordan Block:}
+$$J_k(\lambda) = \begin{bmatrix} 
+\lambda & 1 & 0 & \cdots & 0 \\
+0 & \lambda & 1 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \ddots & \vdots \\
+0 & 0 & 0 & \lambda & 1 \\
+0 & 0 & 0 & 0 & \lambda
+\end{bmatrix}$$
+
+\section*{Special Matrices}
+
+\textbf{Identity Matrix:} $I_{ij} = \delta_{ij} = \begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases}$
+
+\textbf{Diagonal Matrix:} $D_{ij} = 0$ for $i \neq j$
+
+\textbf{Upper Triangular:} $A_{ij} = 0$ for $i > j$
+
+\textbf{Lower Triangular:} $A_{ij} = 0$ for $i < j$
+
+For triangular matrices: $\det(A) = \prod_{i} A_{ii}$ (product of diagonal elements)
+
+\textbf{Positive Definite Matrix:} 
+
+A symmetric matrix $A$ is positive definite if:
+\begin{itemize}
+\item $\mathbf{x}^T A \mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$
+\item All eigenvalues are positive
+\item All leading principal minors are positive
+\end{itemize}
+
+\section*{Linear Systems}
+
+For $A\mathbf{x} = \mathbf{b}$:
+
+\textbf{Cramer's Rule} (if $\det(A) \neq 0$):
+$$x_i = \frac{\det(A_i)}{\det(A)}$$
+
+where $A_i$ is $A$ with column $i$ replaced by $\mathbf{b}$
+
+\textbf{Matrix Solution:}
+$$\mathbf{x} = A^{-1}\mathbf{b}$$
+
+\section*{Vector Spaces}
+
+\textbf{Linear Independence:}
+
+Vectors $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n$ are linearly independent if:
+$$c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n = \mathbf{0} \quad \Rightarrow \quad c_1 = c_2 = \cdots = c_n = 0$$
+
+\textbf{Basis:} A linearly independent set that spans the vector space
+
+\textbf{Dimension:} Number of vectors in a basis
+
+\textbf{Rank:} Dimension of column space = dimension of row space
+
+\textbf{Nullity:} Dimension of null space (kernel)
+
+\textbf{Rank-Nullity Theorem:}
+$$\text{rank}(A) + \text{nullity}(A) = n$$
+
+where $n$ is the number of columns of $A$
+
+\section*{Inner Products and Norms}
+
+\textbf{Inner Product (Dot Product):}
+$$\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T\mathbf{v} = \sum_{i=1}^{n} u_i v_i$$
+
+\textbf{Norm (Length):}
+$$\|\mathbf{v}\| = \sqrt{\mathbf{v} \cdot \mathbf{v}} = \sqrt{\sum_{i=1}^{n} v_i^2}$$
+
+\textbf{Unit Vector:} $\|\mathbf{v}\| = 1$
+
+\textbf{Orthogonal Vectors:} $\mathbf{u} \cdot \mathbf{v} = 0$
+
+\textbf{Orthonormal Set:} Vectors that are pairwise orthogonal and each has norm 1
+
+\textbf{Cauchy-Schwarz Inequality:}
+$$|\mathbf{u} \cdot \mathbf{v}| \leq \|\mathbf{u}\| \|\mathbf{v}\|$$
+
+\textbf{Triangle Inequality:}
+$$\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|$$
+
+\section*{Gram-Schmidt Orthogonalization}
+
+To convert basis $\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}$ to orthonormal basis $\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}$:
+
+$$\mathbf{w}_1 = \mathbf{v}_1, \quad \mathbf{u}_1 = \frac{\mathbf{w}_1}{\|\mathbf{w}_1\|}$$
+
+$$\mathbf{w}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} (\mathbf{v}_k \cdot \mathbf{u}_j)\mathbf{u}_j, \quad \mathbf{u}_k = \frac{\mathbf{w}_k}{\|\mathbf{w}_k\|}$$
+
+\section*{Useful Formulas}
+
+\textbf{2×2 Eigenvalue Formula:}
+
+For $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$:
+$$\lambda = \frac{\text{tr}(A) \pm \sqrt{\text{tr}(A)^2 - 4\det(A)}}{2}$$
+
+\textbf{Cayley-Hamilton Theorem:}
+
+Every matrix satisfies its own characteristic equation. If $p(\lambda) = \det(A - \lambda I)$, then $p(A) = 0$.
+
+\end{document}

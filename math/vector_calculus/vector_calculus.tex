@@ -1,0 +1,276 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Vector Calculus}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Vector Operations}
+
+\textbf{Vector Addition:} $\mathbf{u} + \mathbf{v} = (u_1 + v_1, u_2 + v_2, u_3 + v_3)$
+
+\textbf{Scalar Multiplication:} $c\mathbf{v} = (cv_1, cv_2, cv_3)$
+
+\textbf{Dot Product (Scalar Product):}
+$$\mathbf{u} \cdot \mathbf{v} = u_1v_1 + u_2v_2 + u_3v_3 = |\mathbf{u}||\mathbf{v}|\cos\theta$$
+
+Properties:
+\begin{itemize}
+\item $\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$ (commutative)
+\item $\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{u} \cdot \mathbf{v} + \mathbf{u} \cdot \mathbf{w}$ (distributive)
+\item $\mathbf{u} \cdot \mathbf{v} = 0 \Leftrightarrow \mathbf{u} \perp \mathbf{v}$
+\end{itemize}
+
+\textbf{Cross Product (Vector Product):}
+$$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix} = (u_2v_3 - u_3v_2)\mathbf{i} - (u_1v_3 - u_3v_1)\mathbf{j} + (u_1v_2 - u_2v_1)\mathbf{k}$$
+
+Properties:
+\begin{itemize}
+\item $\mathbf{u} \times \mathbf{v} = -\mathbf{v} \times \mathbf{u}$ (anti-commutative)
+\item $|\mathbf{u} \times \mathbf{v}| = |\mathbf{u}||\mathbf{v}|\sin\theta$
+\item $\mathbf{u} \times \mathbf{v}$ is perpendicular to both $\mathbf{u}$ and $\mathbf{v}$
+\item $\mathbf{u} \times \mathbf{v} = \mathbf{0} \Leftrightarrow \mathbf{u}$ parallel to $\mathbf{v}$
+\end{itemize}
+
+\textbf{Scalar Triple Product:}
+$$\mathbf{u} \cdot (\mathbf{v} \times \mathbf{w}) = \begin{vmatrix} u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \\ w_1 & w_2 & w_3 \end{vmatrix}$$
+
+Geometric interpretation: Volume of parallelepiped formed by $\mathbf{u}$, $\mathbf{v}$, $\mathbf{w}$
+
+\textbf{Vector Triple Product:}
+$$\mathbf{u} \times (\mathbf{v} \times \mathbf{w}) = (\mathbf{u} \cdot \mathbf{w})\mathbf{v} - (\mathbf{u} \cdot \mathbf{v})\mathbf{w}$$
+
+\textbf{Magnitude:} $|\mathbf{v}| = \sqrt{v_1^2 + v_2^2 + v_3^2}$
+
+\textbf{Unit Vector:} $\hat{\mathbf{v}} = \frac{\mathbf{v}}{|\mathbf{v}|}$
+
+\section*{Vector Functions and Curves}
+
+\textbf{Position Vector:} $\mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k}$
+
+\textbf{Velocity:} $\mathbf{v}(t) = \mathbf{r}'(t) = \frac{d\mathbf{r}}{dt}$
+
+\textbf{Acceleration:} $\mathbf{a}(t) = \mathbf{v}'(t) = \mathbf{r}''(t) = \frac{d^2\mathbf{r}}{dt^2}$
+
+\textbf{Speed:} $|\mathbf{v}(t)| = \left|\frac{d\mathbf{r}}{dt}\right|$
+
+\textbf{Unit Tangent Vector:} $\mathbf{T}(t) = \frac{\mathbf{r}'(t)}{|\mathbf{r}'(t)|}$
+
+\textbf{Arc Length:}
+$$s = \int_{a}^{b} |\mathbf{r}'(t)| \, dt = \int_{a}^{b} \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2 + \left(\frac{dz}{dt}\right)^2} \, dt$$
+
+\section*{Gradient, Divergence, and Curl}
+
+\textbf{Del Operator (Nabla):}
+$$\nabla = \mathbf{i}\frac{\partial}{\partial x} + \mathbf{j}\frac{\partial}{\partial y} + \mathbf{k}\frac{\partial}{\partial z}$$
+
+\subsection*{Gradient}
+
+For scalar field $f(x, y, z)$:
+$$\nabla f = \text{grad } f = \frac{\partial f}{\partial x}\mathbf{i} + \frac{\partial f}{\partial y}\mathbf{j} + \frac{\partial f}{\partial z}\mathbf{k}$$
+
+Properties:
+\begin{itemize}
+\item $\nabla f$ points in direction of maximum rate of increase of $f$
+\item $|\nabla f|$ gives the magnitude of that maximum rate
+\item $\nabla f$ is perpendicular to level surfaces $f(x,y,z) = c$
+\end{itemize}
+
+\textbf{Directional Derivative:}
+$$D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u}$$
+
+where $\mathbf{u}$ is a unit vector in the desired direction
+
+\subsection*{Divergence}
+
+For vector field $\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}$:
+$$\nabla \cdot \mathbf{F} = \text{div } \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}$$
+
+Interpretation: Divergence measures the "outflow" of a vector field from an infinitesimal region
+
+\subsection*{Curl}
+
+For vector field $\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k}$:
+$$\nabla \times \mathbf{F} = \text{curl } \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R \end{vmatrix}$$
+
+$$= \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)\mathbf{i} - \left(\frac{\partial R}{\partial x} - \frac{\partial P}{\partial z}\right)\mathbf{j} + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\mathbf{k}$$
+
+Interpretation: Curl measures the rotation or circulation of a vector field
+
+\subsection*{Laplacian}
+
+For scalar field $f$:
+$$\nabla^2 f = \Delta f = \nabla \cdot (\nabla f) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}$$
+
+For vector field $\mathbf{F}$:
+$$\nabla^2 \mathbf{F} = (\nabla^2 P)\mathbf{i} + (\nabla^2 Q)\mathbf{j} + (\nabla^2 R)\mathbf{k}$$
+
+\section*{Vector Identities}
+
+$$\nabla \cdot (\nabla \times \mathbf{F}) = 0 \quad \text{(divergence of curl is zero)}$$
+
+$$\nabla \times (\nabla f) = \mathbf{0} \quad \text{(curl of gradient is zero)}$$
+
+$$\nabla \times (\nabla \times \mathbf{F}) = \nabla(\nabla \cdot \mathbf{F}) - \nabla^2\mathbf{F}$$
+
+$$\nabla(fg) = f\nabla g + g\nabla f$$
+
+$$\nabla \cdot (f\mathbf{F}) = f(\nabla \cdot \mathbf{F}) + \mathbf{F} \cdot (\nabla f)$$
+
+$$\nabla \times (f\mathbf{F}) = f(\nabla \times \mathbf{F}) + (\nabla f) \times \mathbf{F}$$
+
+$$\nabla \cdot (\mathbf{F} \times \mathbf{G}) = \mathbf{G} \cdot (\nabla \times \mathbf{F}) - \mathbf{F} \cdot (\nabla \times \mathbf{G})$$
+
+\section*{Line Integrals}
+
+\textbf{Scalar Line Integral:}
+$$\int_C f \, ds = \int_a^b f(\mathbf{r}(t)) |\mathbf{r}'(t)| \, dt$$
+
+\textbf{Vector Line Integral:}
+$$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t) \, dt$$
+
+In component form:
+$$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_C P \, dx + Q \, dy + R \, dz$$
+
+\textbf{Work:} $W = \int_C \mathbf{F} \cdot d\mathbf{r}$
+
+\textbf{Path Independence:}
+
+$\int_C \mathbf{F} \cdot d\mathbf{r}$ is independent of path if and only if $\mathbf{F}$ is conservative
+
+\textbf{Conservative Vector Field:}
+
+$\mathbf{F}$ is conservative if:
+\begin{itemize}
+\item $\mathbf{F} = \nabla f$ for some scalar potential function $f$
+\item $\nabla \times \mathbf{F} = \mathbf{0}$
+\item $\int_C \mathbf{F} \cdot d\mathbf{r}$ is path independent
+\item $\oint_C \mathbf{F} \cdot d\mathbf{r} = 0$ for any closed curve $C$
+\end{itemize}
+
+\textbf{Finding Potential Function:}
+
+If $\mathbf{F} = P\mathbf{i} + Q\mathbf{j} + R\mathbf{k} = \nabla f$, then:
+$$f(x,y,z) = \int P \, dx + g(y,z)$$
+
+where $g(y,z)$ is determined by matching $\frac{\partial f}{\partial y} = Q$ and $\frac{\partial f}{\partial z} = R$
+
+\textbf{Fundamental Theorem for Line Integrals:}
+
+If $\mathbf{F} = \nabla f$, then:
+$$\int_C \mathbf{F} \cdot d\mathbf{r} = f(\mathbf{r}(b)) - f(\mathbf{r}(a))$$
+
+\section*{Surface Integrals}
+
+\textbf{Parametric Surface:} $\mathbf{r}(u,v) = x(u,v)\mathbf{i} + y(u,v)\mathbf{j} + z(u,v)\mathbf{k}$
+
+\textbf{Normal Vector:}
+$$\mathbf{n} = \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v}$$
+
+\textbf{Surface Area Element:}
+$$dS = \left|\frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v}\right| du \, dv$$
+
+\textbf{Scalar Surface Integral:}
+$$\iint_S f \, dS = \iint_D f(\mathbf{r}(u,v)) \left|\frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v}\right| du \, dv$$
+
+\textbf{Vector Surface Integral (Flux):}
+$$\iint_S \mathbf{F} \cdot \mathbf{n} \, dS = \iint_D \mathbf{F}(\mathbf{r}(u,v)) \cdot \left(\frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v}\right) du \, dv$$
+
+For surface $z = g(x,y)$:
+$$\mathbf{n} \, dS = \left(-\frac{\partial g}{\partial x}\mathbf{i} - \frac{\partial g}{\partial y}\mathbf{j} + \mathbf{k}\right) dx \, dy$$
+
+\section*{Fundamental Theorems}
+
+\subsection*{Green's Theorem}
+
+For region $D$ in the xy-plane with boundary curve $C$ (counterclockwise):
+$$\oint_C P \, dx + Q \, dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) dA$$
+
+Or in vector form:
+$$\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_D (\nabla \times \mathbf{F}) \cdot \mathbf{k} \, dA$$
+
+\textbf{Area by Green's Theorem:}
+$$\text{Area} = \oint_C x \, dy = -\oint_C y \, dx = \frac{1}{2}\oint_C x \, dy - y \, dx$$
+
+\subsection*{Stokes' Theorem}
+
+For surface $S$ with boundary curve $C$:
+$$\oint_C \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot \mathbf{n} \, dS$$
+
+"Circulation around $C$ equals flux of curl through $S$"
+
+\subsection*{Divergence Theorem (Gauss' Theorem)}
+
+For solid region $E$ with boundary surface $S$ (outward normal):
+$$\iint_S \mathbf{F} \cdot \mathbf{n} \, dS = \iiint_E (\nabla \cdot \mathbf{F}) \, dV$$
+
+"Flux through $S$ equals total divergence in $E$"
+
+\section*{Coordinate Systems}
+
+\subsection*{Cylindrical Coordinates}
+
+Conversion:
+$$x = r\cos\theta, \quad y = r\sin\theta, \quad z = z$$
+$$r = \sqrt{x^2 + y^2}, \quad \theta = \tan^{-1}(y/x)$$
+
+\textbf{Volume Element:} $dV = r \, dr \, d\theta \, dz$
+
+\textbf{Gradient:}
+$$\nabla f = \frac{\partial f}{\partial r}\mathbf{e}_r + \frac{1}{r}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta + \frac{\partial f}{\partial z}\mathbf{e}_z$$
+
+\textbf{Divergence:}
+$$\nabla \cdot \mathbf{F} = \frac{1}{r}\frac{\partial(rF_r)}{\partial r} + \frac{1}{r}\frac{\partial F_\theta}{\partial \theta} + \frac{\partial F_z}{\partial z}$$
+
+\textbf{Laplacian:}
+$$\nabla^2 f = \frac{1}{r}\frac{\partial}{\partial r}\left(r\frac{\partial f}{\partial r}\right) + \frac{1}{r^2}\frac{\partial^2 f}{\partial \theta^2} + \frac{\partial^2 f}{\partial z^2}$$
+
+\subsection*{Spherical Coordinates}
+
+Conversion:
+$$x = \rho\sin\phi\cos\theta, \quad y = \rho\sin\phi\sin\theta, \quad z = \rho\cos\phi$$
+$$\rho = \sqrt{x^2 + y^2 + z^2}, \quad \phi = \cos^{-1}(z/\rho), \quad \theta = \tan^{-1}(y/x)$$
+
+where $\rho \geq 0$, $0 \leq \phi \leq \pi$, $0 \leq \theta < 2\pi$
+
+\textbf{Volume Element:} $dV = \rho^2\sin\phi \, d\rho \, d\phi \, d\theta$
+
+\textbf{Gradient:}
+$$\nabla f = \frac{\partial f}{\partial \rho}\mathbf{e}_\rho + \frac{1}{\rho}\frac{\partial f}{\partial \phi}\mathbf{e}_\phi + \frac{1}{\rho\sin\phi}\frac{\partial f}{\partial \theta}\mathbf{e}_\theta$$
+
+\textbf{Divergence:}
+$$\nabla \cdot \mathbf{F} = \frac{1}{\rho^2}\frac{\partial(\rho^2 F_\rho)}{\partial \rho} + \frac{1}{\rho\sin\phi}\frac{\partial(\sin\phi \, F_\phi)}{\partial \phi} + \frac{1}{\rho\sin\phi}\frac{\partial F_\theta}{\partial \theta}$$
+
+\textbf{Laplacian:}
+$$\nabla^2 f = \frac{1}{\rho^2}\frac{\partial}{\partial \rho}\left(\rho^2\frac{\partial f}{\partial \rho}\right) + \frac{1}{\rho^2\sin\phi}\frac{\partial}{\partial \phi}\left(\sin\phi\frac{\partial f}{\partial \phi}\right) + \frac{1}{\rho^2\sin^2\phi}\frac{\partial^2 f}{\partial \theta^2}$$
+
+\section*{Special Functions and Identities}
+
+\textbf{Position Vector:} $\mathbf{r} = x\mathbf{i} + y\mathbf{j} + z\mathbf{k}$
+
+$$|\mathbf{r}| = r = \sqrt{x^2 + y^2 + z^2}$$
+
+$$\nabla r = \frac{\mathbf{r}}{r}$$
+
+$$\nabla \cdot \mathbf{r} = 3$$
+
+$$\nabla \times \mathbf{r} = \mathbf{0}$$
+
+$$\nabla \left(\frac{1}{r}\right) = -\frac{\mathbf{r}}{r^3}$$
+
+$$\nabla^2 \left(\frac{1}{r}\right) = 0 \quad (r \neq 0)$$
+
+\end{document}
