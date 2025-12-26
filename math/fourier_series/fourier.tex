@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Fourier Series and Transforms}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Fourier Series}
+
+For a periodic function $f(x)$ with period $T = 2L$ (or $f(x) = f(x + 2L)$):
+
+\subsection*{General Fourier Series}
+
+$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_n\cos\left(\frac{n\pi x}{L}\right) + b_n\sin\left(\frac{n\pi x}{L}\right)\right]$$
+
+\textbf{Fourier Coefficients:}
+$$a_0 = \frac{1}{L}\int_{-L}^{L} f(x) \, dx$$
+
+$$a_n = \frac{1}{L}\int_{-L}^{L} f(x)\cos\left(\frac{n\pi x}{L}\right) dx, \quad n = 1, 2, 3, \ldots$$
+
+$$b_n = \frac{1}{L}\int_{-L}^{L} f(x)\sin\left(\frac{n\pi x}{L}\right) dx, \quad n = 1, 2, 3, \ldots$$
+
+\subsection*{Fourier Series for Period $2\pi$}
+
+For $f(x)$ with period $2\pi$ (i.e., $L = \pi$):
+
+$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}[a_n\cos(nx) + b_n\sin(nx)]$$
+
+\textbf{Coefficients:}
+$$a_0 = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x) \, dx$$
+
+$$a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx) \, dx$$
+
+$$b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx) \, dx$$
+
+\subsection*{Half-Range Expansions}
+
+\textbf{Fourier Cosine Series} (even extension on $[0, L]$):
+$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}a_n\cos\left(\frac{n\pi x}{L}\right)$$
+
+$$a_0 = \frac{2}{L}\int_{0}^{L} f(x) \, dx$$
+
+$$a_n = \frac{2}{L}\int_{0}^{L} f(x)\cos\left(\frac{n\pi x}{L}\right) dx$$
+
+\textbf{Fourier Sine Series} (odd extension on $[0, L]$):
+$$f(x) = \sum_{n=1}^{\infty}b_n\sin\left(\frac{n\pi x}{L}\right)$$
+
+$$b_n = \frac{2}{L}\int_{0}^{L} f(x)\sin\left(\frac{n\pi x}{L}\right) dx$$
+
+\subsection*{Complex Fourier Series}
+
+$$f(x) = \sum_{n=-\infty}^{\infty} c_n e^{in\pi x/L}$$
+
+\textbf{Complex Coefficients:}
+$$c_n = \frac{1}{2L}\int_{-L}^{L} f(x)e^{-in\pi x/L} \, dx$$
+
+\textbf{Relationship to real coefficients:}
+$$c_0 = \frac{a_0}{2}, \quad c_n = \frac{a_n - ib_n}{2}, \quad c_{-n} = \frac{a_n + ib_n}{2}$$
+
+\section*{Properties of Fourier Series}
+
+\textbf{Even Function:} $f(-x) = f(x)$
+\begin{itemize}
+\item All $b_n = 0$ (only cosine terms)
+\item $a_n = \frac{2}{L}\int_{0}^{L} f(x)\cos\left(\frac{n\pi x}{L}\right) dx$
+\end{itemize}
+
+\textbf{Odd Function:} $f(-x) = -f(x)$
+\begin{itemize}
+\item All $a_n = 0$ (only sine terms)
+\item $b_n = \frac{2}{L}\int_{0}^{L} f(x)\sin\left(\frac{n\pi x}{L}\right) dx$
+\end{itemize}
+
+\textbf{Convergence:}
+\begin{itemize}
+\item At points where $f$ is continuous, the series converges to $f(x)$
+\item At jump discontinuities, the series converges to $\frac{f(x^+) + f(x^-)}{2}$
+\end{itemize}
+
+\textbf{Parseval's Identity:}
+$$\frac{1}{L}\int_{-L}^{L} |f(x)|^2 \, dx = \frac{a_0^2}{2} + \sum_{n=1}^{\infty}(a_n^2 + b_n^2)$$
+
+\section*{Fourier Transform}
+
+For non-periodic functions defined on $(-\infty, \infty)$:
+
+\subsection*{Fourier Transform (Complex Form)}
+
+$$F(\omega) = \mathcal{F}\{f(t)\} = \int_{-\infty}^{\infty} f(t)e^{-i\omega t} \, dt$$
+
+\textbf{Inverse Fourier Transform:}
+$$f(t) = \mathcal{F}^{-1}\{F(\omega)\} = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(\omega)e^{i\omega t} \, d\omega$$
+
+\subsection*{Fourier Cosine Transform}
+
+For functions defined on $[0, \infty)$:
+
+$$F_c(\omega) = \int_{0}^{\infty} f(x)\cos(\omega x) \, dx$$
+
+\textbf{Inverse:}
+$$f(x) = \frac{2}{\pi}\int_{0}^{\infty} F_c(\omega)\cos(\omega x) \, d\omega$$
+
+\subsection*{Fourier Sine Transform}
+
+For functions defined on $[0, \infty)$:
+
+$$F_s(\omega) = \int_{0}^{\infty} f(x)\sin(\omega x) \, dx$$
+
+\textbf{Inverse:}
+$$f(x) = \frac{2}{\pi}\int_{0}^{\infty} F_s(\omega)\sin(\omega x) \, d\omega$$
+
+\section*{Common Fourier Transforms}
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+\textbf{Function } $f(t)$ & \textbf{Transform } $F(\omega)$ \\
+\midrule
+$\delta(t)$ & $1$ \\[6pt]
+$1$ & $2\pi\delta(\omega)$ \\[6pt]
+$e^{-at}u(t)$, $a > 0$ & $\displaystyle\frac{1}{a + i\omega}$ \\[6pt]
+$e^{-a|t|}$, $a > 0$ & $\displaystyle\frac{2a}{a^2 + \omega^2}$ \\[6pt]
+$\text{rect}(t/a)$ & $a\,\text{sinc}(a\omega/2)$ \\[6pt]
+$e^{-at^2}$ & $\displaystyle\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}$ \\[6pt]
+$\cos(\omega_0 t)$ & $\pi[\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]$ \\[6pt]
+$\sin(\omega_0 t)$ & $i\pi[\delta(\omega + \omega_0) - \delta(\omega - \omega_0)]$ \\[6pt]
+\bottomrule
+\end{tabular}
+\end{center}
+
+where $\text{rect}(t/a) = \begin{cases} 1 & |t| < a/2 \\ 0 & |t| > a/2 \end{cases}$ and $\text{sinc}(x) = \frac{\sin(x)}{x}$
+
+\section*{Properties of Fourier Transforms}
+
+\textbf{Linearity:}
+$$\mathcal{F}\{af(t) + bg(t)\} = aF(\omega) + bG(\omega)$$
+
+\textbf{Time Shifting:}
+$$\mathcal{F}\{f(t - t_0)\} = e^{-i\omega t_0}F(\omega)$$
+
+\textbf{Frequency Shifting:}
+$$\mathcal{F}\{e^{i\omega_0 t}f(t)\} = F(\omega - \omega_0)$$
+
+\textbf{Scaling:}
+$$\mathcal{F}\{f(at)\} = \frac{1}{|a|}F\left(\frac{\omega}{a}\right)$$
+
+\textbf{Time Differentiation:}
+$$\mathcal{F}\left\{\frac{d^n f}{dt^n}\right\} = (i\omega)^n F(\omega)$$
+
+\textbf{Frequency Differentiation:}
+$$\mathcal{F}\{t^n f(t)\} = i^n \frac{d^n F(\omega)}{d\omega^n}$$
+
+\textbf{Integration:}
+$$\mathcal{F}\left\{\int_{-\infty}^{t} f(\tau) \, d\tau\right\} = \frac{F(\omega)}{i\omega} + \pi F(0)\delta(\omega)$$
+
+\textbf{Convolution Theorem:}
+$$\mathcal{F}\{(f * g)(t)\} = F(\omega) \cdot G(\omega)$$
+$$\mathcal{F}\{f(t) \cdot g(t)\} = \frac{1}{2\pi}(F * G)(\omega)$$
+
+where $(f * g)(t) = \int_{-\infty}^{\infty} f(\tau)g(t - \tau) \, d\tau$
+
+\textbf{Parseval's Theorem:}
+$$\int_{-\infty}^{\infty} |f(t)|^2 \, dt = \frac{1}{2\pi}\int_{-\infty}^{\infty} |F(\omega)|^2 \, d\omega$$
+
+\textbf{Symmetry Properties:}
+
+If $f(t)$ is real and even: $F(\omega)$ is real and even
+
+If $f(t)$ is real and odd: $F(\omega)$ is purely imaginary and odd
+
+\section*{Discrete Fourier Transform (DFT)}
+
+For a discrete signal $\{x_n\}$ with $N$ samples:
+
+$$X_k = \sum_{n=0}^{N-1} x_n e^{-2\pi i kn/N}, \quad k = 0, 1, \ldots, N-1$$
+
+\textbf{Inverse DFT:}
+$$x_n = \frac{1}{N}\sum_{k=0}^{N-1} X_k e^{2\pi i kn/N}, \quad n = 0, 1, \ldots, N-1$$
+
+\section*{Fast Fourier Transform (FFT)}
+
+The FFT is an efficient algorithm to compute the DFT with complexity $O(N\log N)$ instead of $O(N^2)$.
+
+Most efficient when $N = 2^m$ (power of 2).
+
+\section*{Useful Integrals}
+
+$$\int_{0}^{\pi} \sin(nx)\sin(mx) \, dx = \begin{cases} 0 & n \neq m \\ \pi/2 & n = m \end{cases}$$
+
+$\int_{0}^{\pi} \cos(nx)\cos(mx) \, dx = \begin{cases} 0 & n \neq m \\ \pi/2 & n = m \end{cases}$
+
+$$\int_{0}^{\pi} \sin(nx)\cos(mx) \, dx = 0 \text{ for all } n, m$$
+
+$$\int_{-\pi}^{\pi} \sin(nx)\sin(mx) \, dx = \begin{cases} 0 & n \neq m \\ \pi & n = m \end{cases}$$
+
+$$\int_{-\pi}^{\pi} \cos(nx)\cos(mx) \, dx = \begin{cases} 0 & n \neq m \\ \pi & n = m \end{cases}$$
+
+\section*{Special Functions}
+
+\textbf{Signum Function:}
+$$\text{sgn}(x) = \begin{cases} 1 & x > 0 \\ 0 & x = 0 \\ -1 & x < 0 \end{cases}$$
+
+\textbf{Unit Step Function:}
+$$u(x) = \begin{cases} 0 & x < 0 \\ 1 & x \geq 0 \end{cases}$$
+
+\textbf{Rectangle Function:}
+$$\text{rect}(x) = \begin{cases} 1 & |x| < 1/2 \\ 1/2 & |x| = 1/2 \\ 0 & |x| > 1/2 \end{cases}$$
+
+\textbf{Sinc Function:}
+$$\text{sinc}(x) = \frac{\sin(x)}{x}$$
+
+Note: $\lim_{x \to 0} \text{sinc}(x) = 1$
+
+\section*{Useful Trigonometric Identities}
+
+$$\sin^2(x) = \frac{1 - \cos(2x)}{2}$$
+
+$$\cos^2(x) = \frac{1 + \cos(2x)}{2}$$
+
+$$\sin(x)\cos(x) = \frac{\sin(2x)}{2}$$
+
+$$\sin(A)\sin(B) = \frac{1}{2}[\cos(A-B) - \cos(A+B)]$$
+
+$$\cos(A)\cos(B) = \frac{1}{2}[\cos(A-B) + \cos(A+B)]$$
+
+$$\sin(A)\cos(B) = \frac{1}{2}[\sin(A+B) + \sin(A-B)]$$
+
+\textbf{Euler's Formula:}
+$$e^{ix} = \cos(x) + i\sin(x)$$
+
+$$\cos(x) = \frac{e^{ix} + e^{-ix}}{2}, \quad \sin(x) = \frac{e^{ix} - e^{-ix}}{2i}$$
+
+\end{document}
