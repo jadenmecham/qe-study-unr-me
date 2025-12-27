@@ -1,0 +1,240 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Vibrations}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Laplace Transform}
+
+Definition:
+\[
+\mathcal{L}\{f(t)\} = \int_0^\infty f(t)e^{-st}\,dt
+\]
+
+Common transforms:
+\[
+\mathcal{L}\{1\} = \frac{1}{s}, \quad
+\mathcal{L}\{e^{at}\} = \frac{1}{s-a}
+\]
+\[
+\mathcal{L}\{\dot{f}\} = sF(s) - f(0)
+\]
+\[
+\mathcal{L}\{\ddot{f}\} = s^2F(s) - sf(0) - \dot{f}(0)
+\]
+
+Final Value Theorem:
+\[
+\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)
+\quad (\text{stable systems})
+\]
+
+---
+
+\section*{Transfer Functions}
+
+Definition:
+\[
+G(s) = \frac{Y(s)}{U(s)}
+\]
+
+Standard forms:
+\[
+G_1(s) = \frac{K}{\tau s + 1}
+\]
+\[
+G_2(s) = \frac{K}{s^2 + 2\zeta\omega_n s + \omega_n^2}
+\]
+
+Mechanical system (mass–spring–damper):
+\[
+G(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + cs + k}
+\]
+
+---
+
+\section*{Block Diagrams}
+
+Series:
+\[
+G_{\text{eq}} = G_1G_2
+\]
+
+Parallel:
+\[
+G_{\text{eq}} = G_1 + G_2
+\]
+
+Feedback (negative):
+\[
+G_{cl}(s) = \frac{G(s)}{1 + G(s)H(s)}
+\]
+
+---
+
+\section*{Closed-Loop Response}
+
+Characteristic equation:
+\[
+1 + G(s)H(s) = 0
+\]
+
+Second-order step response:
+\[
+T_s \approx \frac{4}{\zeta\omega_n}
+\]
+\[
+M_p = e^{-\frac{\zeta\pi}{\sqrt{1-\zeta^2}}}
+\]
+
+---
+
+\section*{Steady-State Error}
+
+Error:
+\[
+E(s) = \frac{R(s)}{1 + G(s)H(s)}
+\]
+
+Error constants (unity feedback):
+\[
+K_p = \lim_{s\to 0} G(s)
+\]
+\[
+K_v = \lim_{s\to 0} sG(s)
+\]
+\[
+K_a = \lim_{s\to 0} s^2G(s)
+\]
+
+Steady-state error:
+\[
+e_{ss} =
+\begin{cases}
+\frac{1}{1 + K_p} & \text{step} \\
+\frac{1}{K_v} & \text{ramp} \\
+\frac{1}{K_a} & \text{parabolic}
+\end{cases}
+\]
+
+System type:
+\[
+\text{Type} = \# \text{ of integrators in } G(s)
+\]
+
+---
+
+\section*{Root Locus}
+
+Rules:
+\begin{itemize}
+\item Number of branches = number of poles
+\item Locus starts at poles, ends at zeros
+\item Asymptotes: $n-m$
+\end{itemize}
+
+Asymptote angles:
+\[
+\theta_k = \frac{(2k+1)\pi}{n-m}
+\]
+
+Centroid:
+\[
+\sigma = \frac{\sum p_i - \sum z_i}{n-m}
+\]
+
+---
+
+\section*{Frequency Response}
+
+Frequency substitution:
+\[
+s = j\omega
+\]
+
+Magnitude (dB):
+\[
+20\log_{10}|G(j\omega)|
+\]
+
+Phase:
+\[
+\angle G(j\omega)
+\]
+
+Stability margins:
+\[
+\text{Gain margin, Phase margin}
+\]
+
+---
+
+\section*{Controllers}
+
+Proportional (P):
+\[
+G_c(s) = K
+\]
+
+Proportional–Integral (PI):
+\[
+G_c(s) = K\left(1 + \frac{1}{T_is}\right)
+\]
+
+Proportional–Derivative (PD):
+\[
+G_c(s) = K(1 + T_ds)
+\]
+
+PID:
+\[
+G_c(s) = K\left(1 + \frac{1}{T_is} + T_ds\right)
+\]
+
+Effects:
+\begin{itemize}
+\item $P$: faster response
+\item $I$: zero steady-state error
+\item $D$: improved damping
+\end{itemize}
+
+---
+
+\section*{State Space}
+
+State equations:
+\[
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u
+\]
+\[
+y = \mathbf{C}\mathbf{x} + \mathbf{D}u
+\]
+
+Transfer function:
+\[
+G(s) = \mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B} + \mathbf{D}
+\]
+
+Stability:
+\[
+\Re(\lambda_i(\mathbf{A})) < 0
+\]
+
+---
+
+
+\end{document}
