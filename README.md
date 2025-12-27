@@ -1,5 +1,5 @@
 # qe-study
- Equation sheets and worked out example problems for the mechanical engineering PhD qualifying exam at University of Nevada, Reno. 
+ Equation sheets and worked out example problems for the mechanical engineering PhD qualifying exam at University of Nevada, Reno. Divided by topics on the engineering and math exams.
  ## Engineering
 - controls
 - dynamics
