@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Dynamics}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Kinematics}
+
+\textbf{Particle Motion}
+\[
+\mathbf{v} = \dot{\mathbf{r}}, \quad \mathbf{a} = \dot{\mathbf{v}}
+\]
+
+Rectilinear motion:
+\[
+v = \frac{dx}{dt}, \quad a = \frac{dv}{dt} = v\frac{dv}{dx}
+\]
+
+Curvilinear (normal--tangential):
+\[
+\mathbf{a} = \dot{v}\,\hat{t} + \frac{v^2}{\rho}\,\hat{n}
+\]
+
+Polar coordinates:
+\[
+\mathbf{v} = \dot{r}\,\hat{e}_r + r\dot{\theta}\,\hat{e}_\theta
+\]
+\[
+\mathbf{a} = (\ddot{r} - r\dot{\theta}^2)\hat{e}_r
++ (r\ddot{\theta} + 2\dot{r}\dot{\theta})\hat{e}_\theta
+\]
+
+\textbf{Rigid Body Kinematics}
+\[
+\mathbf{v}_B = \mathbf{v}_A + \boldsymbol{\omega} \times \mathbf{r}_{B/A}
+\]
+\[
+\mathbf{a}_B = \mathbf{a}_A + \boldsymbol{\alpha} \times \mathbf{r}_{B/A}
++ \boldsymbol{\omega} \times (\boldsymbol{\omega} \times \mathbf{r}_{B/A})
+\]
+
+Rolling without slipping:
+\[
+v = \omega R, \quad a = \alpha R
+\]
+
+---
+
+\section*{Mass Properties}
+
+Center of mass:
+\[
+\mathbf{r}_G = \frac{1}{M}\int \mathbf{r}\,dm
+\]
+
+Parallel-axis theorem:
+\[
+I_O = I_G + Md^2
+\]
+
+Common moments of inertia:
+\[
+I_{\text{rod, center}} = \frac{1}{12}mL^2, \quad
+I_{\text{rod, end}} = \frac{1}{3}mL^2
+\]
+\[
+I_{\text{disk}} = \frac{1}{2}mR^2, \quad
+I_{\text{ring}} = mR^2
+\]
+
+---
+
+\section*{Kinetics (Newton--Euler)}
+
+\textbf{Particle:}
+\[
+\sum \mathbf{F} = m\mathbf{a}
+\]
+
+\textbf{Rigid Body (Planar):}
+\[
+\sum \mathbf{F} = m\mathbf{a}_G
+\]
+\[
+\sum M_G = I_G \boldsymbol{\alpha}
+\]
+
+About a fixed point $O$:
+\[
+\sum M_O = I_O \boldsymbol{\alpha}
+\]
+
+---
+
+\section*{Work, Energy, and Power}
+
+Kinetic energy:
+\[
+T = \frac{1}{2}mv^2 + \frac{1}{2}I_G \omega^2
+\]
+
+Potential energy:
+\[
+V_g = mgh, \quad V_s = \frac{1}{2}kx^2
+\]
+
+Work--energy principle:
+\[
+T_1 + V_1 + W_{nc} = T_2 + V_2
+\]
+
+Power:
+\[
+P = \mathbf{F}\cdot\mathbf{v}, \quad P = M\omega
+\]
+
+---
+
+\section*{Linear and Angular Momentum}
+
+Linear momentum:
+\[
+\mathbf{p} = m\mathbf{v}
+\]
+
+Impulse--momentum:
+\[
+\int_{t_1}^{t_2} \sum \mathbf{F}\,dt
+= m(\mathbf{v}_2 - \mathbf{v}_1)
+\]
+
+Angular momentum about point $O$:
+\[
+\mathbf{H}_O = I_G \boldsymbol{\omega}
++ \mathbf{r}_{G/O} \times m\mathbf{v}_G
+\]
+
+Angular impulse--momentum:
+\[
+\int_{t_1}^{t_2} \sum M_O\,dt
+= \mathbf{H}_{O2} - \mathbf{H}_{O1}
+\]
+
+---
+
+\section*{Special Cases and Conservation Laws}
+
+Conservation of energy:
+\[
+T_1 + V_1 = T_2 + V_2
+\quad (\text{no non-conservative work})
+\]
+
+Conservation of linear momentum:
+\[
+\sum \mathbf{F}_{\text{ext}} = 0
+\]
+
+Conservation of angular momentum:
+\[
+\sum M_O^{\text{ext}} = 0
+\]
+
+---
+
+
+
+\end{document}
