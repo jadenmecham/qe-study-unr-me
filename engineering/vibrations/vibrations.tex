@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Vibrations}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Modeling and Equations of Motion}
+
+Single degree of freedom (SDOF):
+\[
+m\ddot{x} + c\dot{x} + kx = f(t)
+\]
+
+Rotational form:
+\[
+I\ddot{\theta} + c_\theta \dot{\theta} + k_\theta \theta = M(t)
+\]
+
+Equivalent parameters:
+\[
+\omega_n = \sqrt{\frac{k}{m}}, \quad
+\zeta = \frac{c}{2\sqrt{km}}
+\]
+
+---
+
+\section*{Free Vibration}
+
+\textbf{Undamped} $(c=0)$:
+\[
+x(t) = A\cos(\omega_n t) + B\sin(\omega_n t)
+\]
+
+\textbf{Damped} $(0 < \zeta < 1)$:
+\[
+x(t) = e^{-\zeta\omega_n t}
+\left(A\cos\omega_d t + B\sin\omega_d t\right)
+\]
+\[
+\omega_d = \omega_n\sqrt{1-\zeta^2}
+\]
+
+Critical damping:
+\[
+c_c = 2\sqrt{km}
+\]
+
+Logarithmic decrement:
+\[
+\delta = \frac{1}{n}
+\ln\!\left(\frac{x(t)}{x(t+nT_d)}\right)
+= \frac{2\pi\zeta}{\sqrt{1-\zeta^2}}
+\]
+
+---
+
+\section*{Forced Vibration (Harmonic)}
+
+Harmonic force:
+\[
+f(t) = F_0\cos\omega t
+\]
+
+Steady-state response amplitude:
+\[
+X(\omega) =
+\frac{F_0/k}
+{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}
+\quad r = \frac{\omega}{\omega_n}
+\]
+
+Phase angle:
+\[
+\tan\phi = \frac{2\zeta r}{1-r^2}
+\]
+
+Resonance frequency:
+\[
+\omega_r = \omega_n\sqrt{1-2\zeta^2}
+\]
+
+---
+
+\section*{General Forcing}
+
+Impulse response function:
+\[
+h(t) = \frac{1}{m\omega_d}e^{-\zeta\omega_n t}\sin(\omega_d t)
+\]
+
+Convolution integral:
+\[
+x(t) = \int_0^t h(t-\tau)f(\tau)\,d\tau
+\]
+
+Step response:
+\[
+x(t) = \frac{F_0}{k}
+\left[1 -
+e^{-\zeta\omega_n t}
+\left(
+\cos\omega_d t
++ \frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t
+\right)
+\right]
+\]
+
+---
+
+\section*{Frequency Response and Transmissibility}
+
+Force transmissibility:
+\[
+T_F =
+\frac{\sqrt{1 + (2\zeta r)^2}}
+{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}
+\]
+
+Motion transmissibility:
+\[
+T_X =
+\frac{1}
+{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}
+\]
+
+Vibration isolation region:
+\[
+r > \sqrt{2}
+\]
+
+---
+
+\section*{Two-Degree-of-Freedom Systems}
+
+Matrix form:
+\[
+\mathbf{M}\ddot{\mathbf{x}} + \mathbf{C}\dot{\mathbf{x}} + \mathbf{K}\mathbf{x}
+= \mathbf{f}(t)
+\]
+
+Undamped eigenvalue problem:
+\[
+(\mathbf{K} - \omega^2\mathbf{M})\boldsymbol{\phi} = 0
+\]
+
+Natural frequencies:
+\[
+\det(\mathbf{K} - \omega^2\mathbf{M}) = 0
+\]
+
+Mode shape orthogonality:
+\[
+\boldsymbol{\phi}_i^T \mathbf{M}\boldsymbol{\phi}_j = 0,
+\quad
+\boldsymbol{\phi}_i^T \mathbf{K}\boldsymbol{\phi}_j = 0
+\quad (i\neq j)
+\]
+
+Modal coordinates:
+\[
+\mathbf{x} = \mathbf{\Phi}\mathbf{q}
+\]
+
+---
+
+\section*{Vibration Absorbers}
+
+Primary mass response (undamped absorber):
+\[
+\omega_a = \sqrt{\frac{k_a}{m_a}}
+\]
+
+Tuned absorber condition:
+\[
+\omega_a = \omega_n
+\]
+
+---
+
+\section*{Vibration Measurement}
+
+Log decrement (experimental):
+\[
+\zeta \approx \frac{\delta}{2\pi}
+\quad (\zeta \ll 1)
+\]
+
+Frequency from FFT peak:
+\[
+\omega = 2\pi f
+\]
+
+---
+
+\end{document}
