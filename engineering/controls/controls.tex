@@ -13,228 +13,547 @@
 \begin{document}
 
 \begin{center}
-\LARGE{\textbf{Vibrations}}
+\LARGE{\textbf{Systems and Controls}}
 \end{center}
 
 \vspace{10pt}
 
-\section*{Laplace Transform}
+\section*{Laplace Transform for Control Systems}
 
-Definition:
-\[
-\mathcal{L}\{f(t)\} = \int_0^\infty f(t)e^{-st}\,dt
-\]
+\textbf{Definition:}
+$$\mathcal{L}\{f(t)\} = F(s) = \int_0^\infty f(t)e^{-st}\,dt$$
 
-Common transforms:
-\[
-\mathcal{L}\{1\} = \frac{1}{s}, \quad
-\mathcal{L}\{e^{at}\} = \frac{1}{s-a}
-\]
-\[
-\mathcal{L}\{\dot{f}\} = sF(s) - f(0)
-\]
-\[
-\mathcal{L}\{\ddot{f}\} = s^2F(s) - sf(0) - \dot{f}(0)
-\]
+\textbf{Common Transforms:}
+$$\mathcal{L}\{1\} = \frac{1}{s}, \quad \mathcal{L}\{t\} = \frac{1}{s^2}, \quad \mathcal{L}\{e^{at}\} = \frac{1}{s-a}$$
 
-Final Value Theorem:
-\[
-\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)
-\quad (\text{stable systems})
-\]
+$$\mathcal{L}\{\sin(\omega t)\} = \frac{\omega}{s^2 + \omega^2}, \quad \mathcal{L}\{\cos(\omega t)\} = \frac{s}{s^2 + \omega^2}$$
 
----
+\textbf{Derivatives:}
+$$\mathcal{L}\{\dot{f}(t)\} = sF(s) - f(0)$$
+$$\mathcal{L}\{\ddot{f}(t)\} = s^2F(s) - sf(0) - \dot{f}(0)$$
+
+\textbf{Final Value Theorem:}
+$$\lim_{t\to\infty} f(t) = \lim_{s\to 0} sF(s)$$
+(Valid only if $f(t)$ has a final value, i.e., system is stable)
+
+\textbf{Initial Value Theorem:}
+$$\lim_{t\to 0^+} f(t) = \lim_{s\to\infty} sF(s)$$
 
 \section*{Transfer Functions}
 
-Definition:
-\[
-G(s) = \frac{Y(s)}{U(s)}
-\]
+\textbf{Definition:}
+$$G(s) = \frac{Y(s)}{U(s)} = \frac{\text{Output}}{\text{Input}}$$
 
-Standard forms:
-\[
-G_1(s) = \frac{K}{\tau s + 1}
-\]
-\[
-G_2(s) = \frac{K}{s^2 + 2\zeta\omega_n s + \omega_n^2}
-\]
+assuming zero initial conditions
 
-Mechanical system (mass–spring–damper):
-\[
-G(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + cs + k}
-\]
+\subsection*{Standard Transfer Function Forms}
 
----
+\textbf{First-Order System:}
+$$G(s) = \frac{K}{\tau s + 1}$$
 
-\section*{Block Diagrams}
+where $K$ is DC gain and $\tau$ is time constant
 
-Series:
-\[
-G_{\text{eq}} = G_1G_2
-\]
+\textbf{Second-Order System:}
+$$G(s) = \frac{K\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$$
 
-Parallel:
-\[
-G_{\text{eq}} = G_1 + G_2
-\]
+where $\omega_n$ is natural frequency and $\zeta$ is damping ratio
 
-Feedback (negative):
-\[
-G_{cl}(s) = \frac{G(s)}{1 + G(s)H(s)}
-\]
+Alternative form:
+$$G(s) = \frac{K}{s^2 + 2\zeta\omega_n s + \omega_n^2}$$
 
----
+\subsection*{System Modeling}
 
-\section*{Closed-Loop Response}
+\textbf{Mechanical System (Mass-Spring-Damper):}
+$$m\ddot{x} + c\dot{x} + kx = f(t)$$
 
-Characteristic equation:
-\[
-1 + G(s)H(s) = 0
-\]
+Transfer function:
+$$G(s) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + cs + k}$$
 
-Second-order step response:
-\[
-T_s \approx \frac{4}{\zeta\omega_n}
-\]
-\[
-M_p = e^{-\frac{\zeta\pi}{\sqrt{1-\zeta^2}}}
-\]
+\textbf{RLC Circuit:}
+$$L\ddot{q} + R\dot{q} + \frac{1}{C}q = v(t)$$
 
----
+Transfer function:
+$$G(s) = \frac{Q(s)}{V(s)} = \frac{1}{Ls^2 + Rs + 1/C}$$
+
+\subsection*{Mechanical-Electrical Analogies}
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+\textbf{Mechanical} & \textbf{Electrical} \\
+\midrule
+Force $F$ & Voltage $V$ \\
+Velocity $v$ & Current $I$ \\
+Mass $m$ & Inductance $L$ \\
+Damper $c$ & Resistance $R$ \\
+Spring $k$ & $1/C$ (Capacitance) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Block Diagram Algebra}
+
+\textbf{Series (Cascade):}
+$$G_{\text{eq}}(s) = G_1(s)G_2(s)$$
+
+\textbf{Parallel:}
+$$G_{\text{eq}}(s) = G_1(s) + G_2(s)$$
+
+\textbf{Feedback (Negative):}
+$$G_{cl}(s) = \frac{G(s)}{1 + G(s)H(s)}$$
+
+where $G(s)$ is forward path and $H(s)$ is feedback path
+
+\textbf{Feedback (Positive):}
+$$G_{cl}(s) = \frac{G(s)}{1 - G(s)H(s)}$$
+
+\textbf{Unity Feedback:} $H(s) = 1$
+$$G_{cl}(s) = \frac{G(s)}{1 + G(s)}$$
+
+\subsection*{Moving Summing Junctions and Pickoff Points}
+
+\textbf{Moving summing junction past a block $G$:}
+- Move forward: Divide by $G$
+- Move backward: Multiply by $G$
+
+\textbf{Moving pickoff point past a block $G$:}
+- Move forward: Multiply by $G$
+- Move backward: Divide by $G$
+
+\section*{Time Response Analysis}
+
+\subsection*{First-Order System Response}
+
+For $G(s) = \frac{K}{\tau s + 1}$ with unit step input:
+
+\textbf{Time Response:}
+$$y(t) = K(1 - e^{-t/\tau})$$
+
+\textbf{Time Constant:} $\tau$
+- Time to reach 63.2\% of final value
+- $y(\tau) = 0.632K$
+
+\textbf{Settling Time (2\% criterion):}
+$$T_s = 4\tau$$
+
+\subsection*{Second-Order System Response}
+
+For $G(s) = \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2}$ with unit step input:
+
+\textbf{Underdamped} ($0 < \zeta < 1$):
+$$y(t) = 1 - \frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin(\omega_d t + \phi)$$
+
+where $\omega_d = \omega_n\sqrt{1-\zeta^2}$ and $\phi = \cos^{-1}(\zeta)$
+
+\textbf{Performance Specifications:}
+
+\textit{Rise Time (0\% to 100\%):}
+$$T_r \approx \frac{1.8}{\omega_n}$$
+
+\textit{Peak Time:}
+$$T_p = \frac{\pi}{\omega_d} = \frac{\pi}{\omega_n\sqrt{1-\zeta^2}}$$
+
+\textit{Percent Overshoot:}
+$$M_p = e^{-\frac{\zeta\pi}{\sqrt{1-\zeta^2}}} \times 100\%$$
+
+\textit{Settling Time (2\% criterion):}
+$$T_s \approx \frac{4}{\zeta\omega_n}$$
+
+\textit{Settling Time (5\% criterion):}
+$$T_s \approx \frac{3}{\zeta\omega_n}$$
+
+\textbf{Damping Ratio from Overshoot:}
+$$\zeta = \frac{-\ln(M_p/100)}{\sqrt{\pi^2 + \ln^2(M_p/100)}}$$
+
+For small overshoot:
+$$\zeta \approx 1 - \frac{M_p}{100}$$
+
+\subsection*{Dominant Pole Approximation}
+
+For higher-order systems, if one pole (or pair) is much closer to imaginary axis than others, system behaves approximately like first or second-order system with those dominant poles.
 
 \section*{Steady-State Error}
 
-Error:
-\[
-E(s) = \frac{R(s)}{1 + G(s)H(s)}
-\]
+\subsection*{Error Definition}
 
-Error constants (unity feedback):
-\[
-K_p = \lim_{s\to 0} G(s)
-\]
-\[
-K_v = \lim_{s\to 0} sG(s)
-\]
-\[
-K_a = \lim_{s\to 0} s^2G(s)
-\]
+$$E(s) = R(s) - Y(s) = \frac{R(s)}{1 + G(s)H(s)}$$
 
-Steady-state error:
-\[
-e_{ss} =
-\begin{cases}
-\frac{1}{1 + K_p} & \text{step} \\
-\frac{1}{K_v} & \text{ramp} \\
-\frac{1}{K_a} & \text{parabolic}
-\end{cases}
-\]
+\textbf{Steady-State Error:}
+$$e_{ss} = \lim_{t\to\infty} e(t) = \lim_{s\to 0} sE(s)$$
 
-System type:
-\[
-\text{Type} = \# \text{ of integrators in } G(s)
-\]
+\subsection*{Error Constants (Unity Feedback)}
 
----
+\textbf{Position Error Constant:}
+$$K_p = \lim_{s\to 0} G(s)$$
 
-\section*{Root Locus}
+\textbf{Velocity Error Constant:}
+$$K_v = \lim_{s\to 0} sG(s)$$
 
-Rules:
+\textbf{Acceleration Error Constant:}
+$$K_a = \lim_{s\to 0} s^2G(s)$$
+
+\subsection*{Steady-State Errors for Standard Inputs}
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Input} & \textbf{Type 0} & \textbf{Type 1} & \textbf{Type 2} \\
+\midrule
+Step: $R(s) = \frac{1}{s}$ & $\frac{1}{1+K_p}$ & $0$ & $0$ \\[6pt]
+Ramp: $R(s) = \frac{1}{s^2}$ & $\infty$ & $\frac{1}{K_v}$ & $0$ \\[6pt]
+Parabolic: $R(s) = \frac{1}{s^3}$ & $\infty$ & $\infty$ & $\frac{1}{K_a}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{System Type:}
+
+Number of integrators (poles at $s = 0$) in open-loop transfer function $G(s)H(s)$
+
+For $G(s)H(s) = \frac{K(s+z_1)\cdots}{s^N(s+p_1)\cdots}$, Type = $N$
+
+\section*{Stability Analysis}
+
+\subsection*{Characteristic Equation}
+
+For closed-loop system:
+$$1 + G(s)H(s) = 0$$
+
+or equivalently, denominator of $\frac{G(s)}{1 + G(s)H(s)} = 0$
+
+\textbf{Stability Requirement:}
+
+All roots of characteristic equation must have negative real parts (left half-plane)
+
+\subsection*{Routh-Hurwitz Stability Criterion}
+
+For characteristic equation:
+$$a_ns^n + a_{n-1}s^{n-1} + \cdots + a_1s + a_0 = 0$$
+
+\textbf{Routh Array:}
+\begin{center}
+\begin{tabular}{cccc}
+$s^n$ & $a_n$ & $a_{n-2}$ & $a_{n-4}$ \\
+$s^{n-1}$ & $a_{n-1}$ & $a_{n-3}$ & $a_{n-5}$ \\
+$s^{n-2}$ & $b_1$ & $b_2$ & $b_3$ \\
+$s^{n-3}$ & $c_1$ & $c_2$ & $c_3$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+$s^0$ & $h_1$ & & \\
+\end{tabular}
+\end{center}
+
+where:
+$$b_1 = \frac{a_{n-1}a_{n-2} - a_na_{n-3}}{a_{n-1}}, \quad b_2 = \frac{a_{n-1}a_{n-4} - a_na_{n-5}}{a_{n-1}}$$
+
+$$c_1 = \frac{b_1a_{n-3} - a_{n-1}b_2}{b_1}, \quad c_2 = \frac{b_1a_{n-5} - a_{n-1}b_3}{b_1}$$
+
+\textbf{Stability Criterion:}
+
+System is stable if and only if all elements in the first column have the same sign (no sign changes)
+
+\textbf{Number of RHP poles:} = Number of sign changes in first column
+
+\textbf{Special Cases:}
 \begin{itemize}
-\item Number of branches = number of poles
-\item Locus starts at poles, ends at zeros
-\item Asymptotes: $n-m$
+\item If first element in row is zero but others aren't: Replace with small $\epsilon > 0$ and continue
+\item If entire row is zero: Indicates roots on imaginary axis (marginal stability)
 \end{itemize}
+
+\section*{Root Locus Method}
+
+\textbf{Root Locus:} Plot of closed-loop poles as gain $K$ varies from $0$ to $\infty$
+
+For system: $1 + KG(s)H(s) = 0$
+
+\subsection*{Root Locus Construction Rules}
+
+\textbf{Rule 1 - Number of Branches:}
+
+Number of branches = Number of poles of $G(s)H(s) = n$
+
+\textbf{Rule 2 - Starting and Ending Points:}
+
+Loci start ($K = 0$) at poles of $G(s)H(s)$
+
+Loci end ($K = \infty$) at zeros of $G(s)H(s)$
+
+\textbf{Rule 3 - Real Axis Segments:}
+
+Locus exists on real axis to the left of an odd number of real poles and zeros
+
+\textbf{Rule 4 - Asymptotes:}
+
+Number of asymptotes: $n - m$ (poles minus zeros)
 
 Asymptote angles:
-\[
-\theta_k = \frac{(2k+1)\pi}{n-m}
-\]
+$$\theta_k = \frac{(2k + 1)\pi}{n - m}, \quad k = 0, 1, 2, \ldots, (n-m-1)$$
 
-Centroid:
-\[
-\sigma = \frac{\sum p_i - \sum z_i}{n-m}
-\]
+Centroid (intersection point):
+$$\sigma_a = \frac{\sum \text{poles} - \sum \text{zeros}}{n - m}$$
 
----
+\textbf{Rule 5 - Breakaway/Break-in Points:}
 
-\section*{Frequency Response}
+Solve: $\frac{dK}{ds} = 0$ or $\frac{d}{ds}[G(s)H(s)] = 0$
 
-Frequency substitution:
-\[
-s = j\omega
-\]
+Points where locus leaves (breakaway) or enters (break-in) real axis
 
-Magnitude (dB):
-\[
-20\log_{10}|G(j\omega)|
-\]
+\textbf{Rule 6 - Imaginary Axis Crossings:}
 
-Phase:
-\[
-\angle G(j\omega)
-\]
+Use Routh-Hurwitz to find:
+- Value of $K$ at crossing
+- Frequency $\omega$ at crossing
 
-Stability margins:
-\[
-\text{Gain margin, Phase margin}
-\]
+\textbf{Rule 7 - Angle of Departure/Arrival:}
 
----
+From complex pole:
+$$\theta_d = 180° - \sum \text{angles from zeros} + \sum \text{angles from other poles}$$
 
-\section*{Controllers}
+To complex zero:
+$$\theta_a = 180° + \sum \text{angles from zeros} - \sum \text{angles from poles}$$
 
-Proportional (P):
-\[
-G_c(s) = K
-\]
+\subsection*{Angle and Magnitude Conditions}
 
-Proportional–Integral (PI):
-\[
-G_c(s) = K\left(1 + \frac{1}{T_is}\right)
-\]
+\textbf{Angle Condition:}
+$$\angle G(s)H(s) = (2k + 1) \cdot 180°, \quad k = 0, \pm 1, \pm 2, \ldots$$
 
-Proportional–Derivative (PD):
-\[
-G_c(s) = K(1 + T_ds)
-\]
+\textbf{Magnitude Condition:}
+$$K = \frac{1}{|G(s)H(s)|}$$
 
-PID:
-\[
-G_c(s) = K\left(1 + \frac{1}{T_is} + T_ds\right)
-\]
+\section*{Frequency Response Analysis}
 
-Effects:
-\begin{itemize}
-\item $P$: faster response
-\item $I$: zero steady-state error
-\item $D$: improved damping
-\end{itemize}
+\subsection*{Frequency Response}
 
----
+Substitute $s = j\omega$ into transfer function:
+$$G(j\omega) = |G(j\omega)|e^{j\angle G(j\omega)}$$
 
-\section*{State Space}
+\textbf{Magnitude:}
+$$|G(j\omega)| = \sqrt{\text{Re}^2 + \text{Im}^2}$$
 
-State equations:
-\[
-\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}u
-\]
-\[
-y = \mathbf{C}\mathbf{x} + \mathbf{D}u
-\]
+\textbf{Phase:}
+$$\angle G(j\omega) = \tan^{-1}\left(\frac{\text{Im}}{\text{Re}}\right)$$
 
-Transfer function:
-\[
-G(s) = \mathbf{C}(s\mathbf{I}-\mathbf{A})^{-1}\mathbf{B} + \mathbf{D}
-\]
+\subsection*{Bode Plots}
 
-Stability:
-\[
-\Re(\lambda_i(\mathbf{A})) < 0
-\]
+\textbf{Magnitude Plot:} $20\log_{10}|G(j\omega)|$ (dB) vs $\log(\omega)$
 
----
+\textbf{Phase Plot:} $\angle G(j\omega)$ (degrees) vs $\log(\omega)$
 
+\subsection*{Bode Plot Construction}
+
+\textbf{Constant $K$:}
+- Magnitude: $20\log_{10}K$ dB (horizontal line)
+- Phase: $0°$ if $K > 0$, $-180°$ if $K < 0$
+
+\textbf{Pole at origin $\frac{1}{s}$:}
+- Magnitude: $-20$ dB/decade slope
+- Phase: $-90°$
+
+\textbf{Zero at origin $s$:}
+- Magnitude: $+20$ dB/decade slope
+- Phase: $+90°$
+
+\textbf{First-order pole $\frac{1}{\tau s + 1}$:}
+
+Break frequency: $\omega_b = 1/\tau$
+
+- Magnitude: $0$ dB for $\omega \ll \omega_b$, $-20$ dB/decade for $\omega \gg \omega_b$
+- Phase: $0°$ for $\omega \ll \omega_b$, $-45°$ at $\omega_b$, $-90°$ for $\omega \gg \omega_b$
+
+\textbf{First-order zero $(\tau s + 1)$:}
+
+Break frequency: $\omega_b = 1/\tau$
+
+- Magnitude: $0$ dB for $\omega \ll \omega_b$, $+20$ dB/decade for $\omega \gg \omega_b$
+- Phase: $0°$ for $\omega \ll \omega_b$, $+45°$ at $\omega_b$, $+90°$ for $\omega \gg \omega_b$
+
+\textbf{Second-order pole $\frac{1}{s^2/\omega_n^2 + 2\zeta s/\omega_n + 1}$:}
+
+Break frequency: $\omega_b = \omega_n$
+
+- Magnitude: $0$ dB for $\omega \ll \omega_n$, $-40$ dB/decade for $\omega \gg \omega_n$
+- Resonant peak for small $\zeta$: $M_r \approx \frac{1}{2\zeta}$ at $\omega \approx \omega_n$
+- Phase: $0°$ for $\omega \ll \omega_n$, $-90°$ at $\omega_n$, $-180°$ for $\omega \gg \omega_n$
+
+\subsection*{Stability Margins}
+
+\textbf{Gain Margin (GM):}
+
+At phase crossover frequency $\omega_{pc}$ (where $\angle G(j\omega) = -180°$):
+$$\text{GM (dB)} = -20\log_{10}|G(j\omega_{pc})|$$
+
+Stable if GM $> 0$ dB
+
+\textbf{Phase Margin (PM):}
+
+At gain crossover frequency $\omega_{gc}$ (where $|G(j\omega)| = 1$ or $0$ dB):
+$$\text{PM} = 180° + \angle G(j\omega_{gc})$$
+
+Stable if PM $> 0°$
+
+\textbf{Typical Design Criteria:}
+- GM $\geq 6$ dB
+- PM $\geq 30°$ to $60°$ (typically $45°$ for good performance)
+
+\subsection*{Nyquist Stability Criterion}
+
+\textbf{Nyquist Plot:} Polar plot of $G(j\omega)H(j\omega)$ for $\omega: 0 \to \infty$
+
+\textbf{Nyquist Stability Criterion:}
+
+System is stable if:
+$$Z = N + P = 0$$
+
+where:
+- $Z$ = number of closed-loop RHP poles
+- $P$ = number of open-loop RHP poles
+- $N$ = number of clockwise encirclements of $-1 + j0$ point
+
+For stable open-loop system ($P = 0$): System is stable if Nyquist plot does not encircle $-1 + j0$ point
+
+\textbf{Simplified for Stable Open-Loop:}
+
+Stable if Nyquist plot passes to the left of $-1 + j0$ point
+
+\section*{Controllers and Compensation}
+
+\subsection*{Proportional (P) Controller}
+
+$$G_c(s) = K_p$$
+
+\textbf{Effects:}
+- Increases gain
+- Reduces steady-state error
+- Can destabilize system if too high
+- Does NOT eliminate steady-state error for step input (Type 0)
+
+\subsection*{Proportional-Integral (PI) Controller}
+
+$$G_c(s) = K_p\left(1 + \frac{1}{T_i s}\right) = K_p\frac{T_i s + 1}{T_i s}$$
+
+\textbf{Effects:}
+- Eliminates steady-state error for step input
+- Increases system type by 1
+- May slow down response
+- Can reduce stability margins
+
+\subsection*{Proportional-Derivative (PD) Controller}
+
+$$G_c(s) = K_p(1 + T_d s)$$
+
+\textbf{Effects:}
+- Improves transient response
+- Increases damping
+- Improves stability margins
+- Does NOT affect steady-state error
+- Amplifies high-frequency noise
+
+\subsection*{Proportional-Integral-Derivative (PID) Controller}
+
+$$G_c(s) = K_p\left(1 + \frac{1}{T_i s} + T_d s\right)$$
+
+Practical form (with derivative filter):
+$$G_c(s) = K_p + \frac{K_i}{s} + \frac{K_d s}{1 + \tau_f s}$$
+
+\textbf{Effects:}
+- Combines benefits of P, I, and D
+- Zero steady-state error
+- Good transient response
+- Improved stability
+
+\textbf{Tuning Methods:}
+- Ziegler-Nichols
+- Cohen-Coon
+- Trial and error
+- Software optimization
+
+\subsection*{Lead Compensator}
+
+$$G_c(s) = K_c\frac{s + z}{s + p}, \quad z < p$$
+
+\textbf{Effects:}
+- Increases phase margin
+- Improves transient response
+- Increases bandwidth
+- Used for phase lead
+
+\textbf{Maximum Phase Lead:}
+$$\phi_{max} = \sin^{-1}\left(\frac{p/z - 1}{p/z + 1}\right)$$
+
+Occurs at $\omega_m = \sqrt{zp}$
+
+\subsection*{Lag Compensator}
+
+$$G_c(s) = K_c\frac{s + z}{s + p}, \quad z > p$$
+
+\textbf{Effects:}
+- Increases DC gain
+- Reduces steady-state error
+- Decreases bandwidth
+- May slow response
+
+\subsection*{Lead-Lag Compensator}
+
+$$G_c(s) = K_c\frac{(s + z_1)(s + z_2)}{(s + p_1)(s + p_2)}$$
+
+Combines benefits of both lead and lag compensation
+
+\section*{State-Space Representation}
+
+\subsection*{State Equations}
+
+$$\dot{\mathbf{x}}(t) = \mathbf{A}\mathbf{x}(t) + \mathbf{B}u(t)$$
+$$y(t) = \mathbf{C}\mathbf{x}(t) + \mathbf{D}u(t)$$
+
+where:
+- $\mathbf{x}$ is state vector ($n \times 1$)
+- $u$ is input (scalar or vector)
+- $y$ is output (scalar or vector)
+- $\mathbf{A}$ is system matrix ($n \times n$)
+- $\mathbf{B}$ is input matrix ($n \times 1$)
+- $\mathbf{C}$ is output matrix ($1 \times n$)
+- $\mathbf{D}$ is feedthrough matrix (often 0)
+
+\subsection*{Transfer Function from State-Space}
+
+$$G(s) = \mathbf{C}(s\mathbf{I} - \mathbf{A})^{-1}\mathbf{B} + \mathbf{D}$$
+
+\subsection*{Stability from State-Space}
+
+System is stable if all eigenvalues of $\mathbf{A}$ have negative real parts:
+$$\text{Re}(\lambda_i) < 0 \quad \text{for all } i$$
+
+\subsection*{Controllability and Observability}
+
+\textbf{Controllability Matrix:}
+$$\mathcal{C} = [\mathbf{B} \quad \mathbf{AB} \quad \mathbf{A}^2\mathbf{B} \quad \cdots \quad \mathbf{A}^{n-1}\mathbf{B}]$$
+
+System is controllable if $\text{rank}(\mathcal{C}) = n$
+
+\textbf{Observability Matrix:}
+$$\mathcal{O} = \begin{bmatrix} \mathbf{C} \\ \mathbf{CA} \\ \mathbf{CA}^2 \\ \vdots \\ \mathbf{CA}^{n-1} \end{bmatrix}$$
+
+System is observable if $\text{rank}(\mathcal{O}) = n$
+
+\section*{Linearization}
+
+For nonlinear system $\dot{x} = f(x, u)$, linearize about equilibrium point $(x_0, u_0)$:
+
+$$\Delta\dot{x} = \frac{\partial f}{\partial x}\bigg|_{x_0, u_0} \Delta x + \frac{\partial f}{\partial u}\bigg|_{x_0, u_0} \Delta u$$
+
+where $\mathbf{A} = \frac{\partial f}{\partial x}\bigg|_{x_0, u_0}$ (Jacobian)
+
+\section*{Quick Reference}
+
+\textbf{Typical Second-Order System:}
+- Natural frequency: $\omega_n = \sqrt{k/m}$
+- Damping ratio: $\zeta = c/(2\sqrt{km})$
+- Settling time: $T_s \approx 4/(\zeta\omega_n)$
+- Overshoot: $M_p = e^{-\zeta\pi/\sqrt{1-\zeta^2}}$
+
+\textbf{Stability Check:}
+1. Closed-loop poles in LHP
+2. Routh-Hurwitz: No sign changes
+3. Nyquist: No encirclement of $-1$
+4. Bode: GM $> 0$, PM $> 0$
 
 \end{document}
