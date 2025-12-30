@@ -18,4 +18,705 @@
 
 \vspace{10pt}
 
+\section*{Metal Casting}
+
+\subsection*{Solidification and Cooling}
+
+\textbf{Chvorinov's Rule:}
+$$t = C\left(\frac{V}{A}\right)^n$$
+
+where:
+- $t$ = total solidification time
+- $V$ = volume of casting
+- $A$ = surface area of casting
+- $C$ = mold constant (depends on material and mold properties)
+- $n$ = exponent (typically $n = 2$)
+
+\textbf{Modulus of Casting:}
+$$M = \frac{V}{A}$$
+
+Larger modulus → slower cooling → larger grain size
+
+\textbf{Riser Design:}
+
+For riser to solidify last:
+$$\left(\frac{V}{A}\right)_{\text{riser}} > \left(\frac{V}{A}\right)_{\text{casting}}$$
+
+\subsection*{Fluidity and Filling}
+
+\textbf{Fluidity:} Ability of molten metal to flow and fill mold cavities
+
+Factors affecting fluidity:
+- Temperature (higher → better fluidity)
+- Composition (lower melting point → better fluidity)
+- Surface tension
+- Oxide formation
+
+\textbf{Pouring Basin and Sprue:}
+
+Flow rate through sprue:
+$$Q = A_2v_2 = A_2\sqrt{2gh}$$
+
+where $h$ is height of molten metal above sprue base
+
+\subsection*{Shrinkage}
+
+\textbf{Total Shrinkage = Liquid shrinkage + Solidification shrinkage + Solid shrinkage}
+
+Typical total shrinkage: 3-8\% depending on material
+
+Must account for shrinkage in pattern making
+
+\section*{Metal Forming}
+
+\subsection*{True Stress and True Strain}
+
+\textbf{True Strain:}
+$$\epsilon_T = \ln\left(\frac{L}{L_0}\right) = \ln(1 + \epsilon_E)$$
+
+where $\epsilon_E$ is engineering strain
+
+\textbf{True Stress:}
+$$\sigma_T = \sigma_E(1 + \epsilon_E)$$
+
+For plastic deformation (constant volume):
+$$\sigma_T = \frac{F}{A} = \frac{FL}{A_0L_0}$$
+
+\subsection*{Flow Stress}
+
+\textbf{Flow Curve (Power Law):}
+$$\bar{\sigma} = K\epsilon^n$$
+
+where:
+- $\bar{\sigma}$ = flow stress (true stress)
+- $K$ = strength coefficient
+- $\epsilon$ = true strain
+- $n$ = strain hardening exponent
+
+\textbf{Average Flow Stress:}
+$$\bar{Y}_f = \frac{K\epsilon^n}{1 + n}$$
+
+Used to calculate forces in forming operations
+
+\subsection*{Rolling}
+
+\textbf{Draft:}
+$$d = t_0 - t_f$$
+
+where $t_0$ is initial thickness, $t_f$ is final thickness
+
+\textbf{Reduction:}
+$$r = \frac{d}{t_0} = \frac{t_0 - t_f}{t_0}$$
+
+\textbf{True Strain:}
+$$\epsilon = \ln\left(\frac{t_0}{t_f}\right)$$
+
+\textbf{Roll Force (approximate):}
+$$F = \bar{Y}_f wL$$
+
+where:
+- $\bar{Y}_f$ = average flow stress
+- $w$ = width of strip
+- $L$ = contact length $\approx \sqrt{R \cdot d}$
+- $R$ = roll radius
+
+\textbf{Roll Torque:}
+$$T = 0.5FL$$
+
+\textbf{Roll Power:}
+$$P = 2\pi NT$$
+
+where $N$ is rotational speed (rev/time)
+
+\subsection*{Forging}
+
+\textbf{Forging Force (open die, no friction):}
+$$F = \bar{Y}_f A_f$$
+
+where $A_f$ is final area
+
+\textbf{With Friction (disk approximation):}
+$$F = \bar{Y}_f A_f\left(1 + \frac{2\mu r}{3h}\right)$$
+
+where:
+- $\mu$ = coefficient of friction
+- $r$ = radius of workpiece
+- $h$ = height of workpiece
+
+\subsection*{Extrusion}
+
+\textbf{Extrusion Ratio:}
+$$r_x = \frac{A_0}{A_f}$$
+
+where $A_0$ is initial billet area, $A_f$ is final extrudate area
+
+\textbf{True Strain:}
+$$\epsilon = \ln(r_x)$$
+
+\textbf{Extrusion Force (Johnson Formula):}
+$$F = A_0 \bar{Y}_f \left[a + b\ln(r_x)\right]$$
+
+where:
+- $a$ = 0.8 (typical)
+- $b$ = 1.2 to 1.5 (depends on friction and die angle)
+
+\textbf{Ram Pressure:}
+$$p = \frac{F}{A_0}$$
+
+\textbf{Maximum Extrusion Ratio:}
+
+Limited by:
+- Material strength
+- Press capacity
+- Buckling of billet
+
+\subsection*{Wire and Tube Drawing}
+
+\textbf{Drawing Stress (ideal, no friction):}
+$$\sigma_d = \bar{Y}_f \ln\left(\frac{A_0}{A_f}\right)$$
+
+\textbf{With Friction:}
+$$\sigma_d = \bar{Y}_f \left[1 + \frac{\mu}{\tan\alpha}\right] \ln\left(\frac{A_0}{A_f}\right)$$
+
+where $\alpha$ is die semi-angle
+
+\textbf{Drawing Force:}
+$$F = \sigma_d A_f$$
+
+\textbf{Drawing Power:}
+$$P = Fv$$
+
+where $v$ is drawing velocity
+
+\textbf{Maximum Reduction per Pass:}
+
+Limited by tensile strength of material:
+$$\sigma_d \leq \sigma_{UTS}$$
+
+\subsection*{Sheet Metal Working}
+
+\textbf{Bend Allowance:}
+$$L_b = \alpha(R + kt)$$
+
+where:
+- $\alpha$ = bend angle (radians)
+- $R$ = bend radius
+- $t$ = sheet thickness
+- $k$ = factor (0.33 for $R < 2t$, 0.5 for $R > 2t$)
+
+\textbf{Minimum Bend Radius:}
+$$R_{min} = \frac{t}{2}\left(\frac{100}{\%RA} - 1\right)$$
+
+where $\%RA$ is percent reduction in area at fracture
+
+\textbf{Bending Force:}
+$$F = \frac{K_{bf}TS_{ut}w^2}{D}$$
+
+where:
+- $K_{bf}$ = bending factor (depends on die geometry)
+- $TS$ = tensile strength
+- $w$ = width
+- $D$ = die opening width
+
+\textbf{Deep Drawing:}
+
+Drawing ratio:
+$$DR = \frac{D_0}{D_p}$$
+
+where $D_0$ is blank diameter, $D_p$ is punch diameter
+
+Maximum $DR \approx 2.0$ for single draw
+
+\textbf{Limiting Drawing Ratio (LDR):}
+$$LDR = \frac{D_{0,max}}{D_p}$$
+
+\textbf{Drawing Force:}
+$$F = \pi D_p t \bar{Y}_f (DR - 0.7)$$
+
+\section*{Machining}
+
+\subsection*{Cutting Speed, Feed, and Depth of Cut}
+
+\textbf{Cutting Speed:}
+$$v = \frac{\pi Dn}{1000}$$
+
+where:
+- $v$ = cutting speed (m/min)
+- $D$ = workpiece diameter (mm)
+- $n$ = rotational speed (rpm)
+
+\textbf{Feed:}
+$$f = n \cdot f_r$$
+
+where $f_r$ is feed per revolution (mm/rev)
+
+\textbf{Material Removal Rate (MRR):}
+$$MRR = v \cdot f \cdot d$$
+
+where $d$ is depth of cut
+
+For turning:
+$$MRR = \frac{\pi Dnf_rd}{1000}$$
+
+\subsection*{Cutting Forces and Power}
+
+\textbf{Cutting Force:}
+$$F_c = K_s \cdot A_c$$
+
+where:
+- $K_s$ = specific cutting energy (material property)
+- $A_c$ = cross-sectional area of cut = $f \times d$
+
+\textbf{Power:}
+$$P_c = F_c \cdot v$$
+
+\textbf{Specific Cutting Energy:}
+
+Varies with material:
+- Aluminum: 0.4-1.1 GPa
+- Steel: 2.7-9.3 GPa
+- Titanium: 3.0-4.1 GPa
+
+\subsection*{Tool Life}
+
+\textbf{Taylor Tool Life Equation:}
+$$vT^n = C$$
+
+or
+
+$$T = \frac{C}{v^{1/n}}$$
+
+where:
+- $T$ = tool life (min)
+- $v$ = cutting speed (m/min)
+- $n$ = exponent (typically 0.1-0.5, 0.125 for HSS, 0.25-0.4 for carbide)
+- $C$ = constant (depends on material, tool, conditions)
+
+\textbf{Extended Tool Life Equation:}
+$$vT^n f^m d^p = C$$
+
+\textbf{Cost per Part:}
+
+Optimal cutting speed minimizes:
+$$C_{part} = C_{machine}t_m + \frac{C_{tool} + C_{change}}{n_{parts}}$$
+
+where $t_m$ is machining time
+
+\subsection*{Turning}
+
+\textbf{Machining Time:}
+$$t_m = \frac{L}{f_r n} = \frac{L}{f_r} \cdot \frac{1000}{\pi Dn}$$
+
+where $L$ is length of cut
+
+\textbf{For facing operation:}
+$$t_m = \frac{r}{f_r n}$$
+
+where $r$ is radius
+
+\subsection*{Milling}
+
+\textbf{Cutting Speed:}
+$$v = \frac{\pi Dn}{1000}$$
+
+where $D$ is cutter diameter
+
+\textbf{Feed per Tooth:}
+$$f_t = \frac{f}{n \cdot N_t}$$
+
+where:
+- $f$ = table feed rate (mm/min)
+- $N_t$ = number of teeth on cutter
+
+\textbf{Material Removal Rate:}
+$$MRR = w \cdot d \cdot f$$
+
+where $w$ is width of cut
+
+\textbf{Machining Time:}
+$$t_m = \frac{L + L_a}{f}$$
+
+where $L_a$ is approach distance
+
+\subsection*{Drilling}
+
+\textbf{Feed:}
+$$f = nf_r$$
+
+where $f_r$ is feed per revolution
+
+\textbf{Material Removal Rate:}
+$$MRR = \frac{\pi D^2}{4} \cdot f$$
+
+\textbf{Drilling Time:}
+$$t = \frac{L + A}{f_r n}$$
+
+where $A$ is approach allowance (typically $A = D/(2\tan\theta)$ for drill point angle $2\theta$)
+
+\textbf{Torque:}
+$$T = \frac{1}{2}F_c \cdot \frac{D}{2}$$
+
+\textbf{Power:}
+$$P = \frac{2\pi nT}{60}$$
+
+\section*{Surface Finish and Metrology}
+
+\subsection*{Surface Roughness}
+
+\textbf{Average Roughness ($R_a$):}
+$$R_a = \frac{1}{L}\int_0^L |y(x)|\,dx$$
+
+Arithmetic average of absolute deviations from mean line
+
+\textbf{Root Mean Square Roughness ($R_q$):}
+$$R_q = \sqrt{\frac{1}{L}\int_0^L y^2(x)\,dx}$$
+
+\textbf{Maximum Peak-to-Valley Height ($R_t$):}
+
+Distance between highest peak and lowest valley
+
+\textbf{Theoretical Surface Roughness (turning, shaping):}
+$$R_t = \frac{f^2}{8R_n}$$
+
+where:
+- $f$ = feed
+- $R_n$ = tool nose radius
+
+\subsection*{Geometric Dimensioning and Tolerancing (GD\&T)}
+
+\textbf{Fundamental Tolerance Equation:}
+$$\text{Tolerance} = \text{Upper Limit} - \text{Lower Limit}$$
+
+\textbf{Bilateral Tolerance:}
+$$50.0 \pm 0.1 \text{ mm}$$
+
+\textbf{Unilateral Tolerance:}
+$$50.0^{+0.2}_{0} \text{ mm}$$
+
+\textbf{Fits:}
+
+- Clearance fit: $\text{Minimum hole size} > \text{Maximum shaft size}$
+- Interference fit: $\text{Maximum hole size} < \text{Minimum shaft size}$
+- Transition fit: Can be either clearance or interference
+
+\textbf{Standard Tolerance Grades (IT):}
+
+IT01 to IT18, where lower numbers indicate tighter tolerances
+
+\section*{Non-Traditional Machining}
+
+\subsection*{Electrical Discharge Machining (EDM)}
+
+\textbf{Material Removal Rate:}
+$$MRR = K_m \cdot I \cdot V$$
+
+where:
+- $I$ = discharge current
+- $V$ = gap voltage
+- $K_m$ = material removal constant
+
+Advantages: Can machine hard materials, complex shapes
+
+\subsection*{Electrochemical Machining (ECM)}
+
+\textbf{Material Removal Rate (Faraday's Law):}
+$$MRR = \frac{CIA}{nF\rho}$$
+
+where:
+- $C$ = current efficiency
+- $I$ = current
+- $A$ = atomic weight
+- $n$ = valence
+- $F$ = Faraday's constant (96,485 C/mol)
+- $\rho$ = density
+
+\subsection*{Laser Beam Machining (LBM)}
+
+\textbf{Energy Density:}
+$$E_d = \frac{P}{A}$$
+
+where $P$ is laser power and $A$ is spot area
+
+High energy density → vaporization of material
+
+\section*{Additive Manufacturing (3D Printing)}
+
+\subsection*{Build Time Estimation}
+
+\textbf{Layer-by-Layer Build:}
+$$t = \frac{h}{v_b}$$
+
+where:
+- $h$ = total build height
+- $v_b$ = build rate (height/time)
+
+\textbf{Material Usage:}
+$$m = V \cdot \rho$$
+
+where $V$ is part volume and $\rho$ is material density
+
+\subsection*{Common AM Processes}
+
+- Fused Deposition Modeling (FDM)
+- Stereolithography (SLA)
+- Selective Laser Sintering (SLS)
+- Electron Beam Melting (EBM)
+- Binder Jetting
+
+\section*{Heat Treatment}
+
+\subsection*{Time-Temperature Transformation}
+
+\textbf{Cooling Rate:}
+$$CR = \frac{\Delta T}{\Delta t}$$
+
+Different cooling rates produce different microstructures:
+- Slow cool: Pearlite
+- Medium cool: Bainite
+- Fast cool (quench): Martensite
+
+\subsection*{Hardness After Heat Treatment}
+
+\textbf{Jominy End-Quench Test:}
+
+Measures hardenability by cooling rate
+
+Distance from quenched end correlates with cooling rate
+
+\textbf{Tempering:}
+
+Reduces hardness and increases toughness
+
+Temperature and time determine final properties
+
+\section*{TRIBOLOGY}
+
+\section*{Friction}
+
+\subsection*{Coulomb (Dry) Friction}
+
+\textbf{Friction Force:}
+$$F_f = \mu N$$
+
+where:
+- $\mu$ = coefficient of friction
+- $N$ = normal force
+
+\textbf{Static Friction:}
+$$F_s \leq \mu_s N$$
+
+\textbf{Kinetic Friction:}
+$$F_k = \mu_k N$$
+
+Typically $\mu_k < \mu_s$
+
+\subsection*{Friction Laws}
+
+\textbf{Amontons' Laws:}
+1. Friction force proportional to normal load
+2. Friction force independent of apparent contact area
+3. Kinetic friction independent of sliding velocity (approximately)
+
+\subsection*{Friction Mechanisms}
+
+\textbf{Adhesion:} Bonding at contact points, must be sheared
+
+\textbf{Plowing:} Harder asperities plow through softer material
+
+\textbf{Total Friction:}
+$$\mu = \mu_{adhesion} + \mu_{plowing}$$
+
+\subsection*{Rolling Friction}
+
+\textbf{Rolling Resistance Coefficient:}
+$$\mu_r = \frac{F_r}{N}$$
+
+Generally $\mu_r \ll \mu_k$
+
+\textbf{Rolling Resistance Force:}
+$$F_r = \frac{C_r N}{r}$$
+
+where:
+- $C_r$ = rolling resistance coefficient (length)
+- $r$ = wheel radius
+
+\section*{Wear}
+
+\subsection*{Archard Wear Equation}
+
+\textbf{Wear Volume:}
+$$V = K\frac{NL}{H}$$
+
+where:
+- $K$ = dimensionless wear coefficient
+- $N$ = normal load
+- $L$ = sliding distance
+- $H$ = hardness of softer material
+
+\textbf{Wear Rate:}
+$$\frac{dV}{dt} = K\frac{Nv}{H}$$
+
+where $v$ is sliding velocity
+
+\textbf{Wear Coefficient:}
+
+Ranges from $10^{-8}$ (mild wear) to $10^{-2}$ (severe wear)
+
+\subsection*{Types of Wear}
+
+\textbf{Adhesive Wear:} Material transfer between surfaces
+
+\textbf{Abrasive Wear:} Hard particles or asperities scratch surface
+
+- Two-body: Hard surface against soft
+- Three-body: Hard particles between surfaces
+
+\textbf{Fatigue Wear:} Repeated loading causes surface cracks, spalling
+
+\textbf{Corrosive Wear:} Chemical reaction forms oxide, then removed
+
+\textbf{Fretting Wear:} Small amplitude oscillatory motion
+
+\subsection*{Specific Wear Rate}
+
+$$k = \frac{V}{NL}$$
+
+Units: mm³/(N·m)
+
+Lower $k$ indicates better wear resistance
+
+\section*{Lubrication}
+
+\subsection*{Viscosity}
+
+\textbf{Dynamic Viscosity ($\mu$):}
+
+$$\tau = \mu\frac{du}{dy}$$
+
+Units: Pa·s or N·s/m² or poise (1 poise = 0.1 Pa·s)
+
+\textbf{Kinematic Viscosity ($\nu$):}
+$$\nu = \frac{\mu}{\rho}$$
+
+Units: m$^2$/s or stoke (1 stoke = $10^{-4}$ m$^2$/s)
+
+\textbf{Temperature Dependence:}
+
+Viscosity decreases with increasing temperature
+
+\subsection*{Lubrication Regimes}
+
+\textbf{Stribeck Curve:} Friction vs. $\frac{\mu v}{P}$
+
+\textbf{Boundary Lubrication:}
+- High load, low speed, thin film
+- Metal-to-metal contact
+- High friction ($\mu \approx 0.1$ to $0.15$)
+
+\textbf{Mixed Lubrication:}
+- Partial fluid film, partial contact
+- Transition regime
+
+\textbf{Hydrodynamic (Fluid Film) Lubrication:}
+- Surfaces completely separated by fluid film
+- Low friction ($\mu \approx 0.001$ to $0.01$)
+- Load supported by pressure in fluid
+
+\textbf{Elastohydrodynamic (EHL) Lubrication:}
+- High pressure deforms surfaces
+- Common in gears, rolling bearings
+
+\subsection*{Reynolds Equation}
+
+\textbf{1D Simplified:}
+$$\frac{d}{dx}\left(h^3\frac{dp}{dx}\right) = 6\mu U\frac{dh}{dx}$$
+
+where:
+- $h$ = film thickness
+- $p$ = pressure
+- $U$ = velocity
+
+Describes pressure distribution in fluid film
+
+\subsection*{Minimum Film Thickness}
+
+\textbf{For journal bearing:}
+$$h_{min} = c(1 - \epsilon)$$
+
+where:
+- $c$ = radial clearance
+- $\epsilon$ = eccentricity ratio
+
+For safe operation: $h_{min} > 3\sigma$ (where $\sigma$ is composite surface roughness)
+
+\subsection*{Lubricant Selection}
+
+\textbf{Viscosity Index (VI):}
+
+Measure of viscosity change with temperature
+
+Higher VI → less change with temperature
+
+\textbf{Pour Point:} Lowest temperature at which oil flows
+
+\textbf{Flash Point:} Temperature at which vapor ignites
+
+\section*{Surface Characterization}
+
+\subsection*{Surface Topography}
+
+\textbf{Peak Count:} Number of peaks per unit length
+
+\textbf{Bearing Ratio:} Fraction of surface above a certain depth
+
+\textbf{Wavelength:} Distance between repeating features
+
+\subsection*{Contact Mechanics}
+
+\textbf{Hertzian Contact (elastic):}
+
+For cylinder on cylinder:
+$$p_{max} = \frac{2P}{\pi bL}$$
+
+where:
+- $P$ = normal load
+- $b$ = contact width
+- $L$ = contact length
+
+\textbf{Real Contact Area:}
+$$A_r = \frac{N}{H}$$
+
+where $H$ is hardness
+
+Real area $\ll$ Apparent area
+
+\section*{Solid Lubricants}
+
+Common solid lubricants:
+- Graphite (requires moisture or gases)
+- MoS$_2$ (works in vacuum)
+- PTFE (Teflon)
+- Soft metals (lead, indium)
+
+Used when liquid lubricants fail (high temp, vacuum, contamination concerns)
+
+\section*{Quick Reference Values}
+
+\textbf{Typical Friction Coefficients:}
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+\textbf{Interface} & $\mu$ \\
+\midrule
+Steel on steel (dry) & 0.6-0.8 \\
+Steel on steel (lubricated) & 0.05-0.1 \\
+Steel on bronze (dry) & 0.2 \\
+Brake materials & 0.3-0.5 \\
+Rubber on pavement & 0.6-0.9 \\
+Teflon on steel & 0.04-0.1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \end{document}
