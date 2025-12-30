@@ -18,4 +18,526 @@
 
 \vspace{10pt}
 
+\section*{Fundamental Concepts}
+
+\subsection*{Properties and State}
+
+\textbf{Intensive Properties:} Independent of mass (T, P, $\rho$, v)
+
+\textbf{Extensive Properties:} Depend on mass (V, m, E, H, S)
+
+\textbf{Specific Property:}
+$$\text{specific property} = \frac{\text{extensive property}}{\text{mass}}$$
+
+Example: $v = V/m$ (specific volume)
+
+\subsection*{Pressure}
+
+\textbf{Absolute Pressure:}
+$$P_{abs} = P_{atm} + P_{gage}$$
+
+\textbf{Vacuum Pressure:}
+$$P_{vac} = P_{atm} - P_{abs}$$
+
+Standard atmospheric pressure: $P_{atm} = 101.325$ kPa = 1 atm = 14.7 psi
+
+\subsection*{Temperature}
+
+\textbf{Conversions:}
+$$T(K) = T(°C) + 273.15$$
+$$T(R) = T(°F) + 459.67$$
+$$T(°F) = \frac{9}{5}T(°C) + 32$$
+
+\section*{Properties of Pure Substances}
+
+\subsection*{Phase Diagram and Saturation}
+
+\textbf{Saturation Temperature:} $T_{sat}$ at given pressure
+
+\textbf{Saturation Pressure:} $P_{sat}$ at given temperature
+
+\textbf{Quality (for two-phase mixture):}
+$$x = \frac{m_{vapor}}{m_{total}} = \frac{m_g}{m_f + m_g}$$
+
+\textbf{Properties in Two-Phase Region:}
+$$v = v_f + x \cdot v_{fg}$$
+$$u = u_f + x \cdot u_{fg}$$
+$$h = h_f + x \cdot h_{fg}$$
+$$s = s_f + x \cdot s_{fg}$$
+
+where subscript $f$ denotes saturated liquid, $g$ denotes saturated vapor, and $fg$ denotes difference ($v_{fg} = v_g - v_f$)
+
+\subsection*{Ideal Gas Law}
+
+$$PV = mRT$$
+
+or
+
+$$Pv = RT$$
+
+where $R$ is specific gas constant
+
+\textbf{Universal Gas Constant:}
+$$R_u = 8.314 \text{ kJ/(kmol·K)} = 1.986 \text{ Btu/(lbmol·R)}$$
+
+\textbf{Specific Gas Constant:}
+$$R = \frac{R_u}{M}$$
+
+where $M$ is molar mass
+
+\textbf{Ideal Gas Relations:}
+$$\frac{P_1V_1}{T_1} = \frac{P_2V_2}{T_2}$$
+
+\section*{First Law of Thermodynamics}
+
+\subsection*{Energy Balance}
+
+\textbf{General Form:}
+$$\Delta E_{system} = E_{in} - E_{out}$$
+
+\textbf{Total Energy:}
+$$E = U + KE + PE = U + \frac{1}{2}mv^2 + mgz$$
+
+\textbf{Per Unit Mass:}
+$$e = u + \frac{v^2}{2} + gz$$
+
+\subsection*{Closed System}
+
+\textbf{Energy Balance:}
+$$Q - W = \Delta U + \Delta KE + \Delta PE$$
+
+For stationary system (negligible KE, PE):
+$$Q - W = \Delta U = m(u_2 - u_1)$$
+
+\textbf{Boundary Work (moving boundary):}
+$$W_b = \int_{V_1}^{V_2} P \, dV$$
+
+For constant pressure (isobaric):
+$$W_b = P(V_2 - V_1)$$
+
+For polytropic process ($Pv^n = C$):
+$$W_b = \frac{P_2V_2 - P_1V_1}{1 - n} = \frac{mR(T_2 - T_1)}{1 - n} \quad (n \neq 1)$$
+
+For isothermal process of ideal gas:
+$$W_b = P_1V_1\ln\left(\frac{V_2}{V_1}\right) = mRT\ln\left(\frac{V_2}{V_1}\right)$$
+
+\subsection*{Open System (Control Volume)}
+
+\textbf{Mass Balance (Conservation of Mass):}
+$$\frac{dm_{cv}}{dt} = \sum \dot{m}_{in} - \sum \dot{m}_{out}$$
+
+Steady flow: $\sum \dot{m}_{in} = \sum \dot{m}_{out}$
+
+\textbf{Energy Balance:}
+$$\frac{dE_{cv}}{dt} = \dot{Q}_{cv} - \dot{W}_{cv} + \sum \dot{m}_{in}\left(h + \frac{v^2}{2} + gz\right)_{in} - \sum \dot{m}_{out}\left(h + \frac{v^2}{2} + gz\right)_{out}$$
+
+\textbf{Steady-Flow Energy Equation (SFEE):}
+$$\dot{Q} - \dot{W} = \sum \dot{m}_{out}\left(h + \frac{v^2}{2} + gz\right)_{out} - \sum \dot{m}_{in}\left(h + \frac{v^2}{2} + gz\right)_{in}$$
+
+For single inlet/outlet:
+$$\dot{Q} - \dot{W} = \dot{m}\left[\left(h_2 - h_1\right) + \frac{v_2^2 - v_1^2}{2} + g(z_2 - z_1)\right]$$
+
+\textbf{Enthalpy:}
+$$H = U + PV$$
+$$h = u + Pv$$
+
+\section*{Specific Heats}
+
+\textbf{Constant Volume Specific Heat:}
+$$c_v = \left(\frac{\partial u}{\partial T}\right)_v$$
+
+\textbf{Constant Pressure Specific Heat:}
+$$c_p = \left(\frac{\partial h}{\partial T}\right)_p$$
+
+\textbf{Ideal Gas Relations:}
+$$c_p = c_v + R$$
+
+$$k = \frac{c_p}{c_v}$$
+
+\textbf{Internal Energy Change (Ideal Gas):}
+$$\Delta u = c_v \Delta T$$
+
+\textbf{Enthalpy Change (Ideal Gas):}
+$$\Delta h = c_p \Delta T$$
+
+\section*{Second Law of Thermodynamics}
+
+\subsection*{Kelvin-Planck Statement}
+
+It is impossible for any device that operates on a cycle to receive heat from a single reservoir and produce net work.
+
+\subsection*{Clausius Statement}
+
+It is impossible to construct a device that operates in a cycle and produces no effect other than the transfer of heat from a lower-temperature body to a higher-temperature body.
+
+\subsection*{Carnot Principles}
+
+1. No heat engine can be more efficient than a reversible engine operating between the same two reservoirs
+
+2. All reversible heat engines operating between the same two reservoirs have the same efficiency
+
+\subsection*{Entropy}
+
+\textbf{Definition:}
+$$dS = \left(\frac{\delta Q}{T}\right)_{rev}$$
+
+\textbf{Entropy Change:}
+$$\Delta S = \int_1^2 \left(\frac{\delta Q}{T}\right)_{rev}$$
+
+\textbf{Clausius Inequality:}
+$$\oint \frac{\delta Q}{T} \leq 0$$
+
+Equality for reversible process, inequality for irreversible
+
+\textbf{Entropy Balance (Control Volume):}
+$$\frac{dS_{cv}}{dt} = \sum \frac{\dot{Q}_k}{T_k} + \sum \dot{m}_i s_i - \sum \dot{m}_e s_e + \dot{S}_{gen}$$
+
+where $\dot{S}_{gen} \geq 0$ (entropy generation)
+
+\textbf{Isentropic Process:}
+$$\Delta s = 0$$ (reversible and adiabatic)
+
+\subsection*{Entropy Change for Different Processes}
+
+\textbf{Ideal Gas:}
+$$\Delta s = c_p\ln\left(\frac{T_2}{T_1}\right) - R\ln\left(\frac{P_2}{P_1}\right)$$
+
+$$\Delta s = c_v\ln\left(\frac{T_2}{T_1}\right) + R\ln\left(\frac{v_2}{v_1}\right)$$
+
+\textbf{Incompressible Substance:}
+$$\Delta s = c\ln\left(\frac{T_2}{T_1}\right)$$
+
+\textbf{Isentropic Relations (Ideal Gas):}
+$$\frac{T_2}{T_1} = \left(\frac{P_2}{P_1}\right)^{(k-1)/k} = \left(\frac{v_1}{v_2}\right)^{k-1}$$
+
+$$\frac{P_2}{P_1} = \left(\frac{v_1}{v_2}\right)^k$$
+
+\section*{Exergy (Availability)}
+
+\textbf{Exergy (Flow):}
+$$\psi = (h - h_0) - T_0(s - s_0) + \frac{v^2}{2} + gz$$
+
+\textbf{Exergy (Non-Flow):}
+$$\phi = (u - u_0) + P_0(v - v_0) - T_0(s - s_0) + \frac{v^2}{2} + gz$$
+
+\textbf{Exergy Destruction:}
+$$X_{dest} = T_0 S_{gen}$$
+
+\textbf{Second Law Efficiency:}
+$$\eta_{II} = \frac{\text{Exergy recovered}}{\text{Exergy supplied}}$$
+
+\section*{Power Cycles}
+
+\subsection*{Cycle Efficiency and COP}
+
+\textbf{Thermal Efficiency (Heat Engine):}
+$$\eta_{th} = \frac{W_{net}}{Q_{in}} = 1 - \frac{Q_{out}}{Q_{in}}$$
+
+\textbf{Coefficient of Performance (Refrigerator):}
+$$COP_R = \frac{Q_L}{W_{net}} = \frac{Q_L}{Q_H - Q_L}$$
+
+\textbf{Coefficient of Performance (Heat Pump):}
+$$COP_{HP} = \frac{Q_H}{W_{net}} = \frac{Q_H}{Q_H - Q_L}$$
+
+Note: $COP_{HP} = COP_R + 1$
+
+\subsection*{Carnot Cycle}
+
+\textbf{Carnot Efficiency:}
+$$\eta_{Carnot} = 1 - \frac{T_L}{T_H}$$
+
+\textbf{Carnot COP (Refrigerator):}
+$$COP_{Carnot,R} = \frac{T_L}{T_H - T_L}$$
+
+\textbf{Carnot COP (Heat Pump):}
+$$COP_{Carnot,HP} = \frac{T_H}{T_H - T_L}$$
+
+\subsection*{Air-Standard Cycles}
+
+\textbf{Otto Cycle (Spark Ignition):}
+
+Compression ratio: $r = v_1/v_2$
+
+Efficiency:
+$$\eta_{Otto} = 1 - \frac{1}{r^{k-1}}$$
+
+\textbf{Diesel Cycle (Compression Ignition):}
+
+Compression ratio: $r = v_1/v_2$
+
+Cutoff ratio: $r_c = v_3/v_2$
+
+Efficiency:
+$$\eta_{Diesel} = 1 - \frac{1}{r^{k-1}}\left[\frac{r_c^k - 1}{k(r_c - 1)}\right]$$
+
+\textbf{Brayton Cycle (Gas Turbine):}
+
+Pressure ratio: $r_p = P_2/P_1$
+
+Efficiency:
+$$\eta_{Brayton} = 1 - \frac{1}{r_p^{(k-1)/k}}$$
+
+With regeneration:
+$$\eta_{regen} = 1 - \left(\frac{T_1}{T_3}\right)\left(\frac{1}{r_p^{(k-1)/k}}\right)$$
+
+\textbf{Stirling and Ericsson Cycles:}
+
+Both have Carnot efficiency: $\eta = 1 - T_L/T_H$
+
+\subsection*{Rankine Cycle (Vapor Power)}
+
+\textbf{Basic Components:}
+1. Pump (1→2): $w_p = v_1(P_2 - P_1) \approx v_f(P_2 - P_1)$
+2. Boiler (2→3): $q_{in} = h_3 - h_2$
+3. Turbine (3→4): $w_t = h_3 - h_4$
+4. Condenser (4→1): $q_{out} = h_4 - h_1$
+
+\textbf{Efficiency:}
+$$\eta_{Rankine} = \frac{w_t - w_p}{q_{in}} = \frac{(h_3 - h_4) - (h_2 - h_1)}{h_3 - h_2}$$
+
+\textbf{With Reheat:}
+
+Turbine work increases, efficiency increases
+
+\textbf{With Regeneration:}
+
+Extract steam from turbine to preheat feedwater
+
+Increases efficiency by reducing $q_{in}$
+
+\textbf{Back Work Ratio:}
+$$bwr = \frac{w_p}{w_t}$$
+
+Typically very small for vapor cycles (1-2\%)
+
+\subsection*{Refrigeration Cycles}
+
+\textbf{Ideal Vapor-Compression Cycle:}
+
+1. Evaporator (1→4): $q_L = h_1 - h_4$
+2. Compressor (1→2): $w_{in} = h_2 - h_1$
+3. Condenser (2→3): $q_H = h_2 - h_3$
+4. Throttling valve (3→4): $h_4 = h_3$
+
+\textbf{COP:}
+$$COP_R = \frac{q_L}{w_{in}} = \frac{h_1 - h_4}{h_2 - h_1}$$
+
+\textbf{Cascade Systems:}
+
+Multiple cycles in series for large temperature differences
+
+\textbf{Multistage Compression:}
+
+Reduces compressor work with intercooling
+
+\section*{Gas Mixtures}
+
+\subsection*{Composition}
+
+\textbf{Mass Fraction:}
+$$mf_i = \frac{m_i}{m_{total}}$$
+
+\textbf{Mole Fraction:}
+$$y_i = \frac{N_i}{N_{total}}$$
+
+\textbf{Conversion:}
+$$mf_i = \frac{y_i M_i}{\sum y_j M_j}$$
+
+\subsection*{Dalton's Law (Ideal Gases)}
+
+$$P = \sum P_i$$
+
+where $P_i = y_i P$ is partial pressure
+
+\textbf{Amagat's Law:}
+$$V = \sum V_i$$
+
+where $V_i = y_i V$ is partial volume
+
+\subsection*{Properties of Mixtures}
+
+\textbf{Apparent Molar Mass:}
+$$M_m = \sum y_i M_i$$
+
+\textbf{Gas Constant:}
+$$R_m = \frac{R_u}{M_m} = \sum mf_i R_i$$
+
+\textbf{Specific Heat:}
+$$c_{p,m} = \sum mf_i c_{p,i}$$
+$$c_{v,m} = \sum mf_i c_{v,i}$$
+
+\section*{Psychrometrics (Gas-Vapor Mixtures)}
+
+\subsection*{Humidity Ratios}
+
+\textbf{Absolute Humidity (Specific Humidity):}
+$$\omega = \frac{m_v}{m_a} = 0.622\frac{P_v}{P - P_v}$$
+
+where $P_v$ is partial pressure of water vapor, $P$ is total pressure
+
+\textbf{Relative Humidity:}
+$$\phi = \frac{P_v}{P_g} = \frac{actual\ vapor\ density}{saturation\ vapor\ density}$$
+
+where $P_g$ is saturation pressure at given temperature
+
+\textbf{Degree of Saturation:}
+$$\mu = \frac{\omega}{\omega_s}$$
+
+\subsection*{Psychrometric Properties}
+
+\textbf{Dry-Bulb Temperature ($T_{db}$):} Actual temperature
+
+\textbf{Wet-Bulb Temperature ($T_{wb}$):} Temperature with adiabatic saturation
+
+\textbf{Dew-Point Temperature ($T_{dp}$):} Temperature at which condensation begins
+
+\textbf{Enthalpy of Moist Air:}
+$$h = c_p T + \omega(h_g + c_{pv}T)$$
+
+where $h_g$ is enthalpy of vaporization at 0°C
+
+Simplified:
+$$h \approx c_p T + \omega h_g$$
+
+\subsection*{Air-Conditioning Processes}
+
+\textbf{Simple Heating/Cooling:}
+- $\omega$ = constant
+- Horizontal line on psychrometric chart
+
+\textbf{Heating with Humidification:}
+- Both $T$ and $\omega$ increase
+
+\textbf{Cooling with Dehumidification:}
+- Both $T$ and $\omega$ decrease
+- Process line intersects saturation curve
+
+\textbf{Evaporative Cooling (Adiabatic Saturation):}
+- $h$ = constant (approximately)
+- $\omega$ increases, $T$ decreases
+- Follows constant wet-bulb temperature line
+
+\section*{Combustion}
+
+\subsection*{Stoichiometry}
+
+\textbf{General Hydrocarbon Combustion:}
+$$C_xH_y + a(O_2 + 3.76N_2) \rightarrow bCO_2 + cH_2O + dN_2$$
+
+For complete combustion:
+- $b = x$ (carbon balance)
+- $c = y/2$ (hydrogen balance)
+- $d = 3.76a$ (nitrogen balance)
+- $a = x + y/4$ (oxygen balance)
+
+\textbf{Air-Fuel Ratio (AF):}
+$$AF = \frac{m_{air}}{m_{fuel}}$$
+
+\textbf{Fuel-Air Ratio:}
+$$FA = \frac{m_{fuel}}{m_{air}} = \frac{1}{AF}$$
+
+\textbf{Percent Theoretical Air:}
+$$\%TA = \frac{actual\ air}{theoretical\ air} \times 100\%$$
+
+\textbf{Percent Excess Air:}
+$$\%EA = \%TA - 100\%$$
+
+\subsection*{Enthalpy of Formation and Combustion}
+
+\textbf{Enthalpy of Formation ($\bar{h}_f^{\circ}$):}
+
+Enthalpy change when compound is formed from elements at standard state (25~$^{\circ}$C, 1 atm)
+
+For elements in standard state: $\bar{h}_f^{\circ} = 0$
+
+\textbf{Enthalpy of Combustion ($\bar{h}_{RP}$):}
+
+Enthalpy of reaction (negative for exothermic)
+
+\textbf{First Law for Reacting Systems:}
+$$
+Q - W
+=
+\sum_{\text{products}} N_i(\bar{h}_f^{\circ} + \Delta\bar{h})_i
+-
+\sum_{\text{reactants}} N_j(\bar{h}_f^{\circ} + \Delta\bar{h})_j
+$$
+
+\subsection*{Adiabatic Flame Temperature}
+
+For adiabatic combustion ($Q = 0$, $W = 0$):
+$$
+\sum_{\text{reactants}} N_j(\bar{h}_f^{\circ} + \Delta\bar{h})_j
+=
+\sum_{\text{products}} N_i(\bar{h}_f^{\circ} + \Delta\bar{h})_i
+$$
+
+Solve iteratively for product temperature.
+
+
+\textbf{Higher Heating Value (HHV):}
+
+Water in products is liquid
+
+\textbf{Lower Heating Value (LHV):}
+
+Water in products is vapor
+
+$$HHV = LHV + m_{H_2O} \cdot h_{fg}$$
+
+\subsection*{Entropy Change of Reacting Systems}
+
+$$\Delta S = \sum_{products} N_i\bar{s}_i - \sum_{reactants} N_j\bar{s}_j + \Delta S_{mixing}$$
+
+For ideal gases:
+$$\bar{s}_i(T,P) = \bar{s}_i^\circ(T) - R_u\ln\left(\frac{P_i}{P_{ref}}\right)$$
+
+\section*{Thermodynamic Relations}
+
+\subsection*{Maxwell Relations}
+
+From $dU = TdS - PdV$:
+$$\left(\frac{\partial T}{\partial V}\right)_S = -\left(\frac{\partial P}{\partial S}\right)_V$$
+
+From $dH = TdS + VdP$:
+$$\left(\frac{\partial T}{\partial P}\right)_S = \left(\frac{\partial V}{\partial S}\right)_P$$
+
+From $dF = -SdT - PdV$ (Helmholtz):
+$$\left(\frac{\partial S}{\partial V}\right)_T = \left(\frac{\partial P}{\partial T}\right)_V$$
+
+From $dG = -SdT + VdP$ (Gibbs):
+$$\left(\frac{\partial S}{\partial P}\right)_T = -\left(\frac{\partial V}{\partial T}\right)_P$$
+
+\subsection*{Clapeyron Equation}
+
+$$\frac{dP_{sat}}{dT} = \frac{h_{fg}}{T v_{fg}}$$
+
+Relates slope of saturation curve to properties
+
+\textbf{Clausius-Clapeyron Equation (for vapor):}
+
+$$\ln\left(\frac{P_2}{P_1}\right) = -\frac{h_{fg}}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right)$$
+
+\subsection*{Joule-Thomson Coefficient}
+
+$$\mu_J = \left(\frac{\partial T}{\partial P}\right)_h$$
+
+For ideal gas: $\mu_J = 0$
+
+For real gas: can be positive or negative
+
+\section*{Quick Reference}
+
+\textbf{Common Values:}
+- Standard temperature: 25°C = 298 K = 77°F
+- Standard pressure: 1 atm = 101.325 kPa = 14.7 psi
+- Air: $R = 0.287$ kJ/(kg·K), $c_p = 1.005$ kJ/(kg·K), $c_v = 0.718$ kJ/(kg·K), $k = 1.4$
+- Water: $c_p \approx 4.18$ kJ/(kg·K)
+
+\textbf{Sign Conventions:}
+- Heat in: positive
+- Work out: positive
+- $Q > 0$: to system
+- $W > 0$: by system
+
 \end{document}

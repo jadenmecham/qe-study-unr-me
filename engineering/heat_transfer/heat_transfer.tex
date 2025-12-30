@@ -1,0 +1,552 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Heat Transfer}}
+\end{center}
+
+\vspace{10pt}
+
+\section*{Modes of Heat Transfer}
+
+\subsection*{Conduction}
+
+\textbf{Fourier's Law:}
+$$q_x = -kA\frac{dT}{dx}$$
+
+$$q_x'' = -k\frac{dT}{dx}$$
+
+where:
+- $q_x$ = heat transfer rate (W)
+- $q_x''$ = heat flux (W/m$^2$)
+- $k$ = thermal conductivity (W/(m·K))
+- $A$ = cross-sectional area
+- Negative sign: heat flows from high to low temperature
+
+\subsection*{Convection}
+
+\textbf{Newton's Law of Cooling:}
+$$q = hA(T_s - T_\infty)$$
+
+$$q'' = h(T_s - T_\infty)$$
+
+where:
+- $h$ = convection heat transfer coefficient (W/(m$^2$·K))
+- $T_s$ = surface temperature
+- $T_\infty$ = fluid temperature
+
+\subsection*{Radiation}
+
+\textbf{Stefan-Boltzmann Law:}
+$$q = \epsilon\sigma A T_s^4$$
+
+where:
+- $\epsilon$ = emissivity ($0 \leq \epsilon \leq 1$)
+- $\sigma$ = Stefan-Boltzmann constant = $5.67 \times 10^{-8}$ W/(m$^2$·K$^4$)
+- $T_s$ = absolute temperature (K)
+
+\textbf{Net Radiation Exchange:}
+$$q = \epsilon\sigma A(T_s^4 - T_{surr}^4)$$
+
+\textbf{Linearized Radiation:}
+$$q = h_r A(T_s - T_{surr})$$
+
+where $h_r = \epsilon\sigma(T_s + T_{surr})(T_s^2 + T_{surr}^2)$
+
+\section*{Heat Diffusion Equation}
+
+\subsection*{General Form (3D, Cartesian)}
+
+$$\frac{\partial}{\partial x}\left(k\frac{\partial T}{\partial x}\right) + \frac{\partial}{\partial y}\left(k\frac{\partial T}{\partial y}\right) + \frac{\partial}{\partial z}\left(k\frac{\partial T}{\partial z}\right) + \dot{q} = \rho c_p\frac{\partial T}{\partial t}$$
+
+\textbf{For constant $k$:}
+$$\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2} + \frac{\dot{q}}{k} = \frac{1}{\alpha}\frac{\partial T}{\partial t}$$
+
+where $\alpha = k/(\rho c_p)$ is thermal diffusivity
+
+\subsection*{Cylindrical Coordinates}
+
+$$\frac{1}{r}\frac{\partial}{\partial r}\left(kr\frac{\partial T}{\partial r}\right) + \frac{1}{r^2}\frac{\partial}{\partial \theta}\left(k\frac{\partial T}{\partial \theta}\right) + \frac{\partial}{\partial z}\left(k\frac{\partial T}{\partial z}\right) + \dot{q} = \rho c_p\frac{\partial T}{\partial t}$$
+
+\subsection*{Spherical Coordinates}
+
+$$\frac{1}{r^2}\frac{\partial}{\partial r}\left(kr^2\frac{\partial T}{\partial r}\right) + \frac{1}{r^2\sin^2\phi}\frac{\partial}{\partial \theta}\left(k\frac{\partial T}{\partial \theta}\right) + \frac{1}{r^2\sin\phi}\frac{\partial}{\partial \phi}\left(k\sin\phi\frac{\partial T}{\partial \phi}\right) + \dot{q} = \rho c_p\frac{\partial T}{\partial t}$$
+
+\section*{One-Dimensional Steady-State Conduction}
+
+\subsection*{Plane Wall}
+
+\textbf{Without Heat Generation:}
+$$q_x = \frac{kA(T_1 - T_2)}{L} = \frac{T_1 - T_2}{R_{cond}}$$
+
+where $R_{cond} = L/(kA)$ is thermal resistance
+
+\textbf{Temperature Distribution:}
+$$T(x) = T_1 - \frac{T_1 - T_2}{L}x$$
+
+\textbf{With Uniform Heat Generation:}
+$$\frac{d^2T}{dx^2} + \frac{\dot{q}}{k} = 0$$
+
+Solution:
+$$T(x) = -\frac{\dot{q}}{2k}x^2 + C_1x + C_2$$
+
+\subsection*{Composite Wall}
+
+\textbf{Series Resistance:}
+$$q = \frac{\Delta T_{overall}}{R_{total}} = \frac{T_1 - T_4}{R_1 + R_2 + R_3}$$
+
+$$R_{total} = \sum R_i = \sum \frac{L_i}{k_i A}$$
+
+\textbf{With Convection:}
+$$R_{total} = R_{conv,1} + R_{cond,1} + R_{cond,2} + \cdots + R_{conv,2}$$
+
+where $R_{conv} = 1/(hA)$
+
+\textbf{Overall Heat Transfer Coefficient:}
+$$q = UA\Delta T$$
+
+$$\frac{1}{UA} = R_{total}$$
+
+\subsection*{Cylindrical Systems}
+
+\textbf{Hollow Cylinder (radial conduction):}
+$$q_r = \frac{2\pi Lk(T_1 - T_2)}{\ln(r_2/r_1)}$$
+
+\textbf{Thermal Resistance:}
+$$R_{cyl} = \frac{\ln(r_2/r_1)}{2\pi Lk}$$
+
+\textbf{With convection:}
+$$R_{conv,inner} = \frac{1}{h_i(2\pi r_1 L)}$$
+$$R_{conv,outer} = \frac{1}{h_o(2\pi r_2 L)}$$
+
+\textbf{Critical Radius of Insulation:}
+$$r_{cr} = \frac{k}{h}$$
+
+If $r_{outer} < r_{cr}$, adding insulation increases heat transfer
+
+\subsection*{Spherical Systems}
+
+\textbf{Hollow Sphere:}
+$$q_r = \frac{4\pi kr_1r_2(T_1 - T_2)}{r_2 - r_1}$$
+
+\textbf{Thermal Resistance:}
+$$R_{sph} = \frac{r_2 - r_1}{4\pi kr_1r_2}$$
+
+\section*{Extended Surfaces (Fins)}
+
+\subsection*{Fin Equation}
+
+\textbf{General Fin Equation:}
+$$\frac{d^2\theta}{dx^2} - m^2\theta = 0$$
+
+where:
+- $\theta = T - T_\infty$
+- $m = \sqrt{hP/(kA_c)}$
+- $P$ = perimeter
+- $A_c$ = cross-sectional area
+
+\subsection*{Fin Solutions (Common Cases)}
+
+\textbf{Very Long Fin ($L \to \infty$):}
+$$\theta(x) = \theta_b e^{-mx}$$
+
+$$q_f = \sqrt{hPkA_c}\,\theta_b$$
+
+\textbf{Insulated Tip:}
+$$\theta(x) = \theta_b\frac{\cosh[m(L-x)]}{\cosh(mL)}$$
+
+$$q_f = \sqrt{hPkA_c}\,\theta_b\tanh(mL)$$
+
+\textbf{Convection at Tip:}
+$$\theta(x) = \theta_b\frac{\cosh[m(L-x)] + (h/mk)\sinh[m(L-x)]}{\cosh(mL) + (h/mk)\sinh(mL)}$$
+
+\subsection*{Fin Performance}
+
+\textbf{Fin Efficiency:}
+$$\eta_f = \frac{q_f}{q_{max}} = \frac{q_f}{hA_f\theta_b}$$
+
+where $A_f$ is total fin surface area
+
+\textbf{For fin with insulated tip:}
+$$\eta_f = \frac{\tanh(mL)}{mL}$$
+
+\textbf{Fin Effectiveness:}
+$$\epsilon_f = \frac{q_f}{q_{no\ fin}} = \frac{q_f}{hA_c\theta_b}$$
+
+\textbf{Overall Surface Efficiency:}
+$$\eta_o = 1 - \frac{A_f}{A_t}(1 - \eta_f)$$
+
+where $A_t = A_b + A_f$ is total surface area
+
+\textbf{Total Heat Transfer with Fins:}
+$$q_{total} = \eta_o hA_t(T_b - T_\infty)$$
+
+\section*{Transient Conduction}
+
+\subsection*{Lumped Capacitance Method}
+
+\textbf{Biot Number:}
+$$Bi = \frac{hL_c}{k}$$
+
+where $L_c = V/A_s$ is characteristic length
+
+\textbf{Validity:} $Bi < 0.1$
+
+\textbf{Temperature Response:}
+$$\frac{T(t) - T_\infty}{T_i - T_\infty} = e^{-t/\tau}$$
+
+where $\tau = \frac{\rho V c_p}{hA_s} = \frac{\rho L_c c_p}{h}$ is time constant
+
+\textbf{Heat Transfer:}
+$$Q(t) = \rho Vc_p(T_i - T(t))$$
+
+\subsection*{Semi-Infinite Solid}
+
+\textbf{Constant Surface Temperature:}
+$$\frac{T(x,t) - T_i}{T_s - T_i} = \text{erfc}\left(\frac{x}{2\sqrt{\alpha t}}\right)$$
+
+\textbf{Surface Heat Flux:}
+$$q_s''(t) = \frac{k(T_s - T_i)}{\sqrt{\pi\alpha t}}$$
+
+\textbf{Constant Surface Heat Flux:}
+$$T(x,t) - T_i = \frac{2q_s''}{k}\sqrt{\frac{\alpha t}{\pi}}\exp\left(-\frac{x^2}{4\alpha t}\right) - \frac{q_s''x}{k}\text{erfc}\left(\frac{x}{2\sqrt{\alpha t}}\right)$$
+
+\subsection*{Heisler Charts / Analytical Solutions}
+
+For $Bi > 0.1$, use charts or one-term approximation:
+
+\textbf{Plane Wall:}
+$$\frac{T(x,t) - T_\infty}{T_i - T_\infty} = C_1\exp(-\zeta_1^2Fo)\cos(\zeta_1 x/L)$$
+
+\textbf{Cylinder:}
+$$\frac{T(r,t) - T_\infty}{T_i - T_\infty} = C_1\exp(-\zeta_1^2Fo)J_0(\zeta_1 r/r_o)$$
+
+\textbf{Sphere:}
+$$\frac{T(r,t) - T_\infty}{T_i - T_\infty} = C_1\exp(-\zeta_1^2Fo)\frac{\sin(\zeta_1 r/r_o)}{\zeta_1 r/r_o}$$
+
+where:
+- $Fo = \alpha t/L_c^2$ is Fourier number
+- $\zeta_1$ is first eigenvalue (from tables based on $Bi$)
+- $C_1$ is constant (from tables based on $Bi$)
+
+\section*{Forced Convection}
+
+\subsection*{Dimensionless Numbers}
+
+\textbf{Reynolds Number:}
+$$Re = \frac{\rho VL}{\mu} = \frac{VL}{\nu}$$
+
+\textbf{Prandtl Number:}
+$$Pr = \frac{\nu}{\alpha} = \frac{c_p\mu}{k}$$
+
+\textbf{Nusselt Number:}
+$$Nu = \frac{hL}{k}$$
+
+\textbf{Relationship:}
+$$Nu = f(Re, Pr)$$
+
+\subsection*{External Flow}
+
+\textbf{Flat Plate (Laminar, $Re_x < 5 \times 10^5$):}
+
+Local:
+$$Nu_x = 0.332Re_x^{1/2}Pr^{1/3}$$
+
+Average:
+$$\overline{Nu}_L = 0.664Re_L^{1/2}Pr^{1/3}$$
+
+\textbf{Flat Plate (Turbulent, $Re_x > 5 \times 10^5$):}
+
+Local:
+$$Nu_x = 0.0296Re_x^{4/5}Pr^{1/3}$$
+
+Average (mixed):
+$$\overline{Nu}_L = (0.037Re_L^{4/5} - 871)Pr^{1/3}$$
+
+\textbf{Cylinder in Cross Flow:}
+
+$$\overline{Nu}_D = CRe_D^m Pr^{1/3}$$
+
+where $C$ and $m$ depend on $Re_D$ (from tables)
+
+For $Re_D = 0.4$ to $4 \times 10^5$:
+$$\overline{Nu}_D = 0.3 + \frac{0.62Re_D^{1/2}Pr^{1/3}}{[1 + (0.4/Pr)^{2/3}]^{1/4}}\left[1 + \left(\frac{Re_D}{282000}\right)^{5/8}\right]^{4/5}$$
+
+\textbf{Sphere:}
+$$\overline{Nu}_D = 2 + (0.4Re_D^{1/2} + 0.06Re_D^{2/3})Pr^{0.4}$$
+
+\subsection*{Internal Flow}
+
+\textbf{Fully Developed Laminar (Circular Tube):}
+
+Constant surface temperature: $Nu_D = 3.66$
+
+Constant heat flux: $Nu_D = 4.36$
+
+\textbf{Entry Length:}
+
+Hydrodynamic: $L_h/D \approx 0.05Re_D$ (laminar)
+
+Thermal: $L_t/D \approx 0.05Re_D Pr$ (laminar)
+
+\textbf{Turbulent Flow ($Re_D > 10,000$):}
+
+Dittus-Boelter equation:
+$$Nu_D = 0.023Re_D^{4/5}Pr^n$$
+
+where $n = 0.4$ (heating) or $n = 0.3$ (cooling)
+
+Gnielinski equation (more accurate):
+$$Nu_D = \frac{(f/8)(Re_D - 1000)Pr}{1 + 12.7(f/8)^{1/2}(Pr^{2/3} - 1)}$$
+
+where $f$ is friction factor
+
+\textbf{Non-Circular Ducts:}
+
+Use hydraulic diameter:
+$$D_h = \frac{4A_c}{P}$$
+
+where $A_c$ is cross-sectional area, $P$ is wetted perimeter
+
+\section*{Natural (Free) Convection}
+
+\subsection*{Dimensionless Numbers}
+
+\textbf{Grashof Number:}
+$$Gr_L = \frac{g\beta(T_s - T_\infty)L^3}{\nu^2}$$
+
+where $\beta = 1/T$ for ideal gas (use absolute temperature)
+
+\textbf{Rayleigh Number:}
+$$Ra_L = Gr_L \cdot Pr = \frac{g\beta(T_s - T_\infty)L^3}{\nu\alpha}$$
+
+\subsection*{Vertical Plate}
+
+\textbf{Laminar ($Ra_L < 10^9$):}
+$$\overline{Nu}_L = 0.59Ra_L^{1/4}$$
+
+\textbf{Turbulent ($Ra_L > 10^9$):}
+$$\overline{Nu}_L = 0.10Ra_L^{1/3}$$
+
+\textbf{Full Range:}
+$$\overline{Nu}_L = \left[0.825 + \frac{0.387Ra_L^{1/6}}{[1 + (0.492/Pr)^{9/16}]^{8/27}}\right]^2$$
+
+\subsection*{Horizontal Plate}
+
+\textbf{Hot surface facing up or cold surface facing down:}
+$$\overline{Nu}_L = 0.54Ra_L^{1/4} \quad (10^4 < Ra_L < 10^7)$$
+$$\overline{Nu}_L = 0.15Ra_L^{1/3} \quad (10^7 < Ra_L < 10^{11})$$
+
+\textbf{Hot surface facing down or cold surface facing up:}
+$$\overline{Nu}_L = 0.27Ra_L^{1/4} \quad (10^5 < Ra_L < 10^{10})$$
+
+where $L = A_s/P$ is characteristic length
+
+\subsection*{Horizontal Cylinder}
+
+$$\overline{Nu}_D = \left[0.60 + \frac{0.387Ra_D^{1/6}}{[1 + (0.559/Pr)^{9/16}]^{8/27}}\right]^2$$
+
+\subsection*{Sphere}
+
+$$\overline{Nu}_D = 2 + \frac{0.589Ra_D^{1/4}}{[1 + (0.469/Pr)^{9/16}]^{4/9}}$$
+
+\section*{Boiling and Condensation}
+
+\subsection*{Pool Boiling}
+
+\textbf{Regimes:}
+1. Free convection boiling
+2. Nucleate boiling
+3. Transition boiling
+4. Film boiling
+
+\textbf{Rohsenow Correlation (Nucleate Boiling):}
+$$q'' = \mu_l h_{fg}\left[\frac{g(\rho_l - \rho_v)}{\sigma}\right]^{1/2}\left[\frac{c_{p,l}(T_s - T_{sat})}{C_{sf}h_{fg}Pr_l^n}\right]^3$$
+
+where $C_{sf}$ and $n$ depend on surface-fluid combination
+
+\textbf{Critical Heat Flux (CHF):}
+$$q''_{max} = 0.149h_{fg}\rho_v\left[\sigma g(\rho_l - \rho_v)/\rho_v^2\right]^{1/4}$$
+
+\subsection*{Film Condensation}
+
+\textbf{Vertical Plate (Nusselt):}
+$$\overline{Nu}_L = 0.943\left[\frac{g\rho_l(\rho_l - \rho_v)h_{fg}'L^3}{\mu_l k_l(T_{sat} - T_s)}\right]^{1/4}$$
+
+where $h_{fg}' = h_{fg}[1 + 0.68c_{p,l}(T_{sat} - T_s)/h_{fg}]$
+
+\textbf{Average Heat Transfer Coefficient:}
+$$\bar{h} = 0.943\left[\frac{g\rho_l(\rho_l - \rho_v)k_l^3h_{fg}'}{\mu_l L(T_{sat} - T_s)}\right]^{1/4}$$
+
+\textbf{Horizontal Tube:}
+$$\bar{h} = 0.729\left[\frac{g\rho_l(\rho_l - \rho_v)k_l^3h_{fg}'}{\mu_l D(T_{sat} - T_s)}\right]^{1/4}$$
+
+\section*{Heat Exchangers}
+
+\subsection*{Overall Heat Transfer Coefficient}
+
+\textbf{For tube:}
+$$\frac{1}{UA} = \frac{1}{h_i A_i} + \frac{\ln(r_o/r_i)}{2\pi kL} + \frac{1}{h_o A_o}$$
+
+\textbf{Including fouling:}
+$$\frac{1}{UA} = \frac{1}{h_i A_i} + \frac{R_{f,i}''}{A_i} + \frac{\ln(r_o/r_i)}{2\pi kL} + \frac{R_{f,o}''}{A_o} + \frac{1}{h_o A_o}$$
+
+\subsection*{Log Mean Temperature Difference (LMTD)}
+
+$$q = UA\Delta T_{lm}$$
+
+$$\Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1/\Delta T_2)}$$
+
+\textbf{Parallel Flow:}
+$$\Delta T_1 = T_{h,i} - T_{c,i}, \quad \Delta T_2 = T_{h,o} - T_{c,o}$$
+
+\textbf{Counter Flow:}
+$$\Delta T_1 = T_{h,i} - T_{c,o}, \quad \Delta T_2 = T_{h,o} - T_{c,i}$$
+
+\textbf{For other configurations:}
+$$q = UAF\Delta T_{lm,cf}$$
+
+where $F$ is correction factor and $\Delta T_{lm,cf}$ is for counter-flow
+
+\subsection*{Effectiveness-NTU Method}
+
+\textbf{Heat Capacity Rates:}
+$$C_h = (\dot{m}c_p)_h, \quad C_c = (\dot{m}c_p)_c$$
+
+$$C_{min} = \min(C_h, C_c), \quad C_{max} = \max(C_h, C_c)$$
+
+$$C_r = \frac{C_{min}}{C_{max}}$$
+
+\textbf{Maximum Possible Heat Transfer:}
+$$q_{max} = C_{min}(T_{h,i} - T_{c,i})$$
+
+\textbf{Effectiveness:}
+$$\epsilon = \frac{q}{q_{max}}$$
+
+\textbf{Number of Transfer Units:}
+$$NTU = \frac{UA}{C_{min}}$$
+
+\textbf{$\epsilon$-NTU Relations:}
+
+Parallel flow:
+$$\epsilon = \frac{1 - \exp[-NTU(1 + C_r)]}{1 + C_r}$$
+
+Counter flow:
+$$\epsilon = \frac{1 - \exp[-NTU(1 - C_r)]}{1 - C_r\exp[-NTU(1 - C_r)]}$$
+
+For $C_r = 0$ (phase change):
+$$\epsilon = 1 - \exp(-NTU)$$
+
+\section*{Radiation Heat Transfer}
+
+\subsection*{Radiation Properties}
+
+\textbf{Emissivity:}
+$$\epsilon = \frac{E}{E_b}$$
+
+\textbf{Absorptivity:}
+$$\alpha = \frac{G_{abs}}{G}$$
+
+\textbf{Reflectivity:}
+$$\rho = \frac{G_{ref}}{G}$$
+
+\textbf{Transmissivity:}
+$$\tau = \frac{G_{tr}}{G}$$
+
+\textbf{Energy Balance:}
+$$\alpha + \rho + \tau = 1$$
+
+For opaque surface: $\tau = 0$, so $\alpha + \rho = 1$
+
+\textbf{Kirchhoff's Law:}
+$$\alpha = \epsilon$$
+
+(for diffuse, gray surface)
+
+\subsection*{View Factor}
+
+\textbf{Definition:}
+
+$F_{ij}$ = fraction of radiation leaving surface $i$ that directly strikes surface $j$
+
+\textbf{Reciprocity:}
+$$A_i F_{ij} = A_j F_{ji}$$
+
+\textbf{Summation Rule:}
+$$\sum_{j=1}^{N} F_{ij} = 1$$
+
+\textbf{For flat or convex surface:}
+$$F_{ii} = 0$$
+
+\subsection*{Radiation Exchange}
+
+\textbf{Between Two Black Surfaces:}
+$$q_{12} = A_1F_{12}\sigma(T_1^4 - T_2^4)$$
+
+\textbf{Between Two Gray, Diffuse Surfaces:}
+$$q_{12} = \frac{\sigma(T_1^4 - T_2^4)}{\frac{1 - \epsilon_1}{A_1\epsilon_1} + \frac{1}{A_1F_{12}} + \frac{1 - \epsilon_2}{A_2\epsilon_2}}$$
+
+\textbf{Small Object in Large Enclosure:}
+$$q = A_1\epsilon_1\sigma(T_1^4 - T_2^4)$$
+
+\textbf{Radiation Shield:}
+
+Radiation shield between surfaces reduces heat transfer:
+$$q_{with\ shield} = \frac{q_{without\ shield}}{2}$$
+
+(for single shield with $\epsilon = \epsilon_1 = \epsilon_2$)
+
+\section*{Finite Difference Method}
+
+\subsection*{Steady-State}
+
+\textbf{Interior Node (2D):}
+$$T_{m,n} = \frac{T_{m+1,n} + T_{m-1,n} + T_{m,n+1} + T_{m,n-1}}{4}$$
+
+\textbf{With Heat Generation:}
+$$T_{m,n} = \frac{T_{m+1,n} + T_{m-1,n} + T_{m,n+1} + T_{m,n-1} + \dot{q}\Delta x^2/k}{4}$$
+
+\textbf{Boundary with Convection:}
+$$\frac{T_{m-1,n} - T_{m,n}}{\Delta x/k} = h(T_{m,n} - T_\infty)$$
+
+\subsection*{Transient (Explicit Method)}
+
+\textbf{Fourier Number:}
+$$Fo = \frac{\alpha\Delta t}{(\Delta x)^2}$$
+
+\textbf{Stability Criterion (1D):}
+$$Fo \leq \frac{1}{2}$$
+
+\textbf{Interior Node (1D):}
+$$T_m^{p+1} = Fo(T_{m+1}^p + T_{m-1}^p) + (1 - 2Fo)T_m^p$$
+
+where superscript $p$ denotes time step
+
+\section*{Quick Reference}
+
+\textbf{Typical Values of $h$ (W/(m$^2$·K)):}
+- Free convection (gases): 2-25
+- Free convection (liquids): 50-1000
+- Forced convection (gases): 25-250
+- Forced convection (liquids): 100-20,000
+- Boiling/Condensation: 2500-100,000
+
+\textbf{Thermal Conductivity (W/(m·K)):}
+- Metals: 15-400
+- Non-metallic solids: 0.05-5
+- Liquids: 0.1-0.7
+- Gases: 0.01-0.1
+- Insulation: 0.03-0.2
+
+\end{document}

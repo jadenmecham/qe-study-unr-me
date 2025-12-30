@@ -18,4 +18,565 @@
 
 \vspace{10pt}
 
+\section*{Fluid Properties}
+
+\subsection*{Density and Specific Weight}
+
+\textbf{Density:}
+$$\rho = \frac{m}{V}$$
+
+\textbf{Specific Weight:}
+$$\gamma = \rho g$$
+
+\textbf{Specific Gravity:}
+$$SG = \frac{\rho}{\rho_{H_2O}} = \frac{\gamma}{\gamma_{H_2O}}$$
+
+\subsection*{Viscosity}
+
+\textbf{Dynamic (Absolute) Viscosity:}
+$$\tau = \mu\frac{du}{dy}$$
+
+\textbf{Kinematic Viscosity:}
+$$\nu = \frac{\mu}{\rho}$$
+
+\textbf{Newton's Law of Viscosity:} Fluids where $\tau \propto du/dy$ are Newtonian
+
+\textbf{Typical Values:}
+- Water at 20°C: $\mu = 1.0 \times 10^{-3}$ Pa·s, $\nu = 1.0 \times 10^{-6}$ m$^2$/s
+- Air at 20°C: $\mu = 1.8 \times 10^{-5}$ Pa·s, $\nu = 1.5 \times 10^{-5}$ m$^2$/s
+
+\subsection*{Surface Tension}
+
+$$\Delta P = \sigma\left(\frac{1}{R_1} + \frac{1}{R_2}\right)$$
+
+For spherical droplet:
+$$\Delta P = \frac{2\sigma}{R}$$
+
+For cylindrical jet:
+$$\Delta P = \frac{\sigma}{R}$$
+
+\textbf{Capillary Rise:}
+$$h = \frac{2\sigma\cos\theta}{\rho gr}$$
+
+where $\theta$ is contact angle
+
+\subsection*{Bulk Modulus}
+
+\textbf{Compressibility:}
+$$E_v = -V\frac{dP}{dV} = \rho\frac{dP}{d\rho}$$
+
+\textbf{Speed of Sound:}
+$$c = \sqrt{\frac{E_v}{\rho}}$$
+
+For ideal gas: $c = \sqrt{kRT}$
+
+\section*{Fluid Statics}
+
+\subsection*{Pressure Variation}
+
+\textbf{Hydrostatic Equation:}
+$$\frac{dP}{dz} = -\rho g$$
+
+For incompressible fluid:
+$$P_2 - P_1 = -\rho g(z_2 - z_1) = \rho gh$$
+
+\textbf{Absolute vs Gage Pressure:}
+$$P_{abs} = P_{gage} + P_{atm}$$
+
+\subsection*{Manometry}
+
+\textbf{U-Tube Manometer:}
+$$P_A - P_B = \rho_{fluid}gh$$
+
+\textbf{Differential Manometer:}
+$$P_A - P_B = (\rho_2 - \rho_1)gh$$
+
+\subsection*{Forces on Submerged Surfaces}
+
+\textbf{Horizontal Flat Surface:}
+$$F_R = P_c A = \rho gh_c A$$
+
+where $h_c$ is depth to centroid
+
+\textbf{Location of Center of Pressure:}
+$$y_{cp} = y_c + \frac{I_{xc}}{y_c A}$$
+
+where $I_{xc}$ is second moment of area about centroidal axis
+
+\textbf{Inclined Flat Surface:}
+
+Same formulas with $y$ measured along inclined surface
+
+\textbf{Curved Surface:}
+
+Horizontal component: $F_H = \rho gh_c A_{projected}$
+
+Vertical component: $F_V = \rho g V_{fluid}$
+
+\subsection*{Buoyancy}
+
+\textbf{Buoyant Force (Archimedes):}
+$$F_B = \rho_{fluid} g V_{displaced}$$
+
+Acts upward through centroid of displaced volume (center of buoyancy)
+
+\textbf{Floating Body:}
+$$W = F_B$$
+$$\rho_{body} V_{body} g = \rho_{fluid} V_{submerged} g$$
+
+\textbf{Stability:}
+
+Stable if metacenter is above center of gravity
+
+\section*{Kinematics}
+
+\subsection*{Velocity Field}
+
+\textbf{Eulerian Description:}
+$$\mathbf{V} = u(x,y,z,t)\mathbf{i} + v(x,y,z,t)\mathbf{j} + w(x,y,z,t)\mathbf{k}$$
+
+\textbf{Lagrangian Description:}
+
+Follow individual particles
+
+\subsection*{Acceleration}
+
+\textbf{Material (Substantial) Derivative:}
+$$\frac{D\mathbf{V}}{Dt} = \frac{\partial\mathbf{V}}{\partial t} + (\mathbf{V} \cdot \nabla)\mathbf{V}$$
+
+$$a_x = \frac{Du}{Dt} = \frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} + w\frac{\partial u}{\partial z}$$
+
+Local acceleration + Convective acceleration
+
+\subsection*{Flow Classification}
+
+\textbf{Steady:} $\partial/\partial t = 0$
+
+\textbf{Uniform:} $\partial/\partial s = 0$ along streamline
+
+\textbf{Incompressible:} $\rho$ = constant
+
+\subsection*{Streamlines, Pathlines, Streaklines}
+
+\textbf{Streamline:} Tangent to velocity at instant
+
+For 2D: $\frac{dy}{dx} = \frac{v}{u}$
+
+\textbf{Pathline:} Trajectory of fluid particle
+
+\textbf{Streakline:} Locus of particles passing through a point
+
+For steady flow: all three coincide
+
+\subsection*{Vorticity and Circulation}
+
+\textbf{Vorticity:}
+$$\boldsymbol{\omega} = \nabla \times \mathbf{V}$$
+
+In 2D:
+$$\omega_z = \frac{\partial v}{\partial x} - \frac{\partial u}{\partial y}$$
+
+\textbf{Circulation:}
+$$\Gamma = \oint_C \mathbf{V} \cdot d\mathbf{s}$$
+
+\textbf{Irrotational Flow:} $\nabla \times \mathbf{V} = 0$
+
+\section*{Conservation Laws}
+
+\subsection*{Conservation of Mass (Continuity)}
+
+\textbf{Differential Form:}
+$$\frac{\partial\rho}{\partial t} + \nabla \cdot (\rho\mathbf{V}) = 0$$
+
+\textbf{Incompressible:}
+$$\nabla \cdot \mathbf{V} = 0$$
+
+In Cartesian:
+$$\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0$$
+
+\textbf{Integral Form (Control Volume):}
+$$\frac{\partial}{\partial t}\int_{CV}\rho \, dV + \int_{CS}\rho\mathbf{V} \cdot \mathbf{n} \, dA = 0$$
+
+\textbf{Steady Flow:}
+$$\sum\dot{m}_{in} = \sum\dot{m}_{out}$$
+
+$$\rho_1A_1V_1 = \rho_2A_2V_2$$
+
+For incompressible:
+$$Q = AV = \text{constant}$$
+
+\subsection*{Momentum Equation}
+
+\textbf{Differential Form (Navier-Stokes):}
+
+For incompressible, Newtonian fluid:
+$$\rho\frac{D\mathbf{V}}{Dt} = -\nabla P + \mu\nabla^2\mathbf{V} + \rho\mathbf{g}$$
+
+x-component:
+$$\rho\left(\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y} + w\frac{\partial u}{\partial z}\right) = -\frac{\partial P}{\partial x} + \mu\left(\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\right) + \rho g_x$$
+
+\textbf{Euler's Equation (Inviscid):}
+$$\rho\frac{D\mathbf{V}}{Dt} = -\nabla P + \rho\mathbf{g}$$
+
+\textbf{Integral Form (Control Volume):}
+$$\sum\mathbf{F} = \frac{\partial}{\partial t}\int_{CV}\rho\mathbf{V} \, dV + \int_{CS}\rho\mathbf{V}(\mathbf{V} \cdot \mathbf{n}) \, dA$$
+
+\textbf{Steady Flow:}
+$$\sum\mathbf{F} = \sum\dot{m}_{out}\mathbf{V}_{out} - \sum\dot{m}_{in}\mathbf{V}_{in}$$
+
+\subsection*{Energy Equation}
+
+\textbf{First Law (Control Volume):}
+$$\dot{Q} - \dot{W}_s = \frac{\partial}{\partial t}\int_{CV}\rho e \, dV + \int_{CS}\rho\left(e + \frac{P}{\rho}\right)(\mathbf{V} \cdot \mathbf{n}) \, dA$$
+
+where $e = u + V^2/2 + gz$ and $\dot{W}_s$ is shaft work
+
+\section*{Bernoulli Equation}
+
+\textbf{Along a Streamline:}
+$$\frac{P}{\rho} + \frac{V^2}{2} + gz = \text{constant}$$
+
+or
+
+$$\frac{P}{\gamma} + \frac{V^2}{2g} + z = \text{constant}$$
+
+\textbf{Assumptions:}
+- Steady flow
+- Incompressible
+- Inviscid (frictionless)
+- Along a streamline
+
+\textbf{Extended Bernoulli (with losses):}
+$$\frac{P_1}{\gamma} + \frac{V_1^2}{2g} + z_1 = \frac{P_2}{\gamma} + \frac{V_2^2}{2g} + z_2 + h_L$$
+
+\textbf{With pump/turbine:}
+$$\frac{P_1}{\gamma} + \frac{V_1^2}{2g} + z_1 + h_p = \frac{P_2}{\gamma} + \frac{V_2^2}{2g} + z_2 + h_t + h_L$$
+
+\textbf{Pitot Tube:}
+$$V = \sqrt{\frac{2(P_0 - P)}{\rho}} = \sqrt{2gh}$$
+
+where $P_0$ is stagnation pressure
+
+\section*{Dimensional Analysis}
+
+\subsection*{Buckingham Pi Theorem}
+
+If physical phenomenon involves $n$ variables and $m$ fundamental dimensions:
+
+Number of dimensionless groups = $n - m$
+
+\subsection*{Important Dimensionless Numbers}
+
+\textbf{Reynolds Number:}
+$$Re = \frac{\rho VL}{\mu} = \frac{VL}{\nu} = \frac{\text{inertial forces}}{\text{viscous forces}}$$
+
+\textbf{Froude Number:}
+$$Fr = \frac{V}{\sqrt{gL}} = \frac{\text{inertial forces}}{\text{gravity forces}}$$
+
+\textbf{Euler Number:}
+$$Eu = \frac{P}{\rho V^2} = \frac{\text{pressure forces}}{\text{inertial forces}}$$
+
+\textbf{Mach Number:}
+$$Ma = \frac{V}{c} = \frac{\text{flow velocity}}{\text{sound velocity}}$$
+
+\textbf{Weber Number:}
+$$We = \frac{\rho V^2L}{\sigma} = \frac{\text{inertial forces}}{\text{surface tension forces}}$$
+
+\textbf{Drag Coefficient:}
+$$C_D = \frac{F_D}{\frac{1}{2}\rho V^2A}$$
+
+\textbf{Lift Coefficient:}
+$$C_L = \frac{F_L}{\frac{1}{2}\rho V^2A}$$
+
+\section*{Viscous Flow in Pipes}
+
+\subsection*{Flow Regimes}
+
+\textbf{Laminar:} $Re < 2300$
+
+\textbf{Transitional:} $2300 < Re < 4000$
+
+\textbf{Turbulent:} $Re > 4000$
+
+\subsection*{Fully Developed Laminar Flow}
+
+\textbf{Velocity Profile (Poiseuille Flow):}
+$$u(r) = u_{max}\left[1 - \left(\frac{r}{R}\right)^2\right]$$
+
+where $u_{max} = \frac{R^2}{4\mu}\left(-\frac{dP}{dx}\right)$
+
+\textbf{Average Velocity:}
+$$V = \frac{u_{max}}{2} = \frac{R^2}{8\mu}\left(-\frac{dP}{dx}\right) = \frac{D^2}{32\mu}\left(-\frac{dP}{dx}\right)$$
+
+\textbf{Hagen-Poiseuille Equation:}
+$$\Delta P = \frac{32\mu LV}{D^2} = \frac{128\mu LQ}{\pi D^4}$$
+
+\textbf{Friction Factor:}
+$$f = \frac{64}{Re}$$
+
+\subsection*{Turbulent Flow}
+
+\textbf{Friction Factor:}
+
+Smooth pipes (Blasius):
+$$f = \frac{0.316}{Re^{1/4}} \quad (Re < 10^5)$$
+
+Colebrook equation (implicit):
+$$\frac{1}{\sqrt{f}} = -2.0\log\left(\frac{\epsilon/D}{3.7} + \frac{2.51}{Re\sqrt{f}}\right)$$
+
+where $\epsilon$ is roughness height
+
+\textbf{Moody Chart:} Graphical representation of $f$ vs $Re$ for various $\epsilon/D$
+
+\textbf{Power Law Velocity Profile:}
+$$u(r) = u_{max}\left[1 - \frac{r}{R}\right]^{1/n}$$
+
+where $n \approx 7$ for turbulent flow
+
+\subsection*{Head Loss}
+
+\textbf{Major Loss (Darcy-Weisbach):}
+$$h_L = f\frac{L}{D}\frac{V^2}{2g}$$
+
+\textbf{Minor Losses:}
+$$h_L = K_L\frac{V^2}{2g}$$
+
+where $K_L$ is loss coefficient (from tables)
+
+Common values:
+- Pipe entrance (sharp): $K_L = 0.5$
+- Pipe exit: $K_L = 1.0$
+- 90° elbow: $K_L \approx 0.9$
+- Gate valve (open): $K_L \approx 0.2$
+
+\textbf{Total Head Loss:}
+$$h_L = f\frac{L}{D}\frac{V^2}{2g} + \sum K_L\frac{V^2}{2g}$$
+
+\subsection*{Pipe Systems}
+
+\textbf{Pipes in Series:}
+$$Q = Q_1 = Q_2 = Q_3$$
+$$h_L = h_{L1} + h_{L2} + h_{L3}$$
+
+\textbf{Pipes in Parallel:}
+$$Q = Q_1 + Q_2 + Q_3$$
+$$h_L = h_{L1} = h_{L2} = h_{L3}$$
+
+\textbf{Three-Reservoir Problem:}
+
+Use continuity and energy equations at junction
+
+\section*{External Flow}
+
+\subsection*{Boundary Layer}
+
+\textbf{Boundary Layer Thickness ($\delta$):}
+
+Height where $u = 0.99U_\infty$
+
+\textbf{Displacement Thickness:}
+$$\delta^* = \int_0^\infty\left(1 - \frac{u}{U}\right)dy$$
+
+\textbf{Momentum Thickness:}
+$$\theta = \int_0^\infty\frac{u}{U}\left(1 - \frac{u}{U}\right)dy$$
+
+\subsection*{Flat Plate}
+
+\textbf{Laminar ($Re_x < 5 \times 10^5$):}
+
+Boundary layer thickness:
+$$\delta = \frac{5x}{\sqrt{Re_x}}$$
+
+Local skin friction coefficient:
+$$C_{f,x} = \frac{0.664}{\sqrt{Re_x}}$$
+
+Average skin friction coefficient:
+$$\overline{C}_f = \frac{1.328}{\sqrt{Re_L}}$$
+
+\textbf{Turbulent ($Re_x > 5 \times 10^5$):}
+
+Boundary layer thickness:
+$$\delta = \frac{0.37x}{Re_x^{1/5}}$$
+
+Local skin friction coefficient:
+$$C_{f,x} = \frac{0.059}{Re_x^{1/5}}$$
+
+Average (with turbulent from leading edge):
+$$\overline{C}_f = \frac{0.074}{Re_L^{1/5}}$$
+
+\textbf{Drag Force:}
+$$F_D = \overline{C}_f\left(\frac{1}{2}\rho V^2\right)A_s$$
+
+where $A_s$ is surface area
+
+\subsection*{Flow Over Cylinder and Sphere}
+
+\textbf{Drag:}
+$$F_D = C_D\left(\frac{1}{2}\rho V^2\right)A_f$$
+
+where $A_f$ is frontal area
+
+\textbf{Typical $C_D$ Values:}
+
+Sphere:
+- $Re < 1$: $C_D = 24/Re$ (Stokes flow)
+- $10^3 < Re < 2 \times 10^5$: $C_D \approx 0.4$
+- $Re > 3 \times 10^5$: $C_D \approx 0.1$ (turbulent, drag crisis)
+
+Cylinder:
+- $Re < 1$: $C_D \approx 10/Re$
+- $10^3 < Re < 2 \times 10^5$: $C_D \approx 1.2$
+
+\textbf{Terminal Velocity:}
+
+When $F_D = W - F_B$:
+$$V_t = \sqrt{\frac{2(W - F_B)}{\rho C_D A_f}}$$
+
+\section*{Potential Flow}
+
+\subsection*{Velocity Potential}
+
+For irrotational flow:
+$$\mathbf{V} = \nabla\phi$$
+
+$$u = \frac{\partial\phi}{\partial x}, \quad v = \frac{\partial\phi}{\partial y}$$
+
+\textbf{Laplace Equation:}
+$$\nabla^2\phi = 0$$
+
+\subsection*{Stream Function}
+
+For 2D incompressible flow:
+$$u = \frac{\partial\psi}{\partial y}, \quad v = -\frac{\partial\psi}{\partial x}$$
+
+Lines of constant $\psi$ are streamlines
+
+\textbf{Volume Flow Rate:}
+
+Between two streamlines:
+$$Q = \psi_2 - \psi_1$$
+
+\subsection*{Elementary Flows}
+
+\textbf{Uniform Flow:}
+$$\phi = Ux, \quad \psi = Uy$$
+
+\textbf{Source/Sink:}
+$$\phi = \frac{m}{2\pi}\ln r, \quad \psi = \frac{m}{2\pi}\theta$$
+
+where $m$ is strength (positive for source)
+
+\textbf{Vortex:}
+$$\phi = \frac{\Gamma}{2\pi}\theta, \quad \psi = -\frac{\Gamma}{2\pi}\ln r$$
+
+where $\Gamma$ is circulation
+
+\textbf{Doublet:}
+$$\phi = -\frac{\Lambda\cos\theta}{r}, \quad \psi = \frac{\Lambda\sin\theta}{r}$$
+
+\textbf{Superposition:}
+
+Complex potential flows can be created by superposition of elementary flows
+
+\section*{Compressible Flow}
+
+\subsection*{Speed of Sound}
+
+$$c = \sqrt{\frac{\partial P}{\partial\rho}\bigg|_s}$$
+
+For ideal gas:
+$$c = \sqrt{kRT}$$
+
+\subsection*{Mach Number Relations}
+
+\textbf{Subsonic:} $Ma < 1$
+
+\textbf{Sonic:} $Ma = 1$
+
+\textbf{Supersonic:} $Ma > 1$
+
+\textbf{Hypersonic:} $Ma > 5$
+
+\subsection*{Isentropic Relations}
+
+\textbf{Stagnation Properties:}
+$$\frac{T_0}{T} = 1 + \frac{k-1}{2}Ma^2$$
+
+$$\frac{P_0}{P} = \left(1 + \frac{k-1}{2}Ma^2\right)^{k/(k-1)}$$
+
+$$\frac{\rho_0}{\rho} = \left(1 + \frac{k-1}{2}Ma^2\right)^{1/(k-1)}$$
+
+\textbf{Critical Conditions ($Ma = 1$):}
+$$\frac{T^*}{T_0} = \frac{2}{k+1}$$
+
+$$\frac{P^*}{P_0} = \left(\frac{2}{k+1}\right)^{k/(k-1)}$$
+
+\subsection*{Normal Shock}
+
+\textbf{Across shock:}
+
+$$\frac{P_2}{P_1} = 1 + \frac{2k}{k+1}(Ma_1^2 - 1)$$
+
+$$\frac{\rho_2}{\rho_1} = \frac{(k+1)Ma_1^2}{(k-1)Ma_1^2 + 2}$$
+
+$$Ma_2^2 = \frac{(k-1)Ma_1^2 + 2}{2kMa_1^2 - (k-1)}$$
+
+Shock always: $Ma_1 > 1$, $Ma_2 < 1$
+
+\section*{Open Channel Flow}
+
+\subsection*{Froude Number}
+
+$$Fr = \frac{V}{\sqrt{gy}}$$
+
+where $y$ is flow depth
+
+\textbf{Subcritical:} $Fr < 1$ (tranquil)
+
+\textbf{Critical:} $Fr = 1$
+
+\textbf{Supercritical:} $Fr > 1$ (rapid)
+
+\subsection*{Manning Equation}
+
+$$V = \frac{1}{n}R_h^{2/3}S^{1/2}$$
+
+where:
+- $n$ = Manning roughness coefficient
+- $R_h = A/P$ = hydraulic radius
+- $S$ = channel slope
+
+\textbf{Flow Rate:}
+$$Q = \frac{1}{n}AR_h^{2/3}S^{1/2}$$
+
+\subsection*{Specific Energy}
+
+$$E = y + \frac{V^2}{2g}$$
+
+\textbf{Critical Depth:}
+
+For rectangular channel:
+$$y_c = \left(\frac{q^2}{g}\right)^{1/3}$$
+
+where $q = Q/b$ is discharge per unit width
+
+\section*{Quick Reference}
+
+\textbf{Common Fluid Properties (at 20°C, 1 atm):}
+
+Water:
+- $\rho = 998$ kg/m$^3$
+- $\mu = 1.0 \times 10^{-3}$ Pa·s
+- $\nu = 1.0 \times 10^{-6}$ m$^2$/s
+
+Air:
+- $\rho = 1.20$ kg/m$^3$
+- $\mu = 1.8 \times 10^{-5}$ Pa·s
+- $\nu = 1.5 \times 10^{-5}$ m$^2$/s
+
+\textbf{Standard Atmosphere:}
+- $P = 101.325$ kPa = 1 atm
+- $T = 15°C = 288$ K
+- $\rho = 1.225$ kg/m$^3$
+
 \end{document}
