@@ -13,9 +13,579 @@
 \begin{document}
 
 \begin{center}
-\LARGE{\textbf{Solid Mechanics}}
+\LARGE{\textbf{Solid Mechanics - QE Equation Sheet}}
 \end{center}
 
 \vspace{10pt}
+
+\section*{Stress and Strain}
+
+\subsection*{Normal Stress}
+
+\textbf{Axial Stress:}
+$$\sigma = \frac{P}{A}$$
+
+where $P$ is axial force and $A$ is cross-sectional area
+
+\textbf{Sign Convention:}
+- Tension: positive
+- Compression: negative
+
+\subsection*{Shear Stress}
+
+\textbf{Direct Shear:}
+$$\tau = \frac{V}{A}$$
+
+where $V$ is shear force and $A$ is area
+
+\textbf{Torsional Shear Stress:}
+$$\tau = \frac{T\rho}{J}$$
+
+where $T$ is torque, $\rho$ is radial distance, $J$ is polar moment of inertia
+
+For circular shaft:
+$$\tau_{max} = \frac{Tr}{J} = \frac{16T}{\pi d^3}$$
+
+\subsection*{Normal Strain}
+
+$$\epsilon = \frac{\Delta L}{L} = \frac{dL}{L}$$
+
+\textbf{Sign Convention:}
+- Elongation: positive
+- Contraction: negative
+
+\subsection*{Shear Strain}
+
+$$\gamma = \tan\theta \approx \theta \quad \text{(for small angles)}$$
+
+where $\theta$ is the change in angle (in radians)
+
+\subsection*{Hooke's Law}
+
+\textbf{Uniaxial:}
+$$\sigma = E\epsilon$$
+
+where $E$ is Young's modulus (modulus of elasticity)
+
+\textbf{Shear:}
+$$\tau = G\gamma$$
+
+where $G$ is shear modulus
+
+\textbf{Relationship between E and G:}
+$$G = \frac{E}{2(1 + \nu)}$$
+
+where $\nu$ is Poisson's ratio
+
+\subsection*{Poisson's Ratio}
+
+$$\nu = -\frac{\epsilon_{\text{lateral}}}{\epsilon_{\text{axial}}}$$
+
+Typical values: $0.25$ to $0.35$ for most metals
+
+\subsection*{Generalized Hooke's Law (3D)}
+
+$$\epsilon_x = \frac{1}{E}[\sigma_x - \nu(\sigma_y + \sigma_z)]$$
+$$\epsilon_y = \frac{1}{E}[\sigma_y - \nu(\sigma_x + \sigma_z)]$$
+$$\epsilon_z = \frac{1}{E}[\sigma_z - \nu(\sigma_x + \sigma_y)]$$
+
+$$\gamma_{xy} = \frac{\tau_{xy}}{G}, \quad \gamma_{yz} = \frac{\tau_{yz}}{G}, \quad \gamma_{xz} = \frac{\tau_{xz}}{G}$$
+
+\section*{Axial Loading}
+
+\subsection*{Axial Deformation}
+
+$$\delta = \frac{PL}{AE}$$
+
+For varying load, area, or material:
+$$\delta = \int_0^L \frac{P(x)}{A(x)E(x)}\,dx$$
+
+\subsection*{Statically Indeterminate Problems}
+
+For statically indeterminate systems:
+
+1. Write equilibrium equations
+2. Write compatibility (deformation) equations
+3. Write force-deformation relationships
+4. Solve system of equations
+
+\textbf{Example - Bar with supports at both ends:}
+
+Equilibrium: $R_A + R_B = P$
+
+Compatibility: $\delta_A + \delta_B = 0$ (or specified gap/displacement)
+
+\subsection*{Thermal Effects}
+
+\textbf{Thermal Strain:}
+$$\epsilon_T = \alpha \Delta T$$
+
+where $\alpha$ is coefficient of thermal expansion and $\Delta T$ is temperature change
+
+\textbf{Total Deformation (unconstrained):}
+$$\delta_T = \alpha L \Delta T$$
+
+\textbf{Thermal Stress (fully constrained):}
+$$\sigma_T = E\alpha \Delta T$$
+
+\textbf{Combined mechanical and thermal:}
+$$\delta = \frac{PL}{AE} + \alpha L \Delta T$$
+
+\subsection*{Factor of Safety}
+
+$$n = \frac{\sigma_{\text{allowable}}}{\sigma_{\text{actual}}} = \frac{\sigma_{\text{fail}}}{\sigma_{\text{actual}}}$$
+
+For design:
+$$\sigma_{\text{allowable}} = \frac{\sigma_{\text{yield}}}{n}$$
+
+Typical values: $n = 1.5$ to $3$ (higher for uncertain loading)
+
+\section*{Torsion}
+
+\subsection*{Angle of Twist}
+
+$$\phi = \frac{TL}{GJ}$$
+
+For varying torque, geometry, or material:
+$$\phi = \int_0^L \frac{T(x)}{G(x)J(x)}\,dx$$
+
+\subsection*{Polar Moment of Inertia}
+
+\textbf{Solid Circular Shaft:}
+$$J = \frac{\pi d^4}{32} = \frac{\pi r^4}{2}$$
+
+\textbf{Hollow Circular Shaft:}
+$$J = \frac{\pi(d_o^4 - d_i^4)}{32} = \frac{\pi(r_o^4 - r_i^4)}{2}$$
+
+\textbf{Thin-Walled Tube:}
+$$J \approx 2\pi r^3 t$$
+
+where $r$ is mean radius and $t$ is wall thickness
+
+\subsection*{Power Transmission}
+
+$$P = T\omega = 2\pi nT$$
+
+where $P$ is power (watts), $T$ is torque (N·m), $\omega$ is angular velocity (rad/s), and $n$ is rotational speed (rev/s)
+
+\textbf{In imperial units:}
+$$P(\text{hp}) = \frac{T(\text{lb·in}) \cdot n(\text{rpm})}{63,025}$$
+
+\section*{Bending of Beams}
+
+\subsection*{Flexure Formula (Bending Stress)}
+
+$$\sigma = \frac{My}{I}$$
+
+where:
+- $M$ is bending moment at section
+- $y$ is distance from neutral axis (positive for tension side)
+- $I$ is second moment of area about neutral axis
+
+\textbf{Maximum Bending Stress:}
+$$\sigma_{max} = \frac{Mc}{I} = \frac{M}{S}$$
+
+where $c$ is distance to extreme fiber and $S = I/c$ is section modulus
+
+\subsection*{Section Modulus}
+
+\textbf{Rectangular Section ($b \times h$):}
+$$S = \frac{bh^2}{6}$$
+
+\textbf{Circular Section (diameter $d$):}
+$$S = \frac{\pi d^3}{32}$$
+
+\textbf{Hollow Circular Section:}
+$$S = \frac{\pi(d_o^4 - d_i^4)}{32d_o}$$
+
+\subsection*{Second Moment of Area (Area Moment of Inertia)}
+
+\textbf{Definition:}
+$$I = \int y^2\,dA$$
+
+\textbf{Parallel Axis Theorem:}
+$$I_x = I_{\bar{x}} + Ad^2$$
+
+where $I_{\bar{x}}$ is moment about centroidal axis and $d$ is distance between axes
+
+\textbf{Common Cross-Sections:}
+
+\textit{Rectangle ($b \times h$, about centroid):}
+$$I = \frac{bh^3}{12}$$
+
+\textit{Circle (diameter $d$, about centroid):}
+$$I = \frac{\pi d^4}{64}$$
+
+\textit{Hollow Circle (outer $d_o$, inner $d_i$):}
+$$I = \frac{\pi(d_o^4 - d_i^4)}{64}$$
+
+\textit{Triangle (base $b$, height $h$, about base):}
+$$I = \frac{bh^3}{12}$$
+
+\textit{Triangle (about centroid):}
+$$I = \frac{bh^3}{36}$$
+
+\subsection*{Beam Deflection}
+
+\textbf{Differential Equations:}
+
+$$\frac{d^2v}{dx^2} = \frac{M}{EI}$$
+
+$$\frac{dv}{dx} = \theta = \int \frac{M}{EI}\,dx$$
+
+$$v = \iint \frac{M}{EI}\,dx\,dx$$
+
+where $v$ is deflection and $\theta$ is slope
+
+\textbf{Sign Convention:}
+- Positive $M$: causes compression on top
+- Positive $v$: downward deflection
+- Positive $\theta$: counterclockwise rotation
+
+\subsection*{Common Beam Deflections}
+
+\textbf{Simply Supported Beam - Point Load at Center:}
+$$v_{max} = \frac{PL^3}{48EI}$$
+
+\textbf{Simply Supported Beam - Uniform Load:}
+$$v_{max} = \frac{5wL^4}{384EI}$$
+
+\textbf{Cantilever Beam - Point Load at End:}
+$$v_{max} = \frac{PL^3}{3EI}$$
+
+\textbf{Cantilever Beam - Uniform Load:}
+$$v_{max} = \frac{wL^4}{8EI}$$
+
+\subsection*{Singularity Functions (Macaulay Method)}
+
+\textbf{Unit Step Function:}
+$$\langle x - a \rangle^0 = \begin{cases} 0 & x < a \\ 1 & x \geq a \end{cases}$$
+
+\textbf{Ramp Function:}
+$$\langle x - a \rangle^n = \begin{cases} 0 & x < a \\ (x-a)^n & x \geq a \end{cases}$$
+
+\textbf{Integration:}
+$$\int \langle x - a \rangle^n\,dx = \frac{\langle x - a \rangle^{n+1}}{n+1}$$
+
+\textbf{Point Load:}
+
+Use $\langle x - a \rangle^{-1}$ for point load at $x = a$
+
+\section*{Shear and Moment Diagrams}
+
+\subsection*{Relationships}
+
+$$\frac{dV}{dx} = -w(x)$$
+
+$$\frac{dM}{dx} = V(x)$$
+
+$$M = \int V\,dx$$
+
+where $w(x)$ is distributed load, $V$ is shear force, and $M$ is bending moment
+
+\subsection*{Sign Conventions}
+
+\textbf{Shear Force:}
+- Positive: causes clockwise rotation of element
+
+\textbf{Bending Moment:}
+- Positive: causes compression on top, tension on bottom (concave up)
+
+\subsection*{Key Points}
+
+- $V$ changes abruptly at point loads
+- $V$ varies linearly under uniform load
+- $M$ has maximum/minimum where $V = 0$
+- $M$ changes abruptly at concentrated moments
+
+\section*{Transverse Shear Stress}
+
+\subsection*{Shear Formula}
+
+$$\tau = \frac{VQ}{Ib}$$
+
+where:
+- $V$ is shear force
+- $Q = \bar{y}'A'$ is first moment of area above (or below) the point
+- $I$ is second moment of area of entire cross-section
+- $b$ is width at the point of interest
+
+\textbf{Maximum Shear Stress (usually at neutral axis):}
+$$\tau_{max} = \frac{VQ_{max}}{Ib}$$
+
+\subsection*{Shear Stress in Common Sections}
+
+\textbf{Rectangular Section:}
+$$\tau_{max} = \frac{3V}{2A} = \frac{3V}{2bh}$$
+
+\textbf{Circular Section:}
+$$\tau_{max} = \frac{4V}{3A} = \frac{16V}{3\pi d^2}$$
+
+\textbf{I-Beam (web):}
+$$\tau_{web} \approx \frac{V}{A_{web}} = \frac{V}{t_w h_{web}}$$
+
+\subsection*{Shear Flow}
+
+$$q = \frac{VQ}{I}$$
+
+where $q$ is shear flow (force per unit length)
+
+Used for:
+- Built-up beams (fastener spacing)
+- Thin-walled sections
+- Composite beams
+
+\section*{Combined Loading}
+
+\subsection*{Superposition}
+
+For linear elastic materials, stresses from different loads can be superimposed:
+$$\sigma_{total} = \sigma_1 + \sigma_2 + \cdots$$
+
+\textbf{Common Combinations:}
+
+\textit{Axial + Bending:}
+$$\sigma = \frac{P}{A} \pm \frac{My}{I}$$
+
+\textit{Bending in Two Planes:}
+$$\sigma = \frac{M_x y}{I_x} + \frac{M_y x}{I_y}$$
+
+\textit{Torsion + Bending:}
+$$\tau_{max} = \sqrt{\left(\frac{Tr}{J}\right)^2 + \left(\frac{V Q}{Ib}\right)^2}$$
+
+\section*{Stress Transformation}
+
+\subsection*{Plane Stress}
+
+For a state of stress $\sigma_x$, $\sigma_y$, $\tau_{xy}$, the stress on a plane at angle $\theta$:
+
+\textbf{Normal Stress:}
+$$\sigma_{x'} = \frac{\sigma_x + \sigma_y}{2} + \frac{\sigma_x - \sigma_y}{2}\cos(2\theta) + \tau_{xy}\sin(2\theta)$$
+
+\textbf{Shear Stress:}
+$$\tau_{x'y'} = -\frac{\sigma_x - \sigma_y}{2}\sin(2\theta) + \tau_{xy}\cos(2\theta)$$
+
+\subsection*{Principal Stresses}
+
+\textbf{Principal Stresses:}
+$$\sigma_{1,2} = \frac{\sigma_x + \sigma_y}{2} \pm \sqrt{\left(\frac{\sigma_x - \sigma_y}{2}\right)^2 + \tau_{xy}^2}$$
+
+where $\sigma_1$ is maximum and $\sigma_2$ is minimum
+
+\textbf{Principal Angles:}
+$$\tan(2\theta_p) = \frac{2\tau_{xy}}{\sigma_x - \sigma_y}$$
+
+Two values of $\theta_p$ differ by $90°$
+
+\textbf{Maximum Shear Stress:}
+$$\tau_{max} = \sqrt{\left(\frac{\sigma_x - \sigma_y}{2}\right)^2 + \tau_{xy}^2} = \frac{\sigma_1 - \sigma_2}{2}$$
+
+\textbf{Angle for Maximum Shear:}
+$$\theta_s = \theta_p \pm 45°$$
+
+\subsection*{Mohr's Circle}
+
+\textbf{Center:}
+$$C = \frac{\sigma_x + \sigma_y}{2}$$
+
+\textbf{Radius:}
+$$R = \sqrt{\left(\frac{\sigma_x - \sigma_y}{2}\right)^2 + \tau_{xy}^2}$$
+
+\textbf{Construction:}
+1. Plot point $A(\sigma_x, \tau_{xy})$ and $B(\sigma_y, -\tau_{xy})$
+2. Draw circle with diameter $AB$
+3. Principal stresses are intercepts on $\sigma$ axis
+4. Maximum shear stress is radius of circle
+
+\textbf{Sign Convention for Mohr's Circle:}
+- $\sigma$: tension positive (right), compression negative (left)
+- $\tau$: plot as given (up for positive, down for negative)
+- Angles on circle are $2\theta$ (double physical angle)
+- Rotate counterclockwise on circle for counterclockwise rotation of element
+
+\section*{Pressure Vessels}
+
+\subsection*{Thin-Walled Cylindrical Vessel}
+
+Thin-walled criterion: $r/t \geq 10$
+
+\textbf{Hoop Stress (Circumferential):}
+$$\sigma_1 = \frac{pr}{t}$$
+
+\textbf{Longitudinal Stress:}
+$$\sigma_2 = \frac{pr}{2t}$$
+
+\textbf{Maximum Shear Stress:}
+$$\tau_{max} = \frac{\sigma_1 - \sigma_2}{2} = \frac{pr}{4t}$$
+
+where $p$ is internal pressure, $r$ is mean radius, $t$ is wall thickness
+
+\subsection*{Thin-Walled Spherical Vessel}
+
+\textbf{Stress (same in all directions):}
+$$\sigma = \frac{pr}{2t}$$
+
+\subsection*{Thick-Walled Cylinders}
+
+\textbf{Lamé Equations:}
+
+$$\sigma_r = A - \frac{B}{r^2}$$
+
+$$\sigma_\theta = A + \frac{B}{r^2}$$
+
+where constants $A$ and $B$ are determined from boundary conditions
+
+For internal pressure $p_i$ and external pressure $p_o = 0$:
+
+$$\sigma_r = \frac{p_i r_i^2}{r_o^2 - r_i^2}\left(1 - \frac{r_o^2}{r^2}\right)$$
+
+$$\sigma_\theta = \frac{p_i r_i^2}{r_o^2 - r_i^2}\left(1 + \frac{r_o^2}{r^2}\right)$$
+
+\section*{Column Buckling}
+
+\subsection*{Euler Buckling Load}
+
+\textbf{Critical Load:}
+$$P_{cr} = \frac{\pi^2 EI}{(KL)^2}$$
+
+where:
+- $E$ is Young's modulus
+- $I$ is minimum second moment of area
+- $L$ is column length
+- $K$ is effective length factor
+
+\textbf{Effective Length Factor $K$:}
+- Both ends pinned: $K = 1.0$
+- Both ends fixed: $K = 0.5$
+- One fixed, one pinned: $K = 0.7$
+- One fixed, one free: $K = 2.0$
+
+\textbf{Critical Stress:}
+$$\sigma_{cr} = \frac{P_{cr}}{A} = \frac{\pi^2 E}{(KL/r)^2}$$
+
+where $r = \sqrt{I/A}$ is radius of gyration
+
+\textbf{Slenderness Ratio:}
+$$\frac{KL}{r}$$
+
+Euler formula valid for slender columns (high slenderness ratio)
+
+\subsection*{Johnson Parabola (Intermediate Columns)}
+
+For intermediate slenderness ratios:
+$$\sigma_{cr} = \sigma_y\left[1 - \frac{1}{4}\left(\frac{KL/r}{(KL/r)_c}\right)^2\right]$$
+
+where $(KL/r)_c = \sqrt{2\pi^2 E/\sigma_y}$ is transition slenderness ratio
+
+\subsection**{Eccentric Loading}
+
+\textbf{Secant Formula:}
+$$\frac{P}{A} = \frac{\sigma_{max}}{1 + (ec/r^2)\sec[(L/2r)\sqrt{P/(EA)}]}$$
+
+where $e$ is eccentricity of load
+
+\section*{Energy Methods}
+
+\subsection*{Strain Energy}
+
+\textbf{Axial Loading:}
+$$U = \int_0^L \frac{P^2}{2AE}\,dx = \frac{P^2L}{2AE}$$
+
+\textbf{Torsion:}
+$$U = \int_0^L \frac{T^2}{2GJ}\,dx = \frac{T^2L}{2GJ}$$
+
+\textbf{Bending:}
+$$U = \int_0^L \frac{M^2}{2EI}\,dx$$
+
+\textbf{Shear:}
+$$U = \int_0^L \frac{V^2}{2GA}\,dx$$
+
+\textbf{Total Strain Energy:}
+$$U = U_{axial} + U_{torsion} + U_{bending} + U_{shear}$$
+
+\subsection*{Castigliano's Theorem}
+
+\textbf{First Theorem (displacement):}
+$$\delta_i = \frac{\partial U}{\partial P_i}$$
+
+where $\delta_i$ is displacement at point where force $P_i$ is applied
+
+\textbf{Second Theorem (force):}
+$$P_i = \frac{\partial U}{\partial \delta_i}$$
+
+\textbf{For finding deflections:}
+
+If no force at desired location, apply dummy load $Q$:
+$$\delta = \frac{\partial U}{\partial Q}\bigg|_{Q=0}$$
+
+\subsection*{Principle of Virtual Work}
+
+$$\sum P_i \delta_i = \int_0^L \frac{M\,\delta M}{EI}\,dx$$
+
+Used for deflection calculations in complex structures
+
+\section*{Composite Beams}
+
+\textbf{Transformed Section Method:}
+
+For beam with two materials (1 and 2):
+
+Transform material 2 to equivalent material 1:
+$$n = \frac{E_2}{E_1}$$
+
+Width of material 2 becomes: $b_{2,\text{equiv}} = nb_2$
+
+Solve as single-material beam with transformed geometry
+
+\textbf{Stress in Each Material:}
+$$\sigma_1 = \frac{My}{I_{transformed}}$$
+$$\sigma_2 = n\frac{My}{I_{transformed}}$$
+
+\section*{Curved Beams}
+
+For beams with significant initial curvature:
+
+\textbf{Curved Beam Formula:}
+$$\sigma = \frac{M(R - r)}{Aer}$$
+
+where:
+- $M$ is bending moment
+- $R$ is radius to neutral axis
+- $r$ is radius to point of interest
+- $A$ is cross-sectional area
+- $e = R - r_c$ is eccentricity ($r_c$ is radius to centroid)
+
+\section*{Stress Concentrations}
+
+\textbf{Stress Concentration Factor:}
+$$K_t = \frac{\sigma_{max}}{\sigma_{nominal}}$$
+
+Common sources:
+- Holes
+- Notches
+- Fillets
+- Changes in cross-section
+- Keyways
+
+For static loading with ductile materials, $K_t$ can often be ignored (yielding redistributes stress)
+
+For fatigue or brittle materials, $K_t$ is critical
+
+\section*{Material Properties}
+
+\textbf{Common Values:}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Material} & $E$ (GPa) & $G$ (GPa) & $\nu$ \\
+\midrule
+Steel & 200 & 80 & 0.30 \\
+Aluminum & 70 & 26 & 0.33 \\
+Concrete & 25-30 & - & 0.15-0.20 \\
+Timber & 10-15 & - & - \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \end{document}
