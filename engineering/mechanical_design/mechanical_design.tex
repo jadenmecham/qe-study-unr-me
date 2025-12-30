@@ -13,9 +13,653 @@
 \begin{document}
 
 \begin{center}
-\LARGE{\textbf{Mechanical Design}}
+\LARGE{\textbf{Mechanical Design - QE Equation Sheet}}
 \end{center}
 
 \vspace{10pt}
+
+\section*{Design Philosophy and Safety}
+
+\subsection*{Factor of Safety}
+
+\textbf{Based on Strength:}
+$$n = \frac{S_{\text{strength}}}{S_{\text{stress}}}$$
+
+\textbf{Based on Load:}
+$$n = \frac{P_{\text{failure}}}{P_{\text{applied}}}$$
+
+Typical values:
+\begin{itemize}
+\item Known materials, certain loads: $n = 1.5$ to $2.5$
+\item Uncertain loads or materials: $n = 3$ to $4$
+\item Life-critical applications: $n > 4$
+\end{itemize}
+
+\subsection*{Design Process}
+
+1. Define requirements and constraints
+2. Perform preliminary analysis
+3. Select materials and components
+4. Detailed stress analysis
+5. Check for failure modes
+6. Iterate and optimize
+
+\section*{Static Failure Theories}
+
+\subsection*{Ductile Materials}
+
+\textbf{Maximum Shear Stress Theory (Tresca):}
+$$\frac{\sigma_1 - \sigma_3}{2} \leq \frac{S_y}{n}$$
+
+or
+$$\sigma_1 - \sigma_3 \leq \frac{S_y}{n}$$
+
+\textbf{Distortion Energy Theory (von Mises):}
+
+For 3D stress state:
+$$\sigma' = \sqrt{\frac{1}{2}[(\sigma_1 - \sigma_2)^2 + (\sigma_2 - \sigma_3)^2 + (\sigma_3 - \sigma_1)^2]} \leq \frac{S_y}{n}$$
+
+For plane stress ($\sigma_3 = 0$):
+$$\sigma' = \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2} \leq \frac{S_y}{n}$$
+
+For simple stress states:
+$$\sigma' = \sqrt{\sigma^2 + 3\tau^2} \leq \frac{S_y}{n}$$
+
+\textbf{Note:} von Mises theory generally more accurate for ductile materials
+
+\subsection*{Brittle Materials}
+
+\textbf{Maximum Normal Stress Theory (Rankine):}
+$$|\sigma_1| \leq \frac{S_{ut}}{n} \quad \text{or} \quad |\sigma_3| \leq \frac{S_{uc}}{n}$$
+
+where $S_{ut}$ is ultimate tensile strength and $S_{uc}$ is ultimate compressive strength
+
+\textbf{Modified Mohr Theory:}
+
+Accounts for different tensile and compressive strengths
+
+Most conservative and commonly used for brittle materials
+
+\section*{Fatigue Failure}
+
+\subsection*{S-N Curve (Stress-Life)}
+
+\textbf{Endurance Limit:}
+
+For steel: $S_e' \approx 0.5 S_{ut}$ (up to $S_{ut} = 1400$ MPa or 200 ksi)
+
+For non-ferrous materials: No true endurance limit; use strength at $N = 5 \times 10^8$ cycles
+
+\textbf{Modified Endurance Limit:}
+$$S_e = k_a k_b k_c k_d k_e k_f S_e'$$
+
+where:
+- $k_a$ = surface finish factor
+- $k_b$ = size factor
+- $k_c$ = load factor
+- $k_d$ = temperature factor
+- $k_e$ = reliability factor
+- $k_f$ = miscellaneous effects factor
+
+\textbf{Surface Finish Factor:}
+$$k_a = a S_{ut}^b$$
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Surface Finish} & $a$ & $b$ \\
+\midrule
+Ground & 1.34 & $-0.085$ \\
+Machined & 4.51 & $-0.265$ \\
+Cold-drawn & 4.51 & $-0.265$ \\
+Hot-rolled & 57.7 & $-0.718$ \\
+As-forged & 272 & $-0.995$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+($S_{ut}$ in MPa for these values)
+
+\textbf{Size Factor:}
+$$k_b = \begin{cases} 
+\left(\frac{d}{7.62}\right)^{-0.107} & 2.79 \leq d \leq 51 \text{ mm} \\
+0.91d^{-0.157} & d > 51 \text{ mm}
+\end{cases}$$
+
+For non-rotating round: $d_{eq} = 0.808\sqrt{bh}$ (rectangular $b \times h$)
+
+\textbf{Load Factor:}
+- Bending: $k_c = 1$
+- Axial: $k_c = 0.85$
+- Torsion: $k_c = 0.59$
+
+\textbf{Temperature Factor:}
+$$k_d = \begin{cases}
+1 & T \leq 450°C \\
+1 - 0.0058(T - 450) & 450 < T < 550°C
+\end{cases}$$
+
+\textbf{Reliability Factor:}
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+\textbf{Reliability} & $k_e$ \\
+\midrule
+50\% & 1.000 \\
+90\% & 0.897 \\
+95\% & 0.868 \\
+99\% & 0.814 \\
+99.9\% & 0.753 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Fluctuating Stress}
+
+\textbf{Mean and Alternating Stress:}
+$$\sigma_m = \frac{\sigma_{max} + \sigma_{min}}{2}$$
+$$\sigma_a = \frac{\sigma_{max} - \sigma_{min}}{2}$$
+
+\textbf{Stress Ratio:}
+$$R = \frac{\sigma_{min}}{\sigma_{max}}$$
+
+\textbf{Completely Reversed:} $R = -1$ ($\sigma_m = 0$)
+
+\textbf{Zero-to-Max:} $R = 0$ ($\sigma_m = \sigma_a$)
+
+\subsection*{Fatigue Failure Criteria}
+
+\textbf{Goodman Criterion (conservative):}
+$$\frac{\sigma_a}{S_e} + \frac{\sigma_m}{S_{ut}} = \frac{1}{n}$$
+
+\textbf{Gerber Criterion (less conservative):}
+$$\frac{\sigma_a}{S_e} + \left(\frac{\sigma_m}{S_{ut}}\right)^2 = \frac{1}{n}$$
+
+\textbf{Soderberg Criterion (most conservative):}
+$$\frac{\sigma_a}{S_e} + \frac{\sigma_m}{S_y} = \frac{1}{n}$$
+
+\textbf{ASME Elliptic (for shafts):}
+$$\left(\frac{\sigma_a}{S_e/n}\right)^2 + \left(\frac{\sigma_m}{S_y/n}\right)^2 = 1$$
+
+\subsection*{Combined Stresses in Fatigue}
+
+\textbf{von Mises Approach:}
+
+$$\sigma_a' = \sqrt{\sigma_a^2 + 3\tau_a^2}$$
+$$\sigma_m' = \sqrt{\sigma_m^2 + 3\tau_m^2}$$
+
+Then apply Goodman or other criterion with $\sigma_a'$ and $\sigma_m'$
+
+\subsection*{Stress Concentration in Fatigue}
+
+\textbf{Fatigue Stress Concentration Factor:}
+$$K_f = 1 + q(K_t - 1)$$
+
+where:
+- $K_t$ = theoretical stress concentration factor
+- $q$ = notch sensitivity ($0 \leq q \leq 1$)
+- $q = 0$: no sensitivity (ignore $K_t$)
+- $q = 1$: full sensitivity (use full $K_t$)
+
+\textbf{Notch Sensitivity:}
+$$q = \frac{1}{1 + a/\sqrt{r}}$$
+
+where $a$ is Neuber constant (material property) and $r$ is notch radius
+
+\textbf{Applying $K_f$:}
+
+For alternating stress only:
+$$\sigma_a = K_f \sigma_{a,nominal}$$
+
+Mean stress usually not affected by $K_f$
+
+\subsection*{Cumulative Damage (Miner's Rule)}
+
+$$\sum_{i=1}^{k} \frac{n_i}{N_i} = C$$
+
+where:
+- $n_i$ = number of cycles at stress level $i$
+- $N_i$ = cycles to failure at stress level $i$
+- $C$ = damage sum (failure when $C \geq 1$)
+
+Typically use $C = 1$ for design
+
+\section*{Shaft Design}
+
+\subsection*{ASME Code for Transmission Shafts}
+
+\textbf{For ductile materials with yield strength:}
+
+$$d = \left[\frac{16n}{\pi S_y}\sqrt{(K_tM_a + K_{tm}M_m)^2 + \frac{3}{4}(K_{ts}T_a + T_m)^2}\right]^{1/3}$$
+
+where:
+- $d$ = shaft diameter
+- $n$ = factor of safety
+- $M_a$, $M_m$ = alternating and mean bending moments
+- $T_a$, $T_m$ = alternating and mean torques
+- $K_t$, $K_{tm}$, $K_{ts}$ = fatigue stress concentration factors
+
+\textbf{Simplified for steady loading:}
+
+For rotating shaft with steady torque:
+$$d = \left[\frac{16n}{\pi S_y}\sqrt{4(K_tM)^2 + 3(K_{ts}T)^2}\right]^{1/3}$$
+
+\textbf{For infinite life (fatigue):}
+
+$$d = \left[\frac{16n}{\pi}\sqrt{\left(\frac{K_fM_a}{S_e}\right)^2 + \frac{3}{4}\left(\frac{K_{fs}T_a}{S_e}\right)^2}\right]^{1/3}$$
+
+\subsection*{Critical Speed}
+
+\textbf{First Critical Speed (simply supported):}
+$$\omega_c = \sqrt{\frac{g}{\delta_{static}}}$$
+
+where $\delta_{static}$ is static deflection at center
+
+For design, operating speed should be:
+$$\omega_{operating} < 0.8\omega_c \quad \text{or} \quad \omega_{operating} > 1.2\omega_c$$
+
+\section*{Springs}
+
+\subsection*{Helical Compression Springs}
+
+\textbf{Shear Stress:}
+$$\tau = K_s\frac{8FD}{\pi d^3}$$
+
+where:
+- $F$ = axial force
+- $D$ = mean coil diameter
+- $d$ = wire diameter
+- $K_s$ = shear stress correction factor (Wahl factor)
+
+\textbf{Wahl Correction Factor:}
+$$K_s = \frac{4C - 1}{4C - 4} + \frac{0.615}{C}$$
+
+where $C = D/d$ is spring index (typically $4 \leq C \leq 12$)
+
+\textbf{Spring Rate (Stiffness):}
+$$k = \frac{F}{\delta} = \frac{Gd^4}{8D^3N_a}$$
+
+where:
+- $G$ = shear modulus
+- $N_a$ = number of active coils
+
+\textbf{Deflection:}
+$$\delta = \frac{8FD^3N_a}{Gd^4}$$
+
+\textbf{Solid Height:}
+$$L_s = d(N_t + 1)$$
+
+where $N_t$ is total number of coils
+
+\textbf{Free Length:}
+$$L_f = L_s + \delta_{max} + (\text{clash allowance})$$
+
+Clash allowance typically 10-15\% of maximum deflection
+
+\subsection*{Spring Design Considerations}
+
+\textbf{End Conditions:}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{End Type} & $N_t$ & \textbf{Solid Height} \\
+\midrule
+Plain & $N_a$ & $dN_t$ \\
+Plain and ground & $N_a$ & $dN_t$ \\
+Squared & $N_a + 2$ & $d(N_t - 1)$ \\
+Squared and ground & $N_a + 2$ & $d(N_t - 1)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Buckling:}
+
+For $L_f/D > 4$, check for buckling
+
+\subsection*{Helical Extension Springs}
+
+Similar formulas to compression springs, but:
+- Initial tension $F_i$ often present
+- Hooks/loops add stress concentration
+- $K_s$ includes hook effects
+
+\subsection*{Torsion Springs}
+
+\textbf{Bending Stress:}
+$$\sigma = K_b\frac{32M}{\pi d^3}$$
+
+\textbf{Angular Deflection:}
+$$\theta = \frac{64MDN_a}{Ed^4}$$
+
+where $M$ is applied moment and $E$ is Young's modulus
+
+\section*{Screws and Fasteners}
+
+\subsection*{Power Screws}
+
+\textbf{Torque to Raise Load:}
+$$T_R = \frac{Fd_m}{2}\left(\frac{l + \pi\mu d_m}{\pi d_m - \mu l}\right)$$
+
+\textbf{Torque to Lower Load:}
+$$T_L = \frac{Fd_m}{2}\left(\frac{\pi\mu d_m - l}{\pi d_m + \mu l}\right)$$
+
+where:
+- $F$ = load
+- $d_m$ = mean diameter
+- $l$ = lead ($l = p$ for single thread, $l = np$ for $n$ threads)
+- $p$ = pitch
+- $\mu$ = coefficient of friction
+
+\textbf{Efficiency:}
+$$e = \frac{Fl}{2\pi T_R}$$
+
+\textbf{Self-Locking Condition:}
+$$\mu > \frac{l}{\pi d_m}$$
+
+or equivalently: $\alpha < \phi$ where $\alpha = \tan^{-1}(l/(\pi d_m))$ is lead angle and $\phi = \tan^{-1}(\mu)$ is friction angle
+
+\subsection*{Threaded Fasteners (Bolts)}
+
+\textbf{Tensile Stress Area:}
+$$A_t = \frac{\pi}{4}\left(\frac{d - 0.9382p}{1}\right)^2$$
+
+For Unified threads, approximately:
+$$A_t \approx 0.7854\left(d - \frac{0.9743}{n}\right)^2$$
+
+where $n$ is threads per inch
+
+\textbf{Preload:}
+
+Typical preload: $F_i = 0.75 F_{proof}$
+
+$$F_{proof} = A_t S_p$$
+
+where $S_p$ is proof strength
+
+\textbf{Joint Stiffness:}
+
+Bolt stiffness:
+$$k_b = \frac{A_tE_b}{L_t}$$
+
+where $L_t$ is grip length (threaded length under load)
+
+Member stiffness (more complex):
+$$k_m = \frac{E_m A_e}{L}$$
+
+\textbf{External Load Distribution:}
+
+Fraction to bolt:
+$$C = \frac{k_b}{k_b + k_m}$$
+
+Bolt force under external load $P$:
+$$F_b = F_i + CP$$
+
+Member force:
+$$F_m = F_i(1 - C)P$$
+
+\textbf{Fatigue Loading:}
+
+Alternating stress in bolt:
+$$\sigma_a = \frac{CP_a}{A_t}$$
+
+Mean stress:
+$$\sigma_m = \frac{F_i + CP_m}{A_t}$$
+
+Apply fatigue criteria with these stresses
+
+\subsection*{Bolt Torque}
+
+\textbf{Tightening Torque:}
+$$T = KFd$$
+
+where:
+- $K$ = nut factor (typically 0.15-0.20 for lubricated)
+- $F$ = desired bolt tension
+- $d$ = nominal diameter
+
+\section*{Gears}
+
+\subsection*{Gear Nomenclature}
+
+\textbf{Basic Relationships:}
+$$d = \frac{N}{P_d} = Nm$$
+
+where:
+- $d$ = pitch diameter
+- $N$ = number of teeth
+- $P_d$ = diametral pitch (teeth/inch)
+- $m$ = module (mm/tooth)
+
+\textbf{Velocity Ratio:}
+$$VR = \frac{\omega_1}{\omega_2} = \frac{N_2}{N_1} = \frac{d_2}{d_1}$$
+
+\textbf{Circular Pitch:}
+$$p = \frac{\pi d}{N} = \frac{\pi}{P_d}$$
+
+\textbf{Center Distance:}
+$$C = \frac{d_1 + d_2}{2} = \frac{N_1 + N_2}{2P_d}$$
+
+\subsection*{Spur Gears}
+
+\textbf{Transmitted Force (tangential):}
+$$W_t = \frac{T}{r} = \frac{P}{\omega r} = \frac{2P}{\omega d}$$
+
+where $T$ is torque, $P$ is power, $\omega$ is angular velocity
+
+\textbf{Radial Force:}
+$$W_r = W_t\tan\phi$$
+
+where $\phi$ is pressure angle (typically 20° or 25°)
+
+\textbf{Lewis Equation (bending stress):}
+$$\sigma = \frac{W_t}{FmY}$$
+
+where:
+- $F$ = face width
+- $m$ = module
+- $Y$ = Lewis form factor (depends on number of teeth)
+
+\textbf{AGMA Bending Stress:}
+$$\sigma = W_t K_o K_v K_s \frac{P_d}{F} \frac{K_m K_B}{J}$$
+
+where $K$ factors account for:
+- $K_o$ = overload
+- $K_v$ = dynamic
+- $K_s$ = size
+- $K_m$ = load distribution
+- $K_B$ = rim thickness
+- $J$ = geometry factor
+
+\textbf{Contact Stress (Hertzian):}
+$$\sigma_c = C_p\sqrt{\frac{W_t K_o K_v K_s K_m}{F d_1} \frac{C_f}{I}}$$
+
+where:
+- $C_p$ = elastic coefficient
+- $C_f$ = surface condition factor
+- $I$ = geometry factor
+
+\subsection*{Helical Gears}
+
+Similar to spur gears but with additional axial force component:
+
+\textbf{Axial Force:}
+$$W_a = W_t\tan\psi$$
+
+where $\psi$ is helix angle
+
+\subsection*{Bevel Gears}
+
+\textbf{Forces:}
+
+Similar analysis but forces act at pitch cone angle
+
+Decompose into tangential, radial, and axial components
+
+\subsection*{Worm Gears}
+
+\textbf{Velocity Ratio:}
+$$VR = \frac{N_w}{N_g}$$
+
+where $N_w$ is number of threads on worm, $N_g$ is teeth on gear
+
+\textbf{Efficiency:}
+$$e = \frac{\cos\phi_n - f\tan\lambda}{\cos\phi_n + f\cot\lambda}$$
+
+where $\phi_n$ is normal pressure angle, $f$ is coefficient of friction, $\lambda$ is lead angle
+
+Worm gears can be self-locking if $\lambda < \tan^{-1}(f)$
+
+\section*{Bearings}
+
+\subsection*{Rolling Contact Bearings}
+
+\textbf{Basic Life Equation:}
+$$L_{10} = \left(\frac{C}{P}\right)^a$$
+
+where:
+- $L_{10}$ = rating life (millions of revolutions for 90\% reliability)
+- $C$ = basic dynamic load rating
+- $P$ = equivalent dynamic load
+- $a$ = 3 for ball bearings, 10/3 for roller bearings
+
+\textbf{Life in Hours:}
+$$L_{10h} = \frac{L_{10} \times 10^6}{60n}$$
+
+where $n$ is rotational speed (rpm)
+
+\textbf{Equivalent Dynamic Load:}
+
+For radial bearings:
+$$P = XF_r + YF_a$$
+
+where:
+- $F_r$ = radial load
+- $F_a$ = axial (thrust) load
+- $X$, $Y$ = radial and thrust factors (from manufacturer)
+
+\textbf{Variable Loading:}
+
+$$P_{eq} = \left[\frac{\sum(P_i^a n_i)}{\sum n_i}\right]^{1/a}$$
+
+where $P_i$ are loads at different speeds $n_i$
+
+\subsection*{Journal Bearings (Sliding Contact)}
+
+\textbf{Petroff's Equation (light load):}
+$$f = \frac{2\pi^2\mu N}{P}\left(\frac{r}{c}\right)$$
+
+where:
+- $f$ = coefficient of friction
+- $\mu$ = absolute viscosity
+- $N$ = shaft speed (rev/s)
+- $P$ = bearing pressure
+- $r$ = shaft radius
+- $c$ = radial clearance
+
+\textbf{Sommerfeld Number:}
+$$S = \left(\frac{r}{c}\right)^2\frac{\mu N}{P}$$
+
+Used to determine bearing performance from charts
+
+\textbf{Minimum Film Thickness:}
+$$h_0 = c(1 - \epsilon)$$
+
+where $\epsilon$ is eccentricity ratio (from charts based on $S$)
+
+\section*{Brakes and Clutches}
+
+\subsection*{Friction Brakes}
+
+\textbf{Torque Capacity:}
+$$T = \mu F r$$
+
+where:
+- $\mu$ = coefficient of friction
+- $F$ = normal force
+- $r$ = effective radius
+
+\textbf{Power Dissipation:}
+$$P = T\omega$$
+
+\textbf{Energy per Stop:}
+$$E = \frac{1}{2}I\omega^2$$
+
+where $I$ is moment of inertia of rotating mass
+
+\subsection*{Band Brakes}
+
+\textbf{Force Relationship:}
+$$\frac{F_1}{F_2} = e^{\mu\beta}$$
+
+where $\beta$ is wrap angle (radians)
+
+\textbf{Torque:}
+$$T = (F_1 - F_2)r$$
+
+\section*{Keys and Pins}
+
+\subsection*{Keys}
+
+\textbf{Shear Stress:}
+$$\tau = \frac{2T}{dLh}$$
+
+\textbf{Bearing Stress:}
+$$\sigma_b = \frac{4T}{dLh}$$
+
+where:
+- $T$ = torque
+- $d$ = shaft diameter
+- $L$ = key length
+- $h$ = key height
+
+\textbf{Standard Key Dimensions:}
+
+Square key: $h = w = d/4$
+
+\section*{Flywheels}
+
+\textbf{Energy Storage:}
+$$E = \frac{1}{2}I(\omega_{max}^2 - \omega_{min}^2)$$
+
+\textbf{Coefficient of Fluctuation:}
+$$C_s = \frac{\omega_{max} - \omega_{min}}{\omega_{avg}}$$
+
+\textbf{Flywheel Design:}
+$$I = \frac{E}{C_s\omega_{avg}^2}$$
+
+\section*{Material Selection}
+
+\textbf{Common Engineering Materials:}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Material} & $S_y$ (MPa) & $S_{ut}$ (MPa) & \textbf{Applications} \\
+\midrule
+AISI 1020 (HR) & 210 & 380 & General purpose \\
+AISI 1045 (CD) & 530 & 625 & Shafts, gears \\
+AISI 4140 (Q\&T) & 655 & 855 & High strength \\
+6061-T6 Al & 275 & 310 & Lightweight \\
+Gray Cast Iron & - & 170 & Machine bases \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Quick Reference Formulas}
+
+\textbf{Shaft Diameter (rough estimate):}
+$$d \approx 2.5\sqrt[3]{\frac{P}{n}}$$
+
+where $P$ is in kW, $n$ is in rpm, $d$ is in cm
+
+\textbf{Gear Face Width:}
+$$F = 3p \text{ to } 5p$$
+
+where $p$ is circular pitch
+
+\textbf{Spring Index Range:}
+$$4 \leq C \leq 12$$
 
 \end{document}
