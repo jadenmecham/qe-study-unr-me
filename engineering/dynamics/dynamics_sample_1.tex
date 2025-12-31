@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Dynamics Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 2.1 from the Fall 2023 QE exam:
+
+\vspace{10pt}
+
+A uniform heavy thin bar has one end attached to a frictionless pivot 
+(that cannot apply any moment). The bar is dropped from a stationary 
+horizontal position. When it reaches vertical
+orientation, what is the velocity of its center of mass?
+
+\section{Determine solution method}
+Since this problem requires finding the velocity of an object, 
+using work and energy methods will be most effective. 
+
+\section{Identify knowns and unknowns}
+\textbf{Knowns:}
+\begin{itemize}
+    \item The center of mass is located at the midpoint of the bar because
+    it is uniform.
+    \item The initial velocity of the bar is zero.
+    \item The length of the bar is \( L \).
+    \item The mass of the bar is \( m \).
+    \item Gravitational acceleration is \( g \).
+\end{itemize}
+\textbf{Unknowns:}
+\begin{itemize}
+    \item The velocity of the center of mass when the bar reaches vertical orientation, denoted as \( v_{cm} \).
+\end{itemize}
+
+\section{Conservation of energy}
+The total mechanical energy of the system is conserved since there are no 
+non-conservative forces doing work (the pivot is frictionless).
+\begin{gather}
+    E_{initial} = E_{final}\\
+    PE_{initial} + KE_{initial} = PE_{final} + KE_{final}
+\end{gather}
+At the initial position, there is no kinetic energy since the bar is 
+stationary. At the final position, there is no potential energy since
+the center of mass is at the lowest point. Then, the equation simplifies
+to:
+\begin{gather}
+    PE_{initial} = KE_{final}
+\end{gather}
+
+\section{Expand and solve}
+
+The initial potential energy of the bar when it is horizontal is given by:
+\begin{gather}
+    PE_{initial} = m g h
+\end{gather}
+
+\( h \) is the vertical distance the center of mass falls. Since the
+center of mass is at the midpoint of the bar, \( h = \frac{L}{2} \).
+Then:
+
+\begin{gather}
+    PE_{initial} = m g \left( \frac{L}{2} \right) = \frac{mgL}{2} 
+\end{gather}
+
+The final kinetic energy of the bar when it is vertical is given by:
+\begin{gather}
+    KE_{final} = \frac{1}{2} I \omega^2
+\end{gather}
+
+Where \( I \) is the mass moment of inertia of the bar. This is given by:
+\begin{gather}
+    I = \frac{1}{3} m L^2
+\end{gather}
+
+Do not confuse this with the moment of inertia about the center of mass. 
+Here, we use mass moment of inertia of the bar rotating about a pivot
+point at the end of the bar, not about its center of mass. Substitute in 
+\( I \) into the kinetic energy equation. 
+\begin{gather}
+    KE_{final} = \frac{1}{2} \left( \frac{1}{3} m L^2 \right) \omega^2 = \frac{1}{6} m L^2 \omega^2
+\end{gather}
+
+Now, substitute the expressions for initial potential energy and final
+kinetic energy into the conservation of energy equation.
+\begin{gather}
+    \frac{mgL}{2} = \frac{1}{6} m L^2 \omega^2
+\end{gather}
+
+Next, solve for \( \omega \).
+\begin{gather}
+    3mgL = mL^2\omega^2\\
+    3gL = L^2\omega^2\\
+    \omega^2 = \frac{3g}{L}\\
+    \omega = \sqrt{\frac{3g}{L}}
+\end{gather}
+
+Finally, find the linear velocity of the center of mass using the 
+relationship between angular velocity and linear velocity.
+\begin{gather}
+    v = \omega r
+\end{gather}
+
+Where \( r \) is the distance from the pivot to the center of mass, 
+which is \( \frac{L}{2} \). Then:
+
+\begin{gather}
+    v = \frac{L}{2} \sqrt{\frac{3g}{L}}\\
+    \boxed{v = \sqrt{\frac{3gL}{4}}}
+\end{gather}
+
+Nice.
+
+\end{document}
