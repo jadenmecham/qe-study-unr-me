@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{ODEs Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 2.1 from the Fall 2023 QE exam:\\
+
+Solve the follwoing differential equation:
+\begin{gather}
+    x^2y''+axy'+by=0\\
+    a=-1.5, \quad b=-1.5
+\end{gather}
+
+\section{Cauchy-Euler Equation}
+This is a Cauchy-Euler equation, where we can assume the solution is of the form:
+\begin{equation}
+    y=x^r
+\end{equation}
+
+We can then find the ffirst two derivatives.
+\begin{gather}
+    y'=rx^{r-1}\\
+    y''=r(r-1)x^{r-2}
+\end{gather}
+
+Then, substitute these into the original equation. 
+
+\begin{gather}
+    x^2(r(r-1)x^{r-2}) + ax(rx^{r-1}) + b(x^r) = 0\\
+    r(r-1)x^r + arx^r + bx^r = 0\\
+    x^r[r(r-1) + ar + b] = 0
+\end{gather}
+
+\section{Characteristic Equation}
+Since \( x^r \neq 0 \), we can set the term in brackets to zero:
+\begin{gather}
+    r(r-1) + ar + b = 0\\
+    r^2 - r + ar + b = 0\\
+    r^2 + (a-1)r + b = 0
+\end{gather}
+This is the characteristic equation. Substituting in the values for \( a \) and \( b \):
+\begin{equation}
+    r^2 + (-1.5-1)r - 1.5 = 0
+\end{equation}
+
+We can multiply through by 2 to eliminate the fraction:
+\begin{equation}
+    2r^2 - 5r - 3 = 0
+\end{equation}
+
+Using the quadratic formula to solve for \( r \):
+\begin{gather}
+    r = \frac{-(-5) \pm \sqrt{(-5)^2 - 4(2)(-3)}}{2(2)}\\
+    r = \frac{5 \pm \sqrt{25 + 24}}{4}\\
+    r = \frac{5 \pm 7}{4}
+\end{gather}
+This gives us two roots:
+\begin{gather}
+    r_1 = \frac{12}{4} = 3\\
+    r_2 = \frac{-2}{4} = -0.5
+\end{gather}
+
+\section{solution}
+Since we have two distinct real roots, the general solution is given by:
+\begin{equation}
+    y = C_1 x^{r_1} + C_2 x^{r_2}
+\end{equation}
+Substituting in the values for \( r_1 \) and \( r_2 \):
+\begin{equation}
+    y = C_1 x^3 + C_2 x^{-0.5}
+\end{equation}
+
+\end{document}
