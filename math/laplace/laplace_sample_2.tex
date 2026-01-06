@@ -1,0 +1,97 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Laplace Transform Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 1.2 from the Fall 2023 QE exam:\\
+
+Find the continuous solution of the following integro-differential equation for z(t)
+using the properties of Laplace transforms:
+
+\begin{gather}
+    z(t) - (1-t)e^t = \int_0^t z(t-\tau)z(\tau) d\tau\\
+    z(0) = 0
+\end{gather}
+
+\section{Convolution Theorem}
+
+Using the convolution theorem, we can take the Laplace transform of the right side. Here, 
+the integral is just the convolution of \( z(t) \) with itself.
+\begin{gather}
+    \int_0^t z(t-\tau)z(\tau) d\tau = z(t) * z(t)\\
+    \mathcal{L}[z(t) * z(t)] = Z(s) \cdot Z(s) = (Z(s))^2
+\end{gather}
+
+\section{Laplace Transform of Left Side}
+
+We can first reqrite the left side of the equation:
+\begin{equation}
+    z(t) - (1-t)e^t = z(t) - e^t + te^t
+\end{equation}
+
+Now we can take the Laplace transform of each term:
+\begin{gather}
+    \mathcal{L}[z(t)] = Z(s) \\
+    \mathcal{L}[e^t] = \frac{1}{s-1} \\
+    \mathcal{L}[te^t] = \frac{1}{(s-1)^2}
+\end{gather}
+
+\section{Combine and Solve for Z(s)}
+
+Putting it all together, we have:
+\begin{gather}
+    (Z(s))^2 = Z(s) - \frac{1}{s-1} + \frac{1}{(s-1)^2}\\
+    (Z(s))^2 = Z(s) - \frac{s-2}{(s-1)^2}\\
+    (Z(s))^2 - Z(s) + \frac{s-2}{(s-1)^2} = 0
+\end{gather}
+
+Using the quadratic formula to solve for \( Z(s) \):
+\begin{equation}
+    Z(s) = \frac{1 \pm \sqrt{1 - 4\frac{s-2}{(s-1)^2}}}{2}
+\end{equation}
+
+We can then expand the term under the square root.
+\begin{gather}
+    Z(s) = \frac{1 \pm \sqrt{\frac{(s-1)^2 - 4(s-2)}{(s-1)^2}}}{2}\\
+    Z(s) = \frac{1 \pm \frac{\sqrt{s^2 - 2s + 1 - 4s + 8}}{s-1}}{2}\\
+    Z(s) = \frac{1 \pm \frac{\sqrt{s^2 - 6s + 9}}{s-1}}{2}\\
+    Z(s) = \frac{1 \pm \frac{s-3}{s-1}}{2}
+\end{gather}
+
+This gives us two possible solutions for \( Z(s) \):
+\begin{gather}
+    Z_+(s) = \frac{1 + \frac{s-3}{s-1}}{2} = \frac{s-2}{s-1}\\
+    Z_-(s) = \frac{1 - \frac{s-3}{s-1}}{2} = \frac{1}{s-1}
+\end{gather}
+
+$Z_+$ is not valid since it is not continous at $t=0$ (its inverse Laplace transform has a 
+jump discontinuity). Thus, we take $Z_-$:
+\begin{gather}
+    Z(s) = \frac{1}{s-1}
+\end{gather}
+
+\section{Inverse Laplace Transform}
+
+Taking the inverse Laplace transform gives:
+\begin{gather}
+    z(t) = \mathcal{L}^{-1}\left[\frac{1}{s-1}\right] = e^t
+\end{gather}
+
+Nice.
+
+\end{document}
