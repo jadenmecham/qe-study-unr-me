@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{ODEs Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 2.2 on the 2023 Fall QE. \\
+
+Solve the following second order differential equation:
+\begin{gather}
+    \ddot{x}=x(t)+e^{-t}+\cos(t)\\
+    x(0)=1, \quad \dot{x}(0)=0
+\end{gather}
+
+Important note: Do not use Laplace methods. 
+
+\section{Homogeneous Solution}
+
+We can rewrite the equation as the following to isolate x variables on one side:
+\begin{gather}
+    \ddot{x}-x(t)=e^{-t}+\cos(t)\\
+    x(0)=1, \quad \dot{x}(0)=0
+\end{gather}
+
+Now, write the characteristic equation with the form:
+\begin{gather}
+    ar^2+br+c=0
+\end{gather}
+
+For our case, we have:
+\begin{gather}
+    r^2-1=0
+\end{gather}
+
+Solving for r, we find:
+\begin{gather}
+    r=\pm 1
+\end{gather}
+
+Thus, the homogeneous solution is:
+\begin{gather}
+    x_h(t)=C_1 e^{t}+C_2 e^{-t}
+\end{gather}
+
+\section{Particular Solution for $x''-x=e^{-t}$}
+
+To find a particular solution for the non-homogeneous part $e^{-t}$, we can use the method of 
+undetermined coefficients. Since $e^{-t}$ is already part of the homogeneous solution, 
+we multiply by t to find a suitable form for the particular solution:
+\begin{gather}
+    x_{p1}(t)=At e^{-t}
+\end{gather}
+Taking the first and second derivatives, we have:
+\begin{gather}
+    \dot{x}_{p1}(t)=Ae^{-t}-At e^{-t}\\
+    \ddot{x}_{p1}(t)=-2Ae^{-t}+At e^{-t}
+\end{gather}
+
+Substituting into the differential equation:
+\begin{gather}
+    \ddot{x}_{p1}-x_{p1}=-2Ae^{-t}+At e^{-t}-At e^{-t}=-2Ae^{-t}
+\end{gather}
+
+Setting this equal to $e^{-t}$, we find:
+\begin{gather}
+    -2A=1 \implies A=-\frac{1}{2}
+\end{gather}
+
+Thus, the particular solution for this part is:
+\begin{gather}
+    x_{p1}(t)=-\frac{1}{2}t e^{-t}
+\end{gather}
+
+\section{Particular Solution for $x''-x=\cos(t)$}
+Next, we find a particular solution for the non-homogeneous part $\cos(t)$.
+We can use the method of undetermined coefficients again, proposing a solution of the form:
+\begin{gather}
+    x_{p2}(t)=B\cos(t)+C\sin(t)
+\end{gather}
+
+Taking the first and second derivatives, we have:
+\begin{gather}
+    \dot{x}_{p2}(t)=-B\sin(t)+C\cos(t)\\
+    \ddot{x}_{p2}(t)=-B\cos(t)-C\sin(t)
+\end{gather}
+
+Substituting into the differential equation:
+\begin{gather}
+    \ddot{x}_{p2}-x_{p2}=-B\cos(t)-C\sin(t)-B\cos(t)-C\sin(t)=-2B\cos(t)-2C\sin(t)
+\end{gather}
+
+Setting this equal to $\cos(t)$, we find:
+\begin{gather}
+    -2B=1 \implies B=-\frac{1}{2}\\
+    -2C=0 \implies C=0
+\end{gather}
+
+Thus, the particular solution for this part is:
+\begin{gather}
+    x_{p2}(t)=-\frac{1}{2}\cos(t)
+\end{gather}
+
+\section{General Solution}
+Combining the homogeneous and particular solutions, we have the general solution:
+\begin{gather}
+    x(t)=C_1 e^{t}+C_2 e^{-t}-\frac{1}{2}t e^{-t}-\frac{1}{2}\cos(t)
+\end{gather}
+
+We can then apply the initial conditions to solve for $C_1$ and $C_2$.
+Using $x(0)=1$:
+\begin{gather}
+    1=C_1+C_2-\frac{1}{2}\cos(0)\\
+    1=C_1+C_2-\frac{1}{2}\\
+    C_1+C_2=\frac{3}{2}
+\end{gather}
+
+Using $\dot{x}(0)=0$:
+\begin{gather}
+    \dot{x}(t)=C_1 e^{t}-C_2 e^{-t}-\frac{1}{2}e^{-t}+\frac{1}{2}t e^{-t}+\frac{1}{2}\sin(t)\\
+    0=C_1-C_2-\frac{1}{2}
+\end{gather}
+Solving the system of equations:
+\begin{gather}
+    C_1+C_2=\frac{3}{2}\\
+    C_1-C_2=\frac{1}{2}
+\end{gather}
+
+Adding the two equations, we find:
+\begin{gather}
+    2C_1=2 \implies C_1=1
+\end{gather}
+Substituting back to find $C_2$:
+\begin{gather}
+    1+C_2=\frac{3}{2} \implies C_2=\frac{1}{2}
+\end{gather}
+Thus, the final solution to the differential equation is:
+\begin{gather}
+    x(t)=e^{t}+\frac{1}{2}e^{-t}-\frac{1}{2}t e^{-t}-\frac{1}{2}\cos(t)
+\end{gather}
+
+\end{document}
