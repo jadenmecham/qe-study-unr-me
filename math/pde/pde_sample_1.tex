@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Partial Differential Equations Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 6.1 on the 2023 QE. 
+
+Transverse vibrations of an idealized guitar string are described by the equation:
+\begin{equation}
+    \rho\frac{\partial^2u(x,t)}{\partial t^2} - T\frac{\partial^2u(x,t)}{\partial x^2} = 0
+\end{equation}
+
+with $u$ the trasverse displacement, $\rho$ the constant string density per unit length, 
+and $T$ the constant string tension. Assume fixed boundary condition given by 
+$u(0,t)=u(L,t)=0$. At $t=0$, the string is plucvked at a point $x=2L/3$ and released
+from rest. For simpicity, assume that the initial deformed shape is triangular and 
+descirbed by $u(x,0)=3Ax/(2L)$ for $0<x<2L/3$ and $u(x,0)=3A(L-x)/L$ for $L/3<x<L$. 
+Determine the ensuing string vibrations using separation of variables.
+
+\section{Rewrite in Standard Form}
+
+First, we rewrite the equation in standard form to isolate the second time derivative.
+
+\begin{equation}
+    \frac{\partial^2u}{\partial t^2} = \frac{T}{\rho}\cdot \frac{\partial^2u}{\partial x^2}
+\end{equation}
+
+For simplicity, we will let $c^2 = \frac{T}{\rho}$, so that the equation becomes:
+\begin{equation}
+    \frac{\partial^2u}{\partial t^2} = c^2 \frac{\partial^2u}{\partial x^2}
+\end{equation}
+
+\section{Separation of Variables}
+First, we will assume that the solution has the form:
+\begin{equation}
+    u(x,t) = X(x)T(t)
+\end{equation}
+
+We can then substitute this into our standard form equation.
+\begin{equation}
+    X(x)T''(t) = c^2 X''(x)T(t)
+\end{equation}
+
+Then, rearrange the equation to isolate the variables again and set them equal to
+a separation constant $-\lambda$.
+\begin{equation}
+    \frac{T''(t)}{ T(t)} = c^2\frac{X''(x)}{X(x)} = -\lambda
+\end{equation}
+
+\section{Solve the Spatial Equation}
+
+We will start by solving the $X$ equation. First, rearrange it to make it equal to zero.
+\begin{equation}
+    X'' + \frac{\lambda}{c^2}X = 0
+\end{equation}
+
+We will let $k^2 = \frac{\lambda}{c^2}$, so that the equation becomes:
+\begin{equation}
+    X'' + k^2 X = 0
+\end{equation}
+
+The general solution to this equation is:
+\begin{equation}
+    X(x) = A\cos(kx) + B\sin(kx)
+\end{equation}
+
+We can then apply the boundary conditions to find the value of $A$.
+Applying the boundary condition at $x=0$:
+\begin{equation}
+    X(0) = A\cos(0) + B\sin(0) = A = 0
+\end{equation}
+Thus, the solution simplifies to:
+\begin{equation}
+    X(x) = B\sin(kx)
+\end{equation}
+
+Next, we apply the boundary condition at $x=L$:
+\begin{equation}
+    X(L) = B\sin(kL) = 0
+\end{equation}
+For a non-trivial solution, we require that $\sin(kL) = 0$, which implies:
+\begin{equation}
+    kL = n\pi \quad \text{for } n=1,2,3,\ldots
+\end{equation}
+Thus, we have:
+\begin{equation}
+    k = \frac{n\pi}{L}
+\end{equation}
+
+We can substitute back into our spatial solution to get:
+\begin{equation}
+    X_n(x) = B\sin\left(\frac{n\pi x}{L}\right)
+\end{equation}
+
+\section{Solve the Temporal Equation}
+
+Next, we will solve the $T$ equation. First, rearrange it to make it equal to zero.
+\begin{equation}
+    T'' + \lambda T = 0
+\end{equation}
+
+The general solution to this equation is:
+\begin{equation}
+    T_n(t) = C\cos\left(\frac{n\pi c t}{L}\right) + D\sin\left(\frac{n\pi c t}{L}\right)
+\end{equation}
+
+\section{Combine Solutions}
+We can now combine the spatial and temporal solutions to get the general solution for $u(x,t)$:
+\begin{equation}
+    u(x,t) = \sum_{n=1}^{\infty} \left[ B_n \sin\left(\frac{n\pi x}{L}\right) \left( C_n \cos\left(\frac{n\pi c t}{L}\right) + D_n \sin\left(\frac{n\pi c t}{L}\right) \right) \right]
+\end{equation}
+\section{Apply Initial Conditions}
+We will now apply the initial conditions to determine the coefficients $B_n$, $C_n$, and $D_n$.
+The initial displacement condition is given by:
+\begin{equation}
+    u(x,0) = \sum_{n=1}^{\infty} B_n C_n \sin\left(\frac{n\pi x}{L}\right) = 
+    \begin{cases} 
+      \frac{3Ax}{2L} & 0 < x < \frac{2L}{3} \\ 
+      \frac{3A(L-x)}{2L} & \frac{2L}{3} < x < L 
+    \end{cases}
+\end{equation}
+To find the coefficients $B_n C_n$, we can use the orthogonality of the sine functions:
+\begin{equation}
+    B_n C_n = \frac{2}{L} \int_0^L u(x,0) \sin\left(\frac{n\pi x}{L}\right) dx
+\end{equation}
+Calculating this integral piecewise, we have:
+\begin{equation}
+    B_n C_n = \frac{2}{L} \left( \int_0^{\frac{2L}{3}} \frac{3Ax}{2L} \sin\left(\frac{n\pi x}{L}\right) dx + \int_{\frac{2L}{3}}^L \frac{3A(L-x)}{2L} \sin\left(\frac{n\pi x}{L}\right) dx \right)
+\end{equation}
+Evaluating these integrals will yield the coefficients $B_n C_n$.
+The initial velocity condition is given by:
+\begin{equation}
+    \frac{\partial u}{\partial t}(x,0) = \sum_{n=1}^{\infty} B_n D_n \frac{n\pi c}{L} \sin\left(\frac{n\pi x}{L}\right) = 0
+\end{equation}
+Since the initial velocity is zero, we have:
+\begin{equation}
+    B_n D_n = 0 \quad \text{for all } n
+\end{equation}
+Thus, we conclude that $D_n = 0$ for all $n$.
+\section{Final Solution}
+The final solution for the string vibrations is given by:
+\begin{equation}
+    u(x,t) = \sum_{n=1}^{\infty} B_n C_n \sin\left(\frac{n\pi x}{L}\right) \cos\left(\frac{n\pi c t}{L}\right)
+\end{equation}
+
+\end{document}
