@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Linear Algebra Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 5.1 on the Fall 2023 QE.\\
+
+Calculate the total flux of the vector field $\vec{V}=3x\hat{x}+y^2\hat{y}+z^2\hat{z}$
+across the sphere $\mathcal{S}$ of radius $R=1$ centered at the origin. Note: superimposed
+har denotes unit vector. 
+
+\section{Calculate Divergence}
+
+The divergence of a vector field is given by:
+\begin{equation}
+    \nabla \cdot \vec{V} = \frac{\partial V_x}{\partial x} + \frac{\partial V_y}{\partial y} + \frac{\partial V_z}{\partial z}
+\end{equation}
+
+Calculating the partial derivatives, we have:
+\begin{gather}
+    \frac{\partial V_x}{\partial x} = \frac{\partial (3x)}{\partial x} = 3\\
+    \frac{\partial V_y}{\partial y} = \frac{\partial (y^2)}{\partial y} = 2y\\
+    \frac{\partial V_z}{\partial z} = \frac{\partial (z^2)}{\partial z} = 2z
+\end{gather}
+Thus, the divergence of the vector field is:
+\begin{equation}
+    \nabla \cdot \vec{V} = 3 + 2y + 2z
+\end{equation}
+
+\section{Apply Divergence Theorem}
+The Divergence Theorem states that the total flux of a vector field $\vec{V}$ across a 
+closed surface $\mathcal{S}$ is equal to the volume integral of the divergence 
+of $\vec{V}$ over the volume $\mathcal{V}$ enclosed by $\mathcal{S}$:
+\begin{equation}
+    \Phi=\iint_{\mathcal{S}} \vec{V} \cdot d\vec{A} = \iiint_{\mathcal{V}} (\nabla \cdot \vec{V}) dV
+\end{equation}
+
+For our divergence, we have:
+\begin{equation}
+    \Phi = \iiint_{\mathcal{V}} (3 + 2y + 2z) dV
+\end{equation}
+
+Which we can split into three separate integrals:
+\begin{equation}
+    \Phi = \iiint_{\mathcal{V}} 3 dV + \iiint_{\mathcal{V}} 2y dV + \iiint_{\mathcal{V}} 2z dV
+\end{equation}
+
+\section{Evaluate Volume Integrals}
+
+To evaluate these integrals, we will use spherical coordinates:
+\begin{gather}
+    x = r \sin\theta \cos\phi\\
+    y = r \sin\theta \sin\phi\\
+    z = r \cos\theta
+\end{gather}
+
+The volume element in spherical coordinates is given by:
+\begin{equation}
+    dV = r^2 \sin\theta dr d\theta d\phi
+\end{equation}
+
+The limits of integration for a sphere of radius $R=1$ are:
+\begin{gather}
+    0 \leq r \leq 1\\
+    0 \leq \theta \leq \pi\\
+    0 \leq \phi \leq 2\pi
+\end{gather}
+
+\subsection{First Integral}
+The first integral is:
+\begin{equation}
+    \iiint_{\mathcal{V}} 3 dV = 3 \int_0^{2\pi} \int_0^{\pi} \int_0^1 r^2 \sin\theta dr d\theta d\phi
+\end{equation}
+Evaluating this integral, we have:
+\begin{equation}
+    = 3 \left( \int_0^{2\pi} d\phi \right) \left( \int_0^{\pi} \sin\theta d\theta \right) \left( \int_0^1 r^2 dr \right) = 3 (2\pi) (2) \left( \frac{1}{3} \right) = 4\pi
+\end{equation}
+
+\subsection{Second Integral}
+The second integral is:
+\begin{equation}
+    \iiint_{\mathcal{V}} 2y dV = 2 \int_0^{2\pi} \int_0^{\pi} \int_0^1 (r \sin\theta \sin\phi) r^2 \sin\theta dr d\theta d\phi
+\end{equation}
+Evaluating this integral, we have:
+\begin{equation}
+    = 2 \left( \int_0^{2\pi} \sin\phi d\phi \right) \left( \int_0^{\pi} \sin^2\theta d\theta \right) \left( \int_0^1 r^3 dr \right) = 2 (0) \left( \frac{\pi}{2} \right) \left( \frac{1}{4} \right) = 0
+\end{equation}
+\subsection{Third Integral}
+The third integral is:
+\begin{equation}
+    \iiint_{\mathcal{V}} 2z dV = 2 \int_0^{2\pi} \int_0^{\pi} \int_0^1 (r \cos\theta) r^2 \sin\theta dr d\theta d\phi
+\end{equation}
+Evaluating this integral, we have:
+\begin{equation}
+    = 2 \left( \int_0^{2\pi} d\phi \right) \left( \int_0^{\pi} \cos\theta \sin\theta d\theta \right) \left( \int_0^1 r^3 dr \right) = 2 (2\pi) (0) \left( \frac{1}{4} \right) = 0
+\end{equation}
+\section{Final Result}
+Combining the results of the three integrals, we have:
+\begin{equation}
+    \Phi = 4\pi + 0 + 0 = 4\pi
+\end{equation}
+
+\end{document}
