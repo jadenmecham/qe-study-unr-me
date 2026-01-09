@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Fourier Series and Transforms Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 3.1 on the Fall 2023 QE.\\
+
+A triangle wave $x(t)$ with period $T=2\pi$ is described by the following equation:
+\begin{equation}
+    x(t) = \begin{cases}
+        t+\frac{\pi}{2}, & -\pi \leq t < 0 \\
+        -t+\frac{\pi}{2}, & 0 \leq t < \pi
+    \end{cases}
+\end{equation}
+
+Compute the Fourier series representation of the signal. Provide a general expression for 
+all the tterms in the infinite series. 
+
+\section{General Form}
+
+The general solution for the Fourier series of a periodic function with period $2\pi$ 
+is given by:
+
+\begin{equation}
+    x(t) = a_0 + \sum_{n=1}^{\infty} \left[ a_n \cos(nt) + b_n \sin(nt) \right]
+\end{equation}
+
+Where:
+\begin{gather}
+    a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} x(t) \, dt\\
+    a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x(t) \cos(nt) \, dt\\
+    b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x(t) \sin(nt) \, dt
+\end{gather}
+
+\section{Compute $a_0$}
+
+We already know that:
+\begin{equation}
+    a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} x(t) \, dt
+\end{equation}
+
+Since we are dealing with a piecewise function, we can split the integral into two parts:
+\begin{equation}
+    a_0 = \frac{1}{2\pi} \left[  \int_{-\pi}^{0} \left(t + \frac{\pi}{2}\right) dt 
+    + \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) dt \right]
+\end{equation}
+
+Let's compute the first integral:
+\begin{gather}
+    \int_{-\pi}^0 \left(t + \frac{\pi}{2}\right) dt = \left[ \frac{t^2}{2} + \frac{\pi t}{2} \right]_{-\pi}^{0}\\
+    = \left(0 + 0\right) - \left(\frac{(-\pi)^2}{2} + \frac{\pi(-\pi)}{2}\right) = 0 - \left(\frac{\pi^2}{2} - \frac{\pi^2}{2}\right) = 0
+\end{gather}
+
+Now, let's compute the second integral:
+\begin{gather}
+    \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) dt = \left[ -\frac{t^2}{2} + \frac{\pi t}{2} \right]_{0}^{\pi}\\
+    = \left(-\frac{\pi^2}{2} + \frac{\pi^2}{2}\right) - (0 + 0) = 0
+\end{gather}
+
+Thus, we have:
+\begin{equation}
+    a_0 = \frac{1}{2\pi} (0 + 0) = 0
+\end{equation}
+
+\section{Compute $b_n$}
+
+Next, we compute $b_n$:
+\begin{equation}
+    b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x(t) \sin(nt) \, dt
+\end{equation}
+Again, we split the integral:
+\begin{equation}
+    b_n = \frac{1}{\pi} \left[ \int_{-\pi}^{0} \left(t + \frac{\pi}{2}\right) \sin(nt) \, dt 
+    + \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) \sin(nt) \, dt \right]
+\end{equation}
+Calculating the first integral using integration by parts:
+\begin{gather}
+    \int_{-\pi}^{0} \left(t + \frac{\pi}{2}\right) \sin(nt) \, dt = 
+    \left[-\frac{t + \frac{\pi}{2}}{n} \cos(nt)\right]_{-\pi}^{0} + 
+    \frac{1}{n} \int_{-\pi}^{0} \cos(nt) \, dt\\
+    = -\frac{\frac{\pi}{2}}{n} + \frac{\pi}{2n} + \frac{1}{n^2} [\sin(nt)]_{-\pi}^{0} = 0
+\end{gather}
+Now, calculating the second integral:
+\begin{gather}
+    \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) \sin(nt) \, dt = 
+    \left[-\frac{-t + \frac{\pi}{2}}{n} \cos(nt)\right]_{0}^{\pi} + 
+    \frac{1}{n} \int_{0}^{\pi} \cos(nt) \, dt\\
+    = -\frac{-\pi + \frac{\pi}{2}}{n} + \frac{\frac{\pi}{2}}{n} + \frac{1}{n^2} [\sin(nt)]_{0}^{\pi} = 0
+\end{gather}
+Thus, we have:
+\begin{equation}
+    b_n = \frac{1}{\pi} (0 + 0) = 0
+\end{equation}
+
+Note a shortcut here: since the triangle wave is an even function, all $b_n$ coefficients 
+(which correspond to sine terms) will be zero.So we don't have to integrate if we can identify this. 
+
+\section{Compute $a_n$}
+
+Finally, we compute $a_n$:
+\begin{equation}
+    a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} x(t) \cos(nt) \, dt
+\end{equation}
+Splitting the integral:
+\begin{equation}
+    a_n = \frac{1}{\pi} \left[ \int_{-\pi}^{0} \left(t + \frac{\pi}{2}\right) \cos(nt) \, dt 
+    + \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) \cos(nt) \, dt \right]
+\end{equation}
+
+Calculating the first integral using integration by parts:
+\begin{gather}
+    \int_{-\pi}^{0} \left(t + \frac{\pi}{2}\right) \cos(nt) \, dt = 
+    \left[\frac{t + \frac{\pi}{2}}{n} \sin(nt)\right]_{-\pi}^{0} - 
+    \frac{1}{n} \int_{-\pi}^{0} \sin(nt) \, dt\\
+    = 0 + \frac{1}{n^2} [\cos(nt)]_{-\pi}^{0} = \frac{1}{n^2} (1 - \cos(n\pi)) = \frac{1}{n^2} (1 - (-1)^n)
+\end{gather}
+
+Now, calculating the second integral:
+\begin{gather}
+    \int_{0}^{\pi} \left(-t + \frac{\pi}{2}\right) \cos(nt) \, dt = 
+    \left[\frac{-t + \frac{\pi}{2}}{n} \sin(nt)\right]_{0}^{\pi} - 
+    \frac{1}{n} \int_{0}^{\pi} \sin(nt) \, dt\\
+    = 0 + \frac{1}{n^2} [\cos(nt)]_{0}^{\pi} = \frac{1}{n^2} (\cos(n\pi) - 1) = \frac{1}{n^2}((-1)^n - 1)
+\end{gather}
+
+Thus, we have:
+\begin{equation}
+    a_n = \frac{1}{\pi} \left[ \frac{1}{n^2} (1 - (-1)^n) + \frac{1}{n^2}((-1)^n - 1) \right] = \frac{2}{\pi n^2} (1 - (-1)^n)
+\end{equation}
+
+\section{Final Fourier Series Representation}
+Combining all the coefficients, we have:
+\begin{equation}
+    x(t) = \sum_{n=1}^{\infty} a_n \cos(nt) = \sum_{n=1}^{\infty} \frac{2}{\pi n^2} (1 - (-1)^n) \cos(nt)
+\end{equation}
+
+\end{document}

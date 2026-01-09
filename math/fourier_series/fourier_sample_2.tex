@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Fourier Series and Transforms Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 3.2 on the Fall 2023 QE.\\
+
+The rectangular function is defined as:
+\begin{equation}
+    \text{rect}(t/a) = \begin{cases}
+        0, & |t| > \frac{a}{2} \\
+        \frac{1}{2}, & |t| = \frac{a}{2}\\
+        1, & |t| < \frac{a}{2}
+    \end{cases}
+\end{equation}
+
+With $a > 0$. Compute the Fourier transform of the signal and sketch the 
+magnitude of the spectrum signal, as a function of the parameter $a$.
+
+\section{Fourier Transform Definition}
+The Fourier transform $X(f)$ of a time-domain signal $x(t)$ is defined as:
+\begin{equation}
+    X(f) = \int_{-\infty}^{\infty} x(t) e^{-j \omega t} \, dt
+\end{equation}
+Where $\omega = 2 \pi f$ is the angular frequency.
+
+\section{Compute the Fourier Transform of $\text{rect}(t)$}
+To compute the Fourier transform of the rectangular function, 
+we substitute $x(t) = \text{rect}(t)$ into the Fourier transform definition:
+\begin{equation}
+    X(f) = \int_{-\infty}^{\infty} \text{rect}(t/a) e^{-j \omega t} \, dt
+\end{equation}
+Since $\text{rect}(t)$ is non-zero only in the interval $[-\frac{a}{2}, \frac{a}{2}]$,
+we can limit the integration bounds. Furthermore, within this interval
+, $\text{rect}(t/a) = 1$. Thus, we have:
+\begin{equation}
+    X(f) = \int_{-\frac{a}{2}}^{\frac{a}{2}} e^{-j \omega t} \, dt
+\end{equation}
+
+Evaluating this integral, we get:
+\begin{equation}
+    X(f) = \left[ \frac{e^{-j \omega t}}{-j \omega} \right]_{-\frac{a}{2}}^{\frac{a}{2}} 
+    = \frac{1}{-j \omega} \left( e^{-j \omega \frac{a}{2}} - e^{j \omega \frac{a}{2}} \right)
+\end{equation}
+
+Simplifying the expression using Euler's formula, we find:
+\begin{equation}
+    X(f) = \frac{2 \sin\left( \frac{\omega a}{2} \right)}{\omega} 
+    = \frac{2 \sin\left( \pi f a \right)}{2 \pi f} 
+    = a \, \text{sinc}(f a)
+\end{equation}
+
+For context, Euler's formula is:
+\begin{equation}
+    e^{j \theta} = \cos(\theta) + j \sin(\theta)
+\end{equation}
+
+\end{document}
