@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Heat Transfer Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This is problem 1.1 on the 2023 QE.\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{heat_transfer_sample_1_fig.png}
+    \label{fig:heat_transfer}
+\end{figure}
+
+\section*{Part A}
+Derive an expression for variation of the mean fluid temperature $T_m(x)$ only in terms of 
+known parameters. Hint: select a differential control volume and apply the energy balance 
+equation. 
+
+Convective energy is given by the following equation:
+\begin{equation}
+    E = \dot{m} C_p \Delta T
+\end{equation}
+
+By conservation of energy, the total energy entering the system must equal the total energy
+leabing the system. 
+\begin{equation}
+    E_{in} + E_{wall} = E_{out} 
+\end{equation}
+
+By using a differntial control volume, we can express the terms in the energy balance as:
+\begin{gather}
+    E_{in} = \dot{m} C_p T_m(x) \\
+    E_{out} = \dot{m} C_p T_m(x + dx) \\
+    E_{wall} = q'' \pi D dx
+\end{gather}
+
+Note for the wall energy term, we are using the heat flux $q''$ multiplied by the surface
+area of the pipe over the differential length $\Delta x$. The full energy balance is then:
+
+\begin{equation}
+    \dot{m} C_p T_m(x) + q'' \pi D  dx = \dot{m} C_p T_m(x + dx)
+\end{equation}
+
+We can rearrange and solve for $\frac{dT_m}{dx}$ as follows:
+
+\begin{gather}
+    q''\pi Ddx = \dot{m}C_p T_m(x+dx) - \dot{m}C_p T_m(x) \\
+    q''\pi Ddx = \dot{m}C_p \left[ T_m(x+dx) - T_m(x) \right] \\
+    q''\pi Ddx = \dot{m}C_p dT_m\\
+    \frac{dT_m}{dx} = \frac{q''\pi D}{\dot{m}C_p}
+\end{gather}
+
+We can then substitute $q'' = 2\ddot{q_0}(1-\frac{x}{L})$ into the equation to get:
+\begin{equation}
+    \frac{dT_m}{dx} = \frac{2\ddot{q_0}(1-\frac{x}{L})\pi D}{\dot{m}C_p}
+\end{equation}
+
+Then, integrating both sides from 0 to $x$ gives:
+\begin{gather}
+    \int_{T_{m,0}}^{T_m(x)} dT_m = \int_0^x \frac{2\ddot{q_0}(1-\frac{x}{L})\pi D}{\dot{m}C_p} dx \\
+    T_m(x) - T_{m,0} = \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( x - \frac{x^2}{2L} \right) \\
+    \boxed{T_m(x) = T_{m,0} + \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( x - \frac{x^2}{2L} \right)}
+\end{gather}
+
+\section*{Part B}
+
+Derive an expression for the total rate of heat transfer q to the fluid 
+only in terms of known parameters. \\
+
+The total rate of heat transfer to the fluid can be found by integrating the heat flux
+over the surface area of the pipe:
+
+\begin{gather}
+    q = \int_0^L q'' \pi D dx \\
+    q = \int_0^L 2\ddot{q_0}(1-\frac{x}{L}) \pi D dx \\
+    q = 2\ddot{q_0}\pi D \int_0^L (1-\frac{x}{L}) dx \\
+    q = 2\ddot{q_0}\pi D \left[ x - \frac{x^2}{2L} \right]_0^L \\
+    \boxed{q = \ddot{q_0}\pi DL}
+\end{gather}
+
+\section*{Part C}
+
+Derive an expression for variation of the surface (wall) temperature $T_s(x)$
+only in terms of known parameters. \\
+
+The surface temperature can be found using the convective heat transfer equation:
+\begin{equation}
+    q'' = h(T_s - T_m)
+\end{equation}
+
+Rearranging for $T_s$ gives:
+\begin{equation}
+    T_s = \frac{q''}{h} + T_m
+\end{equation}
+
+We also know from the problem statement that the Nusselt number is:
+\begin{equation}
+    Nu = \frac{hD}{k} = 0.023 Re^{0.8} Pr^{0.4}
+\end{equation}
+
+Rearranging for $h$ gives:
+\begin{equation}
+    h = \frac{0.023 k Re^{0.8} Pr^{0.4}}{D}
+\end{equation}
+
+We can then substitute $h$, $q''$, and our expression for $T_m$ into the equation for $T_s$.
+\begin{gather}
+    T_s = \frac{2\ddot{q_0}(1-\frac{x}{L})}{\frac{0.023 k Re^{0.8} Pr^{0.4}}{D}} + 
+    \left[ T_{m,0} + \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( x - \frac{x^2}{2L} \right) \right] \\
+    \boxed{T_s(x) = \frac{2\ddot{q_0}(1-\frac{x}{L})D}{0.023 k Re^{0.8} Pr^{0.4}} + 
+    T_{m,0} + \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( x - \frac{x^2}{2L} \right)}
+\end{gather}
+
+\section*{Part D}
+
+Derive an expression for the axial location $x_max$ at which the surface (wall) 
+temperature is maximum. \\
+
+To find the location where the surface temperature is maximum, we need to take the derivative
+of $T_s(x)$ and set it equal to zero.
+\begin{gather}
+    \frac{dT_s}{dx} = \frac{d}{dx} \left[ \frac{2\ddot{q_0}(1-\frac{x}{L})D}{0.023 k Re^{0.8} Pr^{0.4}} + 
+    T_{m,0} + \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( x - \frac{x^2}{2L} \right) \right] \\
+    \frac{dT_s}{dx} = \frac{-2\ddot{q_0}D}{0.023 k Re^{0.8} Pr^{0.4} L} + 
+    \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( 1 - \frac{x}{L} \right)
+\end{gather}
+
+Setting the derivative equal to zero and solving for $x$ gives:
+\begin{gather}
+    0 = \frac{-2\ddot{q_0}D}{0.023 k Re^{0.8} Pr^{0.4} L} + 
+    \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( 1 - \frac{x}{L} \right) \\
+    \frac{2\ddot{q_0}D}{0.023 k Re^{0.8} Pr^{0.4} L} = 
+    \frac{2\ddot{q_0}\pi D}{\dot{m}C_p} \left( 1 - \frac{x}{L} \right) \\
+    \frac{\dot{m}C_p}{0.023 k Re^{0.8} Pr^{0.4} L \pi} = 1 - \frac{x}{L} \\
+    \frac{x}{L} = 1 - \frac{\dot{m}C_p}{0.023 k Re^{0.8} Pr^{0.4} L \pi} \\
+    \boxed{x_{max} = L \left( 1 - \frac{\dot{m}C_p}{0.023 k Re^{0.8} Pr^{0.4} L \pi} \right)}
+\end{gather}
+
+
+
+\end{document}
