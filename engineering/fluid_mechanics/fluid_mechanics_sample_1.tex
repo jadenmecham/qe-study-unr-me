@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Fluid Mechanics Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This is problem 1.3 on the 2023 QE.\\
+
+An incompressible, Newtonian, viscous fluid under a favorable pressure gradient is 
+placed between two large parallel plates a distance h apart.  Starting from Navier-Stokes, 
+derive the volumetric flowrate through the plates per unit width.
+
+The Navier-Stokes equation for steady, incompressible flow in the x-direction is given by:
+\begin{equation}
+    \rho \left( u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} \right) 
+    = -\frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2}
+\end{equation}
+
+For flow between two large parallel plates, we can make the following assumptions:
+\begin{itemize}
+    \item Steady flow: $\frac{\partial u}{\partial t} = 0$
+    \item Fully developed flow: $\frac{\partial u}{\partial x} = 0$
+    \item No velocity in the y-direction: $v = 0$
+    \item Constant pressure gradient: $\frac{\partial p}{\partial x} = -G$ (where G is a constant)
+    \item No-slip boundary conditions at the plates: $u(0) = 0$ and $u(h) = 0$
+\end{itemize}
+With these assumptions, the Navier-Stokes equation simplifies to:
+\begin{equation}
+    0 = G + \mu \frac{\partial^2 u}{\partial y^2}
+\end{equation}
+
+Integrating this equation twice with respect to y gives:
+\begin{equation}
+    \frac{\partial^2 u}{\partial y^2} = -\frac{G}{\mu} \implies 
+    \frac{\partial u}{\partial y} = -\frac{G}{\mu}y + C_1 \implies 
+    u(y) = -\frac{G}{2\mu}y^2 + C_1 y + C_2
+\end{equation}
+
+Applying the no-slip boundary conditions:
+\begin{gather}
+    u(0) = 0 \implies C_2 = 0 \\
+    u(h) = 0 \implies -\frac{G}{2\mu}h^2 + C_1 h = 0 \implies C_1 = \frac{G h}{2\mu}
+\end{gather}
+Thus, the velocity profile is:
+\begin{equation}
+    u(y) = \frac{G}{2\mu} \left( hy - y^2 \right)
+\end{equation}
+The volumetric flowrate per unit width (Q) is obtained by integrating the velocity profile across the gap between the plates:
+\begin{equation}
+    Q = \int_0^h u(y) \, dy = \int_0^h \frac{G}{2\mu} \left( hy - y^2 \right) dy
+\end{equation}
+Calculating the integral:
+\begin{equation}
+    Q = \frac{G}{2\mu} \left[ \frac{h y^2}{2} - \frac{y^3}{3} \right]_0^h = 
+    \frac{G}{2\mu} \left( \frac{h^3}{2} - \frac{h^3}{3} \right) = 
+    \frac{G h^3}{12\mu}
+\end{equation}
+Thus, the volumetric flowrate through the plates per unit width is:
+\begin{equation}
+    \boxed{Q = \frac{G h^3}{12\mu}}
+\end{equation}
+
+\end{document}

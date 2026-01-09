@@ -1,0 +1,108 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Thermodynamics Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This is problem 1.2 on the 2023 QE.\\
+
+In a certain industrial process, a heat engine operates between two reservoirs: a \
+high-temperature reservoir at 600°C and a low-temperature reservoir at 150°C. The engine 
+takes in 1500 J of heat from the high-temperature reservoir and delivers 900 J of work while 
+rejecting heat to the low-temperature reservoir. Assume that the heat engine operates in a 
+steady-state manner and there are no other sources of energy losses or inefficiencies in the 
+engine.
+
+\section*{Part A}
+
+Calculate the efficiency of the heat engine.\\
+The efficiency ($\eta$) of a heat engine is defined as the ratio of the work output ($W$) to
+the heat input ($Q_{in}$):
+\begin{equation}
+    \eta = \frac{W}{Q_{in}}
+\end{equation}
+Substituting the given values:
+\begin{equation}
+    \boxed{\eta = \frac{900 \, \text{J}}{1500 \, \text{J}} = 0.6 \, \text{or} \, 60\%}
+\end{equation}
+
+\section*{Part B}
+Determine the amount of heat rejected to the low-temperature reservoir.\\
+The heat rejected ($Q_{out}$) to the low-temperature reservoir can be calculated using the
+first law of thermodynamics for a heat engine:
+\begin{equation}
+    Q_{in} = W + Q_{out}
+\end{equation}
+Rearranging the equation to solve for $Q_{out}$:
+\begin{equation}
+    Q_{out} = Q_{in} - W
+\end{equation}
+Substituting the given values:
+\begin{equation}
+    \boxed{Q_{out} = 1500 \, \text{J} - 900 \, \text{J} = 600 \, \text{J}}
+\end{equation}
+
+\section*{Part C}
+Calculate the change in entropy of the high-temperature reservoir, 
+low-temperature reservoir, and the overall entropy change for the entire process.
+
+The change in entropy ($\Delta S$) for a reservoir can be calculated using the formula:
+\begin{equation}
+    \Delta S = \frac{Q}{T}
+\end{equation}
+Where $Q$ is the heat exchanged and $T$ is the absolute temperature in Kelvin.
+First, we need to convert the temperatures from Celsius to Kelvin:
+\begin{gather}
+    T_{high} = 600 + 273.15 = 873.15 \, \text{K} \\
+    T_{low} = 150 + 273.15 = 423.15 \, \text{K}
+\end{gather}
+
+Now, we can calculate the change in entropy for each reservoir:
+\begin{gather}
+    \Delta S_{high} = \frac{-Q_{in}}{T_{high}} = \frac{-1500 \, \text{J}}{873.15 \, \text{K}} \approx -1.72 \, \text{J/K} \\
+    \Delta S_{low} = \frac{Q_{out}}{T_{low}} = \frac{600 \, \text{J}}{423.15 \, \text{K}} \approx 1.42 \, \text{J/K}
+\end{gather}
+The overall change in entropy for the entire process is the sum of the changes in entropy of
+both reservoirs:
+\begin{equation}
+    \Delta S_{total} = \Delta S_{high} + \Delta S_{low} \approx -1.72 \, \text{J/K} + 1.42 \, \text{J/K} \approx -0.30 \, \text{J/K}
+\end{equation}
+\begin{equation}
+    \boxed{\Delta S_{total} \approx -0.30 \, \text{J/K}}
+\end{equation}
+
+\section*{Part D}
+Discuss the feasibility of achieving a higher efficiency for the given temperature reservoirs.\\
+
+To evaluate the feasibility of achieving a higher efficiency, we can compare the calculated
+efficiency of the heat engine to the Carnot efficiency, which represents the maximum possible
+efficiency for a heat engine operating between two temperature reservoirs. The Carnot efficiency
+($\eta_{Carnot}$) is given by:
+\begin{equation}
+    \eta_{Carnot} = 1 - \frac{T_{low}}{T_{high}}
+\end{equation}
+Substituting the temperatures in Kelvin:
+\begin{equation}
+    \eta_{Carnot} = 1 - \frac{423.15 \, \text{K}}{873.15 \, \text{K}} \approx 0.515 \, \text{or} \, 51.5\%
+\end{equation}
+Since the calculated efficiency of the heat engine (60\%) exceeds the Carnot efficiency
+(51.5\%), it indicates that the engine is operating beyond the theoretical maximum efficiency,
+which is not feasible according to the second law of thermodynamics. Therefore, achieving a
+higher efficiency than the Carnot efficiency is impossible for the given temperature reservoirs.
+
+\end{document}
