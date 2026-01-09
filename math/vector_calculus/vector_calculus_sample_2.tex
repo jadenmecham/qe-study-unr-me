@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Vector Calculus Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 5.2 on the Fall 2023 QE.\\
+
+Consider the curve $\mathcal{C}$ parametized as:
+\begin{equation}
+    \begin{cases}
+        x=-1+\cos(2t)\\
+        y=\sin(t)\\
+        z=pt
+    \end{cases}
+\end{equation}    
+
+For $t \in (0, 2\pi)$ with $p>0$. Denote with $A$ the point on the helix a $t=0$ and with
+$B$ the point at $t=2\pi$. Calculate the work done by the force 
+$\vec{F}=yz\hat{x}+xz\hat{y}+xy\hat{z}$ along the curve $\mathcal{C}$ from point
+$A$ to point $B$ as a function of the parameter $p$. 
+
+\section{Important Equations}
+The work done by a force $\vec{F}$ along a curve $\mathcal{C}$ is given by:
+\begin{equation}
+    W=\int_{\mathcal{C}} F \cdot d\vec{r}
+\end{equation}
+
+\section{Find Points A and B}
+TO find the coordinates of points $A$ and $B$, we can substitute their corresponding
+values of t into the equation for $\mathcal{C}$. At $t=0$, we have:
+\begin{equation}
+    A=(-1+\cos(0), \sin(0), p\cdot0)=(0, 0, 0)
+\end{equation}
+
+At $t=2\pi$, we have:
+\begin{equation}
+    B=(-1+\cos(4\pi), \sin(2\pi), p\cdot2\pi)=(0, 0, 2\pi p)
+\end{equation}
+
+\section{Force along the Curve}
+
+To calculate the force along the curve, we substitute the parametric equations
+into the force equation:
+\begin{gather}
+    F_x = yz = \sin(t) \cdot pt = pt\sin(t)\\
+    F_y = xz = (-1+\cos(2t)) \cdot pt = pt(-1+\cos(2t))\\
+    F_z = xy = (-1+\cos(2t)) \cdot \sin(t) = (-1+\cos(2t))\sin(t)
+\end{gather}
+
+\section{Find $d\vec{r}$}
+
+To find $d\vec{r}$, we differentiate the parametric equations of the curve with the following
+formula:
+\begin{gather}
+    d\vec{r} = \frac{d\vec{r}}{dt} dt\\
+    \frac{d\vec{r}}{dt} = \left(\frac{dx}{dt}\hat{x} + \frac{dy}{dt}\hat{y}+ 
+    \frac{dz}{dt}\hat{z}\right)dt
+\end{gather}
+
+Differentiating each component, we have:
+\begin{gather}
+    \frac{dx}{dt} = \frac{d}{dt} [-1+\cos(2t)] =-2\sin(2t)\\
+    \frac{dy}{dt} = \frac{d}{dt} [\sin(t)] = \cos(t)\\
+    \frac{dz}{dt} = \frac{d}{dt} [pt] = p
+\end{gather}
+
+\section{Compute the Work Integral}
+
+Now we can compute the work integral. First, we need to find $F \cdot d\vec{r}$:
+\begin{gather}
+    F \cdot d\vec{r} = \left(pt\sin(t)(-2\sin(2t)) + pt(-1+\cos(2t))\cos(t) +
+    (-1+\cos(2t))\sin(t)p\right) dt
+\end{gather}
+
+Thus, the work done by the force along the curve from point A to point B is given by:
+\begin{equation}
+    W = \int_0^{2\pi} \left(pt\sin(t)(-2\sin(2t)) + pt(-1+\cos(2t))\cos(t) +
+    (-1+\cos(2t))\sin(t)p\right) dt
+\end{equation}
+
+Evaluating this integral, we have:
+\begin{equation}
+    W = p \int_0^{2\pi} \left(-2t\sin(t)\sin(2t) + t(-1+\cos(2t))\cos(t) +
+    (-1+\cos(2t))\sin(t)\right) dt
+\end{equation}
+
+To solve this integral, we can split it into three separate integrals:
+\begin{equation}
+    W = p \left( \int_0^{2\pi} -2t\sin(t)\sin(2t) dt + \int_0^{2\pi} t(-1+\cos(2t))\cos(t) dt +
+    \int_0^{2\pi} (-1+\cos(2t))\sin(t) dt \right)
+\end{equation}
+
+Calculating each integral separately, we have:
+\begin{gather}
+    \int_0^{2\pi} -2t\sin(t)\sin(2t) dt = \frac{8\pi}{3}\\
+    \int_0^{2\pi} t(-1+\cos(2t))\cos(t) dt = -\frac{4\pi}{3}\\
+    \int_0^{2\pi} (-1+\cos(2t))\sin(t) dt = 0
+\end{gather}
+
+Combining these results, we find:
+\begin{equation}
+    W = p \left( \frac{8\pi}{3} - \frac{4\pi}{3} + 0 \right) = \boxed{\frac{4\pi p}{3}}
+\end{equation}
+
+Boom.
+
+\end{document}
