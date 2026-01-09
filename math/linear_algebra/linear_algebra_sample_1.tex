@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Linear Algebra Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 4.1 on the Fall 2023 QE.\\
+
+Consider the matrix $A = \begin{bmatrix} 1&1&0\\0&1&0\\0&0&2 \end{bmatrix}$. Compute
+$e^{At}$.
+
+\section{Solution Method}
+
+Here, we will use the laplace transform method to compute the matrix exponential. The laplace
+transform method works well here because it works regardless of whether the matrix is
+diagonalizable or not. To find the matrix exponential, this method states:
+\begin{equation}
+    e^{At} = \mathcal{L}^{-1} \left\{ (sI - A)^{-1} \right\}
+\end{equation}
+
+Also note the that the inverse of a matrix can be computed using the formula:
+\begin{equation}
+    M^{-1} = \frac{\text{adj}(M)}{\det(M)}
+\end{equation}
+
+\section(Compute $(sI-A)$)
+First, we compute $sI - A$:
+\begin{equation}
+    sI - A = \begin{bmatrix}
+        s-1 & -1 & 0 \\
+        0 & s-1 & 0 \\
+        0 & 0 & s-2
+    \end{bmatrix}
+\end{equation}
+
+\section{Compute $\det(sI - A)$}
+Next, we compute the determinant of $sI - A$:
+\begin{equation}
+    \det(sI - A) = (s-1)^2 (s-2)
+\end{equation}
+
+\section{Compute $\text{adj}(sI - A)$}
+
+Now, we need to find the cofactor matrix of $sI - A$. Each element of the cofactor matrix
+is computed using the formula:
+\begin{equation}
+    C_{ij} = (-1)^{i+j} \text{det}(M_{ij})
+\end{equation}
+
+The final cofactor matrix is:
+\begin{equation}
+    C = \begin{bmatrix}
+        (s-1)(s-2) & (s-1)(0) & 0 \\
+        s-2& (s-1)(s-2) & 0 \\
+        0 & 0 & (s-1)^2
+    \end{bmatrix} = \begin{bmatrix}
+        (s-1)(s-2) & 0 & 0 \\
+        s-2 & (s-1)(s-2) & 0 \\
+        0 & 0 & (s-1)^2
+    \end{bmatrix}
+\end{equation}
+
+Taking the transpose of the cofactor matrix gives us the adjugate matrix:
+\begin{equation}
+    \text{adj}(sI - A) = C^T = \begin{bmatrix}
+        (s-1)(s-2) & s-2 & 0 \\
+        0 & (s-1)(s-2) & 0 \\
+        0 & 0 & (s-1)^2
+    \end{bmatrix}
+\end{equation}
+
+\section{Compute $(sI - A)^{-1}$}
+Now, we can compute the inverse of $sI - A$:
+\begin{equation}
+    (sI - A)^{-1} = \frac{\text{adj}(sI - A)}{\det(sI - A)} = \begin{bmatrix}
+        \frac{1}{s-1} & \frac{1}{(s-1)^2} & 0 \\
+        0 & \frac{1}{s-1} & 0 \\
+        0 & 0 & \frac{1}{s-2}
+    \end{bmatrix}
+\end{equation}
+
+\section{Compute $e^{At}$}
+Finally, we can compute the matrix exponential by taking the inverse laplace transform of
+$(sI - A)^{-1}$. This is just the inverse laplace transform of each element of the matrix:
+\begin{equation}
+    e^{At} = \mathcal{L}^{-1} \left\{ (sI - A)^{-1} \right\} = \begin{bmatrix}
+        e^{t} & t e^{t} & 0 \\
+        0 & e^{t} & 0 \\
+        0 & 0 & e^{2t}
+    \end{bmatrix}
+\end{equation}
+
+\end{document}

@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Linear Algebra Sample Problem 2}}
+\end{center}
+
+\vspace{10pt}
+
+This problem is question 4.2 on the Fall 2023 QE.\\
+
+Given the matrix $ A = \begin{bmatrix} 0&1\\1+a&b\end{bmatrix}$ calculate the eigenvalues
+and eigenvectors. Find the values for $a$ and $b$ for which the eigenvalues are real 
+part negative. 
+
+\section{Find the Eigenvalues}
+
+To find the eigenvalues of the matrix $A$, we need to solve the characteristic equation given by:
+\begin{equation}
+    \det(A - \lambda I) = 0
+\end{equation}
+
+First, we compute $A - \lambda I$:
+\begin{equation}
+    A - \lambda I = \begin{bmatrix}
+        -\lambda & 1 \\
+        1 + a & b - \lambda
+    \end{bmatrix}
+\end{equation}
+
+Next, we compute the determinant:
+\begin{equation}
+    \det(A - \lambda I) = (-\lambda)(b - \lambda) - (1)(1 + a) = \lambda^2 - b\lambda - (1 + a)
+\end{equation}
+
+Setting the determinant equal to zero gives us the characteristic equation:
+\begin{equation}
+    \lambda^2 - b\lambda - (1 + a) = 0
+\end{equation}
+
+To find the eigenvalues, we can use the quadratic formula.
+\begin{equation}
+    \lambda_{1,2} = \frac{b \pm \sqrt{b^2 + 4(1 + a)}}{2}
+\end{equation}
+
+\section{Find the Eigenvectors}
+
+To find the eigenvectors corresponding to each eigenvalue, we solve the equation:
+\begin{equation}
+    (A - \lambda I)\mathbf{v} = 0
+\end{equation}
+
+For the given matrix, this looks like:
+\begin{equation}
+    \begin{bmatrix}
+        -\lambda & 1 \\
+        1 + a & b - \lambda
+    \end{bmatrix}
+    \begin{bmatrix}
+        v_1 \\
+        v_2
+    \end{bmatrix} = 0
+\end{equation}
+
+This leads to the system of equations:
+\begin{gather}
+    -\lambda v_1 + v_2 = 0 \\
+    (1 + a)v_1 + (b - \lambda)v_2 = 0
+\end{gather}
+
+From the first equation, we can express $v_2$ in terms of $v_1$:
+\begin{equation}
+    v_2 = \lambda v_1
+\end{equation}
+
+We can then rewrite the $v$ vector as:
+\begin{equation}
+v = 
+    \begin{bmatrix}
+        1\\ \lambda
+    \end{bmatrix}
+\end{equation}
+
+We can then sibstitute in the expression for $\lambda$ to get the eigenvectors.
+\begin{gather}
+v_{1,2} = 
+    \begin{bmatrix}
+        1\\ \frac{b \pm \sqrt{b^2 + 4(1 + a)}}{2}
+    \end{bmatrix}\\
+=    \begin{bmatrix}
+        2\\ b \pm \sqrt{b^2 + 4(1 + a)}
+    \end{bmatrix}
+\end{gather}
+
+\section{Conditions for Negative Real Parts of Eigenvalues}
+
+For the eigenvalues to have negative real parts, we need to analyze the expression:
+\begin{equation}
+    \lambda_{1,2} = \frac{b \pm \sqrt{b^2 + 4(1 + a)}}{2}
+\end{equation}
+
+To ensure that both eigenvalues have negative real parts, we need:
+\begin{enumerate}
+    \item The real part of both eigenvalues must be negative, which implies:
+    \begin{equation}
+        b < 0
+    \end{equation}
+    \item The discriminant must be non-positive to ensure complex eigenvalues with negative real parts:
+    \begin{equation}
+        b^2 + 4(1 + a) \leq 0 \implies a \leq -1 - \frac{b^2}{4}
+    \end{equation}
+\end{enumerate}
+
+\end{document}
