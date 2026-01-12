@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Vibrations Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This is problem 2.3 on the 2023 QE.\\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{vibrations_sample_1_fig.png}
+    \label{fig:vib}
+\end{figure}
+
+\section*{Part A}
+
+First, we need to consider the forces on $m_1$.
+
+\begin{gather}
+    \text{constant force: } F(t)\\
+    \text{spring force: } -k (x_1-x_2)\\
+    \text{viscous damping friction force: } -b \dot{x}_1
+\end{gather}
+
+Note that we use viscous damping instead of Coulomb (kinetic) friction 
+because the problem provides b in units of $\frac{N\cdot m}{s}$. It is also 
+used more often in modelling problems like this one. \\
+
+Using Newton's second law, we have:
+\begin{gather}
+    F_{\text{total}} = m_1 \ddot{x}_1\\
+    m_1\ddot{x}_1 = F(t) - k(x_1 - x_2) - b\dot{x}_1\\
+    \boxed{F(t) = m_1\ddot{x}_1 + b\dot{x}_1 + k(x_1 - x_2)}
+\end{gather}
+
+Now, consider the forces on $m_2$.
+
+\begin{gather}
+    \text{spring force: } k(x_1 - x_2)\\
+    \text{viscous damping friction force: } -b\dot{x}_2
+\end{gather}
+
+Using Newton's second law again, we have:
+\begin{gather}
+    F_{\text{total}} = m_2 \ddot{x}_2\\
+    m_2\ddot{x}_2 = k(x_1 - x_2) - b\dot{x}_2\\
+    \boxed{0 = m_2\ddot{x}_2 + b\dot{x}_2 - k(x_1 - x_2)}
+\end{gather}
+
+\section*{Part B}
+
+To find a single expression that relates $x_1$ and $x_2$, we need to 
+take the Laplace transform of both equations from Part A.
+
+\begin{gather}
+    \text{mass 1 eq: } F(s) = m_1 s^2 X_1(s) + b s X_1(s) + k(X_1(s) - X_2(s))\\
+    \text{mass 2 eq: } 0 = m_2 s^2 X_2(s) + b s X_2(s) - k(X_1(s) - X_2(s))
+\end{gather}
+
+We can then rearrange the mass 2 equation to solve for $\frac{X_2}{X_1}$.
+
+\begin{gather}
+    k(X_1(s) - X_2(s)) = m_2 s^2 X_2(s) + b s X_2(s)\\
+    k X_1(s) = X_2(s)(m_2 s^2 + b s + k)\\
+    \boxed{\frac{X_2(s)}{X_1(s)} = \frac{k}{m_2 s^2 + b s + k}}
+\end{gather}
+
+\section*{Part C}
+
+We now know that:
+
+\begin{gather}
+    m_1=m_2=1kg\\
+    b = 2 \frac{N\cdot m}{s}\\
+    k = 1 \frac{N}{m}\\
+    x_1(t) = 2u(t) \rightarrow \text{u is a unit step}
+\end{gather}
+
+Using these values, we can solve for an expression for $x_2(t)$. 
+First start by rearranging the equation from Part B to solve for $X_2(s)$.
+
+\begin{gather}
+    X_2(s) = X_1(s) \cdot \frac{k}{m_2 s^2 + b s + k}\\
+    X_2(s) = \frac{2}{s} \cdot \frac{1}{s^2 + 2 s + 1}\\
+    X_2(s) = \frac{2}{s (s+1)^2}
+\end{gather}
+
+Now we can use partial fraction decomposition to simplify $X_2(s)$.
+
+\begin{gather}
+    \frac{2}{s (s+1)^2} = \frac{A}{s} + \frac{B}{s+1} + \frac{C}{(s+1)^2}\\
+    2 = A(s+1)^2 + B s (s+1) + C s\\
+    2 = A(s^2 + 2s + 1) + B(s^2 + s) + C s\\
+\end{gather}
+
+To start solving for the coefficients, let $s=0$.
+\begin{gather}
+    2 = A(0+0+1) + B(0+0) + C(0)\\
+    A=2
+\end{gather}
+
+Next, let $s=-1$.
+\begin{gather}
+    2 = A(1-2+1) + B(1-1) + C(-1)\\
+    2 = 0 + 0 - C\\
+    C = -2
+\end{gather}
+
+Now, we can solve for B by substituting $A$ and $C$ back into the equation.
+\begin{gather}
+    2 = 2 s^2 + 4 s + 2 + B s^2 + B s - 2 s\\
+    0 = (2 + B) s^2 + (2 + B) s\\
+    B = -2
+\end{gather}
+
+Thus, we have:
+\begin{gather}
+    X_2(s) = \frac{2}{s} - \frac{2}{s+1} - \frac{2}{(s+1)^2}
+\end{gather}
+Now we can take the inverse Laplace transform to find $x_2(t)$.
+\begin{gather}
+    x_2(t) = \mathcal{L}^{-1} \left\{ \frac{2}{s} - \frac{2}{s+1} - \frac{2}{(s+1)^2} \right\}\\
+    \boxed{x_2(t) = 2 - 2 e^{-t} - 2 t e^{-t}}
+\end{gather}
+
+
+\end{document}

@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+\begin{center}
+\LARGE{\textbf{Solid Mechanics Sample Problem 1}}
+\end{center}
+
+\vspace{10pt}
+
+This is problem 3.1 on the 2023 QE.\\
+
+1. Show that true stress = engineering stress (engineering strain + 1) \\
+2. Show that true strain = ln (1 + engineering strain)\\
+3. A tensile specimen is elongated to twice its original length. Determine the engineering strain and true strain for this test. If the metal had been strained in compression, determine the final compressed length of the specimen such that (a) the engineering strain is equal to the same value as in tension (it will be negative value because of compression), and (b) the true strain would be equal to the same value as in tension (again, it will be negative value because of compression). Note that the answer to part (a) is an impossible result. True strain is therefore a better measure of strain during plastic deformation.\\
+4. In a tensile test a metal begins to neck at a true strain = 0.28 with a corresponding true stress = 345.0 MPa. Without knowing any more about the test, can you estimate the strength coefficient and the strain-hardening exponent in the flow curve equation?
+
+\section*{Part 1}
+
+We know that engineering stress is defined as:
+\begin{gather}
+    \sigma_{eng} = \frac{F}{A_0}
+\end{gather}
+
+Where $A_0$ is the original cross-sectional area. True stress is defined as:
+\begin{gather}
+    \sigma_{true} = \frac{F}{A_i}
+\end{gather}
+Where $A_i$ is the instantaneous cross-sectional area. 
+Engineering strain is defined as:
+\begin{gather}
+    \epsilon_{eng} = \frac{\Delta L}{L_0} 
+\end{gather}
+
+We also know that 
+volume is conserved during deformation, so:
+
+\begin{gather}
+    A_0 L_0 = A_i L_i\\
+    \frac{A_0}{A_i} = \frac{L_i}{L_0} 
+\end{gather}
+
+We can rewrite true stress as:
+\begin{gather}
+    \sigma_{true} = \frac{F}{A_i} = \frac{F}{A_0} \cdot \frac{A_0}{A_i} = 
+    \sigma_{eng} \cdot \frac{L_i}{L_0}
+\end{gather}
+
+Here, we can note that $L_i = L_0 + \Delta L$, so:
+
+\begin{gather}
+    \sigma_{true} = \sigma_{eng} \cdot \frac{L_0 + \Delta L}{L_0} = \\
+    \sigma_{eng} \cdot (1 + \frac{\Delta L}{L_0}) = \\
+    \boxed{\sigma_{eng} \cdot (1 + \epsilon_{eng})}
+\end{gather}
+
+\section*{Part 2}
+
+True strain is defined as:
+\begin{gather}
+    \epsilon_{true} = \int_{L_0}^{L_i} \frac{dL}{L} = 
+    \ln{\frac{L_i}{L_0}}
+\end{gather}
+
+Which we can rewrite as:
+\begin{gather}
+    \epsilon_{true} = \ln{\frac{L_0 + \Delta L}{L_0}} =\\
+    \ln{(1 + \frac{\Delta L}{L_0})} = \\
+    \boxed{\ln{(1 + \epsilon_{eng})}}
+\end{gather}
+
+\section*{Part 3}
+
+We know that the specimen is elongated to twice its original length, so:
+\begin{gather}
+    L_i = 2 L_0\\
+    \epsilon_{eng} = \frac{L_i - L_0}{L_0} = \frac{2 L_0 - L_0}{L_0} = 1\\
+    \epsilon_{true} = \ln{\frac{L_i}{L_0}} = \ln{2} \approx 0.693
+\end{gather}
+
+\subsection*{Part A}
+
+We want to find the final compressed length $L$ such that the engineering 
+strain is equal to the same value as in tension, which is 1. Here, it will
+be negative because of compression. 
+
+\begin{gather}
+    \epsilon_{eng} = -1\\
+    \frac{L-L_0}{L_0} = -1\\
+    L - L_0 = -L_0\\
+    \boxed{L = 0}
+\end{gather}
+
+\subsection*{Part B}
+
+We want to find the final compressed length $L$ such that the true Strain
+is equal to the same value as in tension, which is $\ln{2}$. Here, it will
+be negative because of compression.
+
+\begin{gather}
+    \epsilon_{true} = \ln{\frac{L}{L_0}} \approx -0.693\\
+    \frac{L}{L_0} = e^{-0.693} = 0.5\\
+    \boxed{L = 0.5 L_0}
+\end{gather}
+
+\section*{Part 4}
+
+We know that the flow curve equation is defined as:
+\begin{gather}
+    \sigma = K \epsilon^n
+\end{gather}
+
+We can rearrange this equation to solve for $K$:
+\begin{gather}
+    K = \frac{\sigma}{\epsilon^n}
+\end{gather}
+We can substitute in the known values for $\sigma$ and $\epsilon$:
+\begin{gather}
+    K = \frac{345.0 MPa}{(0.28)^n}
+\end{gather}
+
+To solve for $n$, we can use the Considère criterion, which states that necking
+begins when:
+\begin{gather}
+    \frac{d\sigma}{d\epsilon} = \sigma
+\end{gather}
+Taking the derivative of the flow curve equation:
+\begin{gather}
+    \frac{d\sigma}{d\epsilon} = K n \epsilon^{n-1}
+\end{gather}
+Setting this equal to $\sigma$:
+\begin{gather}
+    K n \epsilon^{n-1} = K \epsilon^n\\
+    n \epsilon^{n-1} = \epsilon^n\\
+    n = \epsilon
+\end{gather}
+Thus, we have:
+\begin{gather}
+    n = 0.28\\
+    K = \frac{345.0 MPa}{(0.28)^{0.28}}\approx \boxed{464.2 MPa}
+\end{gather}
+
+
+
+\end{document}
