@@ -1,0 +1,261 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage[most]{tcolorbox}
+\geometry{margin=1in}
+
+% Header info
+\title{Study Sheet}
+\author{Based off example problems from 21 and 23}
+% \date{}
+
+\begin{document}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Vector Calculus}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Work along a path
+    \item Stokes theorem
+    \item Divergence theorem
+    \item Cylindrical bounds of integration
+    \item Volume of a sphere
+\end{itemize}
+
+\noindent\hrulefill
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Line/Work Integral},breakable]
+Generally given a force field $F(x,y)$ and a curve through space $\mathcal{C}$, for which we want to compute 
+\begin{align*}
+    \int_\mathcal{C}\vec F\cdot d\vec r
+\end{align*}
+Which is the \textbf{work} of the vector field along the path. To simplify the integration, 
+\begin{align*}
+    d\vec r \frac{dt}{dt} \to \frac{d\vec r}{dt}dt \to \vec v dt
+\end{align*}
+Before integrating, both $F$ and $\mathcal{C}$ need to be \textit{parameterized} in terms of $t$. Any definition for $x$ works, but the algebra can be difficult. So the simplest method may be
+\begin{align*}
+    \mathcal{C}(x,y) = r(t)
+    \begin{cases}
+        x\equiv t\\
+        y\equiv \mathcal{C}(x=t)
+    \end{cases}
+\end{align*}
+Plug these values into the vector field $F$. 
+\begin{align*}
+    F(x,y) = F(t)
+    \begin{cases}
+        x\equiv t\\
+        y\equiv \mathcal{C}(x=t)
+    \end{cases}
+\end{align*}
+Then the last step before integration is to take the derivative of $r(t)$ to get $v(t)$. Finally, the \textbf{line/work} integral can be computed via
+\begin{align*}
+    \boxed{\int_\mathcal{C}\vec F(x,y)\cdot d\vec r(x,y) = \int_a^b F(t) v(t)dr(t)}
+\end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!10!white, title=\textcolor{black}{Divergence Theorem},breakable]
+The divergence of a vector field, $\nabla \cdot \vec F$, integrated over a volume, $V$ is equal to the dot product between the vector field and the surface of the volume, $\vec F \cdot \vec n$ ($\vec n$ is the surface normal vector), integrated over the surface area of the volume, $A$.
+\begin{align*}
+    \boxed{\int_V \nabla \cdot \vec F dV = \int_S \vec F \cdot \vec n dA}
+\end{align*}
+Solving the \textbf{RHS} amounts to finding the surface-normal vector $\vec n$. The general method is to fist parameterize the given geometries defining the boundary of the volume.
+\begin{align*}
+    S =&\; f(x,y,z) \to z=f(x,y) \\
+    S =&\; \left[f(u),f(v),f(u,v)\right] 
+    \begin{cases}
+        x \equiv f(u)\\
+        y \equiv f(v)
+    \end{cases}
+\end{align*}
+With the surface parameterized, take the cross product between the two respective partial derivatives
+\begin{align*}
+    \begin{vmatrix}
+        \hat i & \hat j & \hat k \\
+        \frac{\partial S}{\partial u}|_{\hat i} & \frac{\partial S}{\partial u}|_{\hat j} & \frac{\partial S}{\partial u}|_{\hat k} \\
+        \frac{\partial S}{\partial v}|_{\hat i} & \frac{\partial S}{\partial v}|_{\hat j} & \frac{\partial S}{\partial v}|_{\hat k}
+    \end{vmatrix}
+    = \vec n
+\end{align*}
+Take note that the direction of $\vec n$ needs to \textit{face out of the surface}, and the cross product may have it facing the wrong direction. 
+
+\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Linear Algebra}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Solutions to systems of ODE
+    \item Matrix power
+    \item Inverse
+    \item adjudicate 
+    \item Co-factor
+    \item Eig-stuff
+\end{itemize}
+
+\noindent\hrulefill
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Laplace Transforms}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Convolution transform 
+    \item Derivative transform
+    \item Partial fractions
+    \item Integration by parts
+\end{itemize}
+
+
+\noindent\hrulefill
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!10!white, title=\textcolor{black}{Convolution Theorem},breakable]
+The convolution of two functions is given by the integral
+\begin{align*}
+    (f \circ g)(t) = h(t) = \int_0^t f(\tau) g(t-\tau)d\tau
+\end{align*}
+The Laplace transform of a convolution is
+\begin{align*}
+    \boxed{\mathcal{L}[h(t)] = \mathcal{L}[f(t)]\mathcal{L}[g(t)] = FG}
+\end{align*}
+The inverse of this theorem can be used if a function in Laplace space, $H$, can be observed as a product of two functions, $F$ and $G$, for which the transforms are known. The inverse would be
+\begin{align*}
+    H(s) =&\; F(s)G(s)\\
+    \mathcal{L}[H]=&\;\mathcal{L}[FG] = \int_0^t f(\tau) g(t-\tau)d\tau = h(t)
+\end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!10!white, title=\textcolor{black}{Derivatives of Laplace},breakable]
+Consider the $n^{th}$ order differential 
+\begin{align*}
+    x^n = \frac{d^n x}{dt^n}
+\end{align*}
+Taking the Laplace transform would give
+\begin{align*}
+    \boxed{\mathcal{L}[x^n] =  s^nX -s^{n-1}x_0 - s^{n-1}\dot x_0 -...- sx^{n-2}_0-x^{n-1}_0}
+\end{align*}
+where $X$ is the Laplace transform of $x$, and each $x_0^j$ is the initial condition for each derivative of $x$. The third order example would be 
+\begin{align*}
+    \mathcal{L}\left[ \dddot x\right]= s^3X - s^2x_0 - s\dot x_0 -\ddot x_0
+\end{align*}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Fourier Transforms}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Cosine Series
+    \item Complex Transform
+    \item Integration by parts
+    \item General Series
+    \item odd / even function cancellations
+\end{itemize}
+\noindent\hrulefill
+\begin{tcolorbox}[colback=blue!3!white, colframe=red!10!white, title=\textcolor{black}{General Series Expansion},breakable]
+A function that is piecewise smooth, and has a period length $p=2L$, can be approximated by a series of sines and cosines
+\begin{align*}
+    f(x) = &\; a_0 + \sum_{n=1}^\infty \left(a_n \cos \frac{n\pi x}{L} + b_n \sin \frac{n\pi x}{L} \right)\\
+    &\; a_0 = \frac{1}{2L}\int_{-L}^L f(x)dx\\
+    &\; a_n = \frac{1}{L}\int_{-L}^L f(x)\cos \frac{n\pi x}{L} \hspace{0.1cm}dx\\
+    &\; b_n = \frac{1}{L}\int_{-L}^L f(x)\sin \frac{n\pi x}{L} \hspace{0.1cm}dx\\
+\end{align*}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Orthogonality of sin and cos},breakable]
+The product of trig functions are orthogonal on the interval $-\pi \leq x \leq \pi$, specifically:
+\begin{align*}
+    \begin{cases}
+        \int_{-\pi}^\pi \cos nx \cos mx \hspace{0.1cm} dx & (n\neq m)\\
+        \int_{-\pi}^\pi \sin nx \sin mx \hspace{0.1cm} dx & (n\neq m)\\
+        \int_{-\pi}^\pi \sin nx \cos mx \hspace{0.1cm} dx & (\forall n,m)\\
+    \end{cases}
+\end{align*}
+Use this to reduce the number of coefficients that you need to compute in the Fourier Series, when $f(x)$ has trig terms 
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=red!10!white, title=\textcolor{black}{Transforms},breakable]
+\textbf{Complex Transform}
+\begin{align*}
+    \hat f(w) =&\; \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty f(x)e^{-iwx}dx\\
+    f(x) =&\; \frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty \hat f(w)e^{iwx}dx
+\end{align*}
+\textbf{Sine Transform}
+\begin{align*}
+    \hat f_s(w) =&\; \sqrt{\frac{2}{\pi}}\int_{0}^\infty f(x)\sin wx\hspace{0.1cm}dx\\
+    f(x) =&\; \sqrt{\frac{2}{\pi}}\int_{0}^\infty \hat f(w)\sin wx\hspace{0.1cm}dw\\
+\end{align*}
+\textbf{Cosine Transform}
+\begin{align*}
+    \hat f_c(w) =&\; \sqrt{\frac{2}{\pi}}\int_{0}^\infty f(x)\cos wx\hspace{0.1cm}dx\\
+    f(x) =&\; \sqrt{\frac{2}{\pi}}\int_{0}^\infty \hat f(w)\cos wx\hspace{0.1cm}dw\\
+\end{align*}
+\end{tcolorbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Ordinary Diff. Eq.s}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Undetermined coefficients
+    \item Cauchy-Euler Eq
+    \item Log properties
+\end{itemize}
+
+
+\noindent\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Partial Diff. Eq.s}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Infinite Rode (Heat Eq.)
+    \item String (Wave Eq.)
+    \item Separation of Variables
+\end{itemize}
+
+
+\noindent\hrulefill
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{General Math Techniques}
+\textbf{Observed Methods}
+\begin{itemize}
+    \item Cross product
+    \item Integration by Parts
+    \item Partial Fractions
+    \item Completing the square
+    \item Quadratic equation 
+\end{itemize}
+
+
+\noindent\hrulefill
+
+
+\end{document}
+
+% \noindent\hrulefill
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=red!10!white, title=\textcolor{black}{Important Equation},breakable]
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Math tep/tricks},breakable]
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=blue!10!white, title=\textcolor{black}{Theorem/Concept},breakable]
+
+\end{tcolorbox}
