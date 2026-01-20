@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+
+\title{Engineering Study Sheet}
+\author{Based off sample QE questions}
+\date{January 17, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Heat Transfer}
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Important Numbers}]
+    \begin{gather}
+        \text{reynold's number: }Re=\frac{UD}{v}\\
+        \text{nusselt number: }\bar{Nu}_D=\frac{hD}{k}
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Convection Equations}]
+Use a differential control volume where energy is conserved. Do not forget to multiply by surface area to convert between flux and energy. 
+    \begin{gather}
+        \text{Convective Energy} \quad
+        E=\dot{m}C_p\Delta T\\
+        \text{Convective Heat Transfer} \quad
+        q''=h(T_s-T_m)\\
+        \text{Rate of Heat Transfer} \quad
+        q = \int_{SA} q'' \\
+        q=hA(T_x-T_\infty)\\
+        \text{film temperature: }T_f=\frac{T_s+T_\infty}{2}
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Conduction Equations}]
+    \begin{gather}
+        \text{fourier's law: }q_x=-kA(x)\frac{dT}{dx}=\text{constant}\\
+        \frac{d^2T}{dx^2}+\frac{\dot{q}}{k_a}=0
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Thermal Resistance Networks}]
+Make sure to draw the network to make sure not to miss any point. 
+    \begin{gather}
+        \text{conduction: }R''=\frac{L}{k}\\
+        \text{convection: }R''=\frac{1}{h}\\
+        \text{rate of heat loss per unit area: }q''=\frac{T_s-T_\infty}{R''_{total}}
+    \end{gather}
+\end{tcolorbox}
+
+\section{Thermodynamics}
+\begin{equation}
+    \text{Efficiency}\quad
+    \eta = \frac{W}{Q_{in}}
+\end{equation}
+
+\begin{equation}
+    \text{Heat Engine First Law}\quad
+    Q_{in} = W+Q_{out}
+\end{equation}
+
+\begin{equation}
+    \text{Change in Entropy}\quad
+    \Delta S = \frac{Q}{T}
+\end{equation}
+
+\begin{equation}
+    \text{Carnot Efficiency}\quad
+    \eta_{carnot} = 1-\frac{T_{low}}{T_{high}}
+\end{equation}
+
+\section{Fluid Mechanics}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Cartesian Navier-Stokes},breakable]
+    \begin{equation}
+        \text{Cartesian Navier-Stokes in x Direction }\quad
+        \rho \left( u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} \right) 
+        = -\frac{\partial p}{\partial x} + \mu \frac{\partial^2 u}{\partial y^2}
+    \end{equation}
+    
+    \begin{gather}
+        \text{Common Assumptions:}\\
+        \text{Steady Flow:}\quad \frac{\partial u}{\partial t} = 0\\
+        \text{Fully Developed Flow:}\quad \frac{\partial u}{\partial x} = 0\\
+        \text{No velocity in y:}\quad v=0\\
+        \text{Constant Pressure Gradient:}\quad \frac{\partial p}{\partial x} = -G \text{ (where G is a constant)}\\
+        \text{No Slip:}\quad u(0)=u(h)=0
+    \end{gather}
+\end{tcolorbox}
+
+\section{Solid Mechanics}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Stress and Strain},breakable]
+    \begin{equation}
+        \text{Engineering Stress}\quad
+        \sigma_{eng} = \frac{F}{A_0}
+    \end{equation}
+    
+    \begin{equation}
+        \text{True Stress}\quad
+        \sigma_{true} = \frac{F}{A_i}
+    \end{equation}
+    
+    \begin{equation}
+        \text{Engineering Strain}\quad
+        \epsilon_{eng} = \frac{\Delta L}{L}
+    \end{equation}
+    
+    \begin{equation}
+        \text{True Strain}\quad
+        \epsilon_{true} = \ln{\frac{L_i}{L_0}} = \ln{(1+\epsilon_{eng})}
+    \end{equation}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Conservation of Volume}]
+    During deformation, volume is conserved.
+    \begin{equation}
+        A_0L_0=A_iL_i
+    \end{equation}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Flow Curve}]
+    \begin{equation}
+        \sigma=K\epsilon^n
+    \end{equation}
+    The Considere Criterion states that necking begins when:
+    \begin{gather}
+        \frac{d\sigma}{d\epsilon}=\sigma\\
+        \rightarrow n=\epsilon
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Axial Loading},breakable]
+    \begin{gather}
+        \text{axial deformation: }\delta=\frac{PL}{AE}
+    \end{gather}
+    Springs act in series:
+    \begin{equation}
+        \frac{1}{k_{total}} = \frac{1}{k_1}+\frac{1}{k_2}+...+\frac{1}{k_n}
+    \end{equation}
+\end{tcolorbox}
+
+The general approach for beam bending problems is to use sum of moments and sum of vertical and/or horizontal forces to solve for unknown reaction forces. For shear and bending moment diagrams, make "cuts" right after each support to determine what to put on the plot. 
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Beam Loading},breakable]
+    \begin{gather}
+        \text{centroid: }\bar{y}=\frac{\sum A_yy_i}{\sum A_i}\\
+        \text{parallel axis theorem: }I_1+A_1d_1^2 + I_2+A_2d_2^2\\
+        \text{bending stress: }\sigma=\frac{Mc}{I}\\
+        \text{for rectangular cross sections: }I=\frac{1}{12}bh^3\\
+        \text{cantilever beam deflection: }\delta=\frac{PL^3}{3EI}
+    \end{gather}
+\end{tcolorbox}
+
+\section{Manufacturing}
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Direct Extrusion}]
+    \begin{gather}
+        \text{johnson formula: }a+b\ln{(r_x)}\\
+        \text{for round cross sections: }r_x=\frac{A_0}{A_f}=\frac{D_0^2}{D_f^2}\\
+        \text{flow stress: }\bar{Y}_f=\frac{K\epsilon^n_x}{1+n}\\
+        \text{extrusion pressure: }\bar{Y}_f\epsilon_x(1+\frac{L}{D_0})
+    \end{gather}
+\end{tcolorbox}
+
+\section{Dynamics}
+the hardest part of these problems is choosing to use Newtonian mechanics or energy methods. In general, if you need to find any kind of velocity in the system, energy methods will be much easier! 
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Energy Equations}]
+    \begin{gather}
+        \text{potential energy: } PE=mgh\\
+        \text{kinetic energy: } KE = \frac{1}{2}mv^2
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Rotating Bodies}]
+    \begin{gather}
+        \text{velocity relation: }v = \omega r\\
+        \text{acceleration relation: }a=\alpha r\\
+        \text{kinetic energy rotating about fixed axis: }KE=\frac{1}{2}I\omega^2\\
+        \text{torque equation: }\sum T=I\alpha
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Mass Moment of Inertia}]
+    \begin{gather}
+        \text{definition: }I=\int r^2dm\\
+        \text{thin rod: }I_{center}=\frac{1}{12}mL^2, \quad I_{end}=\frac{1}{3}mL^2
+    \end{gather}
+\end{tcolorbox}
+
+\section{Vibrations}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Mechanical Modeling}]
+Use Newton's Second Law literally everywhere.
+    \begin{gather}
+        F_{total} = m\ddot{x}\\
+        \text{spring force: } F_{s}=k\Delta x\\
+        \text{friction force: } F_f=b\dot{x}\\
+        \text{damping force: } F_d =  c\dot{x}
+    \end{gather}
+\end{tcolorbox}
+
+\section{Controls}
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Transfer Function}]
+    \begin{gather}
+        \text{closed loop TF: }T(s)=\frac{Y(s)}{R(s)}=\frac{G(s)}{1+G(s)}
+    \end{gather}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3!white, colframe=black!10!white, title=\textcolor{black}{Steady State Error}]
+    In general, use final value theorem:
+    \begin{gather}
+        \text{error signal in s-domain: }E(s)=R(s)-Y(s)=\frac{R(s)}{1+G(s)}\\
+        \text{final value theorem: }e_{ss}=\lim_{s\rightarrow0}sE(s) = \lim_{s\rightarrow 0}\frac{sR(s)}{1+G(s)}
+    \end{gather}
+    
+    For a unit step response:
+    \begin{gather}
+        e_{ss}=\frac{1}{1+K_p}\\
+        K_p=\lim_{s\rightarrow0}G(s)
+    \end{gather}
+
+    For a unit ramp step:
+    \begin{gather}
+        e_{ss}=\frac{A}{K_v}\\
+        K_v = \lim_{s\rightarrow0}sG(s)
+    \end{gather}
+\end{tcolorbox}
+\end{document}
