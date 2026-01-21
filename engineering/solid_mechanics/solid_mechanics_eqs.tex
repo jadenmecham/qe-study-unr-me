@@ -588,4 +588,30 @@ Timber & 10-15 & - & - \\
 \end{tabular}
 \end{center}
 
+
+
+\usepackage{amsmath} % Add this to your preamble
+
+\section*{Thick-Walled Cylinder (Lamé's Equations)}
+
+For a thick-walled cylinder with internal radius $r_i$ and external radius $r_o$, the stresses at any radial position $r$ are given by:
+
+\begin{align}
+    \text{Hoop Stress: } \sigma_\theta &= \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2} + \frac{r_i^2 r_o^2 (P_i - P_o)}{r^2(r_o^2 - r_i^2)} \\[10pt]
+    \text{Radial Stress: } \sigma_r &= \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2} - \frac{r_i^2 r_o^2 (P_i - P_o)}{r^2(r_o^2 - r_i^2)}
+\end{align}
+
+\textbf{Special Case: Internal Pressure Only ($P_o = 0$)}
+\begin{equation}
+    \sigma_{\theta} = \frac{P_i r_i^2}{r_o^2 - r_i^2} \left( 1 + \frac{r_o^2}{r^2} \right), \quad 
+    \sigma_{r} = \frac{P_i r_i^2}{r_o^2 - r_i^2} \left( 1 - \frac{r_o^2}{r^2} \right)
+\end{equation}
+
+\textbf{Axial Stress ($\sigma_z$):}
+\begin{itemize}
+    \item \textbf{Open Ends:} $\sigma_z = 0$
+    \item \textbf{Closed Ends:} $\sigma_z = \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2}$ (constant throughout)
+\end{itemize}
+
+
 \end{document}
