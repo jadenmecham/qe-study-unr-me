@@ -613,5 +613,25 @@ For a thick-walled cylinder with internal radius $r_i$ and external radius $r_o$
     \item \textbf{Closed Ends:} $\sigma_z = \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2}$ (constant throughout)
 \end{itemize}
 
+\section*{General Thick-Walled Cylinder Stress Equations}
+
+For a thick-walled cylinder with an internal pressure $P_i$ at $r_i$ and an external pressure $P_o$ at $r_o$, the stress components at any radius $r$ ($r_i \leq r \leq r_o$) are:
+
+\begin{itemize}
+    \item \textbf{Radial Stress ($\sigma_r$):}
+    \begin{equation}
+        \sigma_r = \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2} - \frac{r_i^2 r_o^2 (P_i - P_o)}{r^2 (r_o^2 - r_i^2)}
+    \end{equation}
+
+    \item \textbf{Tangential (Hoop) Stress ($\sigma_\theta$):}
+    \begin{equation}
+        \sigma_\theta = \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2} + \frac{r_i^2 r_o^2 (P_i - P_o)}{r^2 (r_o^2 - r_i^2)}
+    \end{equation}
+
+    \item \textbf{Longitudinal (Axial) Stress ($\sigma_z$):}
+    \begin{equation}
+        \sigma_z = \frac{P_i r_i^2 - P_o r_o^2}{r_o^2 - r_i^2} \quad \text{(for closed-end conditions)}
+    \end{equation}
+\end{itemize}
 
 \end{document}
