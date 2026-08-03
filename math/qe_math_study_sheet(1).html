@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ME Math QE — Study Sheet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root{
+    --ink:#16181d;
+    --muted:#697086;
+    --faint:#9aa0b0;
+    --accent:#33409a;         /* disciplined indigo, used only for structure */
+    --paper:#ffffff;
+    --panel:#f5f6f8;
+    --line:#e3e5ec;
+    --line-strong:#c9ccd6;
+    --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:#eceef2; color:var(--ink);
+    font-family:var(--sans); line-height:1.45;
+    font-size:15px;
+  }
+  .sheet{
+    max-width:1120px; margin:24px auto; background:var(--paper);
+    padding:34px 38px 30px; box-shadow:0 1px 3px rgba(20,24,40,.12);
+  }
+
+  /* ---- masthead ---- */
+  header.mast{
+    border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:16px;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 6px;
+  }
+  h1{
+    font-size:26px; letter-spacing:-.01em; margin:0; font-weight:700;
+  }
+  h1 span{color:var(--muted); font-weight:500}
+  .sub{color:var(--muted); font-size:13px; margin:6px 0 0}
+
+  /* ---- format strip ---- */
+  .format{
+    display:flex; flex-wrap:wrap;
+    border:1px solid var(--line); margin:16px 0 22px;
+  }
+  .format > div{flex:1 1 220px; padding:10px 14px; border-right:1px solid var(--line)}
+  .format > div:last-child{border-right:0}
+  .format .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--faint); margin:0 0 3px}
+  .format .v{font-size:13px; margin:0}
+  .format .v b{font-weight:700}
+  .format .flag{background:var(--panel)}
+  .format .flag .k{color:var(--accent)}
+
+  /* ---- subject grid ---- */
+  .grid{width:100%; border-collapse:collapse; table-layout:fixed}
+  .grid td{width:50%; vertical-align:top; padding:0 7px 14px}
+  .grid tr td:first-child{padding-left:0}
+  .grid tr td:last-child{padding-right:0}
+  .card{
+    width:100%; border:1px solid var(--line-strong);
+    position:relative; overflow:hidden; display:flex;
+  }
+  .tab{
+    flex:0 0 34px; background:var(--ink); color:#fff;
+    display:flex; align-items:flex-start; justify-content:center; padding-top:12px;
+  }
+  .tab .n{font-family:var(--mono); font-size:20px; font-weight:700;
+    writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:.05em}
+  .card .body{flex:1 1 auto; padding:12px 14px 13px; min-width:0}
+  .card h2{
+    font-size:16px; margin:0 0 2px; letter-spacing:-.01em;
+  }
+  .card .krange{font-family:var(--mono); font-size:10.5px; color:var(--faint);
+    letter-spacing:.04em; margin:0 0 10px}
+
+  .slot{margin-top:9px}
+  .slot:first-of-type{margin-top:2px}
+  .slotlabel{
+    font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 3px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .slotlabel::after{content:""; flex:1 1 auto; height:1px; background:var(--line)}
+  .desc{font-size:13px; margin:0 0 5px}
+  .desc .ex{color:var(--muted)}
+  .eq{margin:2px 0 6px; font-size:13.5px; overflow-x:auto}
+  .eq .katex{font-size:1em}
+
+  .secs{display:flex; flex-wrap:wrap; gap:5px; align-items:center}
+  .chip{
+    font-family:var(--mono); font-size:11px; padding:2px 7px;
+    border:1px solid var(--line-strong); border-radius:2px; color:var(--ink);
+    white-space:nowrap; background:#fff;
+  }
+  .chip.first{
+    background:var(--ink); color:#fff; border-color:var(--ink); font-weight:600;
+  }
+  .exc{
+    margin-top:8px; padding:7px 9px; background:var(--panel);
+    border-left:3px solid var(--accent); font-size:12.5px;
+  }
+  .exc .t{font-family:var(--mono); font-size:9.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); display:block; margin-bottom:2px}
+
+  /* ---- legend + footer ---- */
+  .legend{
+    display:flex; gap:18px; align-items:center; flex-wrap:wrap;
+    margin:18px 0 0; padding-top:12px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--muted);
+  }
+  .legend .chip{font-size:10px}
+  footer{margin-top:16px; border-top:2px solid var(--ink); padding-top:12px}
+  footer h3{font-size:12px; font-family:var(--mono); letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent); margin:0 0 7px}
+  .order{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0 0 8px}
+  .order .step{font-family:var(--mono); font-size:12px; background:var(--panel);
+    border:1px solid var(--line); padding:3px 8px; border-radius:2px}
+  .order .arw{color:var(--faint); font-size:12px}
+  footer p{font-size:12.5px; color:var(--muted); margin:6px 0 0}
+  footer p b{color:var(--ink)}
+
+  /* ---- print ---- */
+  @media print{
+    body{background:#fff; font-size:11pt}
+    .sheet{box-shadow:none; margin:0; max-width:none; padding:0}
+    .grid td{padding:0 4px 8px}
+    .grid tr td:first-child{padding-left:0}
+    .grid tr td:last-child{padding-right:0}
+    .card, .exc, .format{break-inside:avoid}
+    @page{margin:12mm}
+  }
+  @media (max-width:760px){
+    .sheet{padding:20px}
+    .grid, .grid tbody, .grid tr, .grid td{display:block; width:100%}
+    .grid td{padding:0 0 14px !important}
+    .format > div{border-right:0; border-bottom:1px solid var(--line)}
+    .format > div:last-child{border-bottom:0}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="mast">
+    <p class="eyebrow">Mechanical Engineering PhD · University of Nevada, Reno</p>
+    <h1>Math Qualifying Exam <span>— Topic Map &amp; Kreyszig Reading List</span></h1>
+    <p class="sub">Every subject poses two problems in a stable pattern. Read the <strong>filled</strong> section first; the rest are supporting or gap-fillers. Practice from each section's Problem Set.</p>
+  </header>
+
+  <section class="format">
+    <div>
+      <p class="k">Standard format</p>
+      <p class="v"><b>6 subjects × 2 problems.</b> Work 8 total, ≥1 per subject. 80 pts. Closed book.</p>
+    </div>
+    <div class="flag">
+      <p class="k">Outlier · S19</p>
+      <p class="v"><b>8 topics × 2 problems</b> (answer 8, ≥6 topics). Vector calc split across 3 slots.</p>
+    </div>
+    <div class="flag">
+      <p class="k">Reordered · F21</p>
+      <p class="v">Subjects run Laplace, ODE, Fourier, <b>PDE, Lin Alg, Vector</b> — numbers map differently.</p>
+    </div>
+  </section>
+
+  <table class="grid"><tbody><tr><td>
+
+    <!-- 1 Laplace -->
+    <div class="card">
+      <div class="tab"><span class="n">1 · LAPLACE</span></div>
+      <div class="body">
+        <h2>Laplace Transforms</h2>
+        <p class="krange">Kreyszig Ch 6</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — solve an ODE / invert</p>
+          <p class="desc">Linear ODE with special forcing — impulse, step, ramp — or a pure inverse transform.</p>
+          <div class="eq">$y'' + 2y' + y = \delta(t)\,,\qquad \mathcal{L}^{-1}\!\left\{\tfrac{1}{s^2(s^2+\omega^2)}\right\}$</div>
+          <div class="secs">
+            <span class="chip first">§6.2</span><span class="chip">§6.1</span><span class="chip">§6.3</span><span class="chip">§6.4</span><span class="chip">§6.9 table</span>
+          </div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — convolution / integral eqn</p>
+          <p class="desc">Integral or integro-differential equation (incl. a nonlinear self-convolution).</p>
+          <div class="eq">$y(t) + 2\!\int_0^t \cos(t-\tau)\,y(\tau)\,d\tau = e^{-t}$</div>
+          <div class="secs"><span class="chip first">§6.5</span></div>
+        </div>
+      </div>
+    </div>
+
+</td><td>
+    <!-- 2 ODE -->
+    <div class="card">
+      <div class="tab"><span class="n">2 · ODE</span></div>
+      <div class="body">
+        <h2>Ordinary Differential Equations</h2>
+        <p class="krange">Kreyszig Ch 1–4</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — first-order / special</p>
+          <p class="desc">Separable, exact, Bernoulli/logistic, or Euler–Cauchy.</p>
+          <div class="eq">$y' = 2\sec(2y)\,,\quad \dot{x}=rx(1-x)\,,\quad x^2y''+axy'+by=0$</div>
+          <div class="secs"><span class="chip first">§1.3</span><span class="chip">§1.4</span><span class="chip">§1.5</span><span class="chip">§2.5</span><span class="chip">§3.1–3.2</span></div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — 2nd-order linear, no Laplace</p>
+          <p class="desc">Constant-coefficient with forcing; watch for resonance.</p>
+          <div class="eq">$\ddot{x} + x = \sin t$</div>
+          <div class="secs"><span class="chip first">§2.7</span><span class="chip">§2.2</span><span class="chip">§2.8</span><span class="chip">§2.10</span></div>
+        </div>
+
+        <div class="exc">
+          <span class="t">Exception · F19 2.2</span>
+          Nonlinear system — critical points, stability, phase portrait.
+          <span class="secs" style="margin-top:5px"><span class="chip first">§4.5</span><span class="chip">§4.3</span><span class="chip">§4.4</span><span class="chip">§4.1–4.2</span></span>
+        </div>
+      </div>
+    </div>
+
+</td></tr><tr><td>
+    <!-- 3 Fourier -->
+    <div class="card">
+      <div class="tab"><span class="n">3 · FOURIER</span></div>
+      <div class="body">
+        <h2>Fourier Series &amp; Transforms</h2>
+        <p class="krange">Kreyszig Ch 11</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — series of a periodic wave</p>
+          <p class="desc">Square, sawtooth, triangle, PWM, or even-extension cosine series. Give the general term.</p>
+          <div class="eq">$x(t)=A\,\operatorname{sgn}\!\big[\sin(2\pi t/T)\big]$</div>
+          <div class="secs"><span class="chip first">§11.1</span><span class="chip">§11.2</span></div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — transform of a pulse</p>
+          <p class="desc">Finite-duration signal → transform + sketch magnitude spectrum.</p>
+          <div class="eq">$x(t)=\begin{cases}1 & |t|<T\\ 0 & \text{else}\end{cases}\ \Rightarrow\ X(\omega)$</div>
+          <div class="secs"><span class="chip first">§11.9</span><span class="chip">§11.7</span><span class="chip">§11.8</span><span class="chip">§11.10 tables</span></div>
+        </div>
+      </div>
+    </div>
+
+</td><td>
+    <!-- 4 Linear Algebra -->
+    <div class="card">
+      <div class="tab"><span class="n">4 · LIN ALG</span></div>
+      <div class="body">
+        <h2>Linear Algebra</h2>
+        <p class="krange">Kreyszig Ch 8 (+ §4.3)</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — matrix function</p>
+          <p class="desc">Compute a power or a matrix exponential via diagonalization.</p>
+          <div class="eq">$A^{100}\,,\qquad e^{At}$</div>
+          <div class="secs"><span class="chip first">§8.4</span><span class="chip">§8.1</span><span class="chip">§4.3</span></div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — eigen-analysis / proof</p>
+          <p class="desc">Eigenvalues &amp; eigenvectors, often a stability parameter; or a similarity proof.</p>
+          <div class="eq">$\det(A-\lambda I)=0\,,\qquad \operatorname{Re}(\lambda)<0\ ?$</div>
+          <div class="secs"><span class="chip first">§8.1</span><span class="chip">§8.3</span><span class="chip">§8.4</span></div>
+        </div>
+
+        <div class="exc">
+          <span class="t">Watch out</span>
+          Kreyszig has no standalone $e^{At}$ section, and the defective / repeated-eigenvalue (Jordan) case isn't spelled out. Pair §8.4 with §4.3 or a supplementary note.
+        </div>
+      </div>
+    </div>
+
+</td></tr><tr><td>
+    <!-- 5 Vector -->
+    <div class="card">
+      <div class="tab"><span class="n">5 · VECTOR</span></div>
+      <div class="body">
+        <h2>Vector Analysis</h2>
+        <p class="krange">Kreyszig Ch 9–10</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — flux / divergence theorem</p>
+          <p class="desc">Flux of a field through a closed surface (sphere, cube, solid).</p>
+          <div class="eq">$\iint_{\partial E}\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_E \nabla\!\cdot\mathbf{F}\,dV$</div>
+          <div class="secs"><span class="chip first">§10.7</span><span class="chip">§10.5–10.6</span><span class="chip">§10.4</span><span class="chip">§9.8</span></div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — work / line integral</p>
+          <p class="desc">Work of a force along a curve; helices are a favorite.</p>
+          <div class="eq">$W=\int_C \mathbf{F}\cdot d\mathbf{r}$</div>
+          <div class="secs"><span class="chip first">§10.1</span><span class="chip">§10.2</span><span class="chip">§10.9</span><span class="chip">§9.5</span></div>
+        </div>
+      </div>
+    </div>
+
+</td><td>
+    <!-- 6 PDE -->
+    <div class="card">
+      <div class="tab"><span class="n">6 · PDE</span></div>
+      <div class="body">
+        <h2>Partial Differential Equations</h2>
+        <p class="krange">Kreyszig Ch 12</p>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .1 — finite domain, separation</p>
+          <p class="desc">Wave / heat / Laplace on a bounded region; separation of variables + eigenvalues.</p>
+          <div class="eq">$u_{tt}=c^2u_{xx}\,,\quad u(0,t)=u(L,t)=0$</div>
+          <div class="secs"><span class="chip first">§12.3</span><span class="chip">§12.2</span><span class="chip">§12.6</span><span class="chip">§12.10 polar</span></div>
+        </div>
+
+        <div class="slot">
+          <p class="slotlabel">Slot .2 — infinite domain</p>
+          <p class="desc">Transport / wave / heat on the whole line via d'Alembert or transforms.</p>
+          <div class="eq">$u(x,t)=\tfrac12\big[f(x-ct)+f(x+ct)\big]$</div>
+          <div class="secs"><span class="chip first">§12.4</span><span class="chip">§12.7</span></div>
+        </div>
+      </div>
+    </div>
+
+  </td></tr></tbody></table><!-- /grid -->
+
+  <div class="legend">
+    <span><span class="chip first">§X.X</span> read first</span>
+    <span><span class="chip">§X.X</span> supporting / gap-fill</span>
+    <span>Practice = the Problem Set at the end of each section.</span>
+  </div>
+
+  <footer>
+    <h3>Suggested study order</h3>
+    <div class="order">
+      <span class="step">Ch 6 · Laplace</span><span class="arw">→</span>
+      <span class="step">Ch 1–4 · ODE</span><span class="arw">→</span>
+      <span class="step">Ch 8 · Lin Alg</span><span class="arw">→</span>
+      <span class="step">Ch 9–10 · Vector</span><span class="arw">→</span>
+      <span class="step">Ch 11 · Fourier</span><span class="arw">→</span>
+      <span class="step">Ch 12 · PDE</span>
+    </div>
+    <p>Laplace first pays off — its shifting theorems and convolution (§6.5) resurface in the ODE and PDE work. <b>Budget extra time on Chapters 10 and 12</b> (heaviest by page count). You only need 8 of 12 problems with ≥1 per subject, so deepen your strongest slot in each subject rather than chasing every variant.</p>
+  </footer>
+
+</div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    if (window.renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ],
+        throwOnError: false
+      });
+    }
+  });
+</script>
+</body>
+</html>
